@@ -1,11 +1,11 @@
 # Flujo de trabajo con Git
 
-Repositorio: `anndreloopez012/atlas-memoria` (privado; para compartirlo se agregan colaboradores). Ramas permanentes: `main` y `dev`, **siempre con el mismo contenido**.
+Repositorio: `anndreloopez012/boost-ia-app-atlas-software`. Ramas permanentes: `main` y `dev`, **siempre con el mismo contenido**.
 
 ## Reglas
 
 1. Un cambio = una rama: `feat/<tema>` para algo nuevo, `fix/<tema>` para un arreglo.
-2. Commits con el formato `feat(<pantalla>): <explicación>` o `fix(<pantalla>): <explicación>`. La pantalla es la parte afectada: `universo`, `vaults`, `skills`, `agentes`, `sistema`, `datos`, `docs`, `proyecto`.
+2. Commits con el formato `feat(<pantalla>): <explicación>` o `fix(<pantalla>): <explicación>`. La pantalla es la parte afectada: `kit`, `universo`, `vaults`, `skills`, `agentes`, `sistema`, `obsidian`, `identidad`, `datos`, `docs`, `proyecto`.
 3. Los commits solo llevan al autor del repositorio (sin líneas de coautoría).
 4. Al terminar: `npm run verificar` y `npm run build` deben pasar; subir la rama, fusionarla con `--no-ff` en `dev` y en `main`, y subir ambas. No queda trabajo sin subir.
 5. Todo cambio mantiene el proyecto reutilizable: nada fijo de un equipo, compatible con Claude Code, Codex y Antigravity, y la documentación (README, `INSTALAR.md`, `AGENTS.md`, CHANGELOG) al día.

@@ -1,7 +1,7 @@
 {
   "name": "boost-ia-app-atlas-software",
   "private": true,
-  "version": "2.3.0",
+  "version": "3.0.0",
   "description": "Boost IA Atlas: el kit de agentes y skills con el que se trabaja en Campuslands (front, back, seguridad, video e imagen), conectado con tu memoria en Obsidian. Lo instala una IA en cualquier equipo.",
   "repository": {
     "type": "git",
@@ -12,6 +12,7 @@
     "instalar": "node scripts/instalar.mjs",
     "detectar": "node scripts/instalar.mjs --solo-detectar",
     "kit": "node scripts/kit.mjs",
+    "kit:docs": "node scripts/kit-docs.mjs",
     "verificar": "node scripts/verificar.mjs",
     "datos": "node scripts/generar-datos.mjs",
     "traducir": "node scripts/traducir.mjs",
@@ -51,5 +52,6 @@
     "@vitejs/plugin-react": "^6.1.1",
     "typescript": "^7.0.2",
     "vite": "^8.3.2"
-  }
+  },
+  "license": "MIT"
 }
