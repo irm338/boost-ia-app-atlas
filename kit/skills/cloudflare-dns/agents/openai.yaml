@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cloudflare Zone Admin"
+  short_description: "Administra DNS, WAF, SSL y zona en Cloudflare"
+  default_prompt: "Gestiona Cloudflare de forma segura: DNS, reglas, certificados, analytics y configuracion de zona"
