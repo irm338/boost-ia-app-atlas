@@ -9,6 +9,7 @@ import { defineConfig, type Connect, type Plugin, type ViteDevServer } from 'vit
 import { aplicarActualizacion, buscarActualizacion, versionActual } from './scripts/lib/actualizacion.mjs';
 import { capturar, modoDeCaptura } from './scripts/lib/capturar.mjs';
 import { armarPedido, fuentesPara, iasParaPreguntar, responder as responderIA } from './scripts/lib/preguntar.mjs';
+import { cargarCatalogo, estado as estadoKit } from './scripts/lib/kit.mjs';
 import { marcarHecha } from './scripts/lib/tareas.mjs';
 import { enlaceObsidianCarpeta } from './scripts/lib/vault-inicial.mjs';
 
@@ -17,6 +18,7 @@ const DATOS = process.env.ATLAS_SALIDA ? path.resolve(process.env.ATLAS_SALIDA) 
 const ARCHIVO_CONFIG = process.env.ATLAS_CONFIG ? path.resolve(process.env.ATLAS_CONFIG) : path.join(RAIZ, 'atlas.config.json');
 const GENERADOR = path.join(RAIZ, 'scripts/generar-datos.mjs');
 const INSTALADOR = path.join(RAIZ, 'scripts/instalar.mjs');
+const KIT = path.join(RAIZ, 'scripts/kit.mjs');
 
 interface ConfigLocal {
   puerto?: number;
@@ -186,6 +188,7 @@ function atlas(): Plugin {
       if (!r.error) actualizacion = r;
     });
   const regenerar = () => (generando ??= generar().finally(() => (generando = null)));
+  let trabajoKit: { id: number; accion?: string; corriendo: boolean; log: string[]; ok: boolean | null } | null = null;
 
   const middlewares = (app: Connect.Server) => {
     app.use('/__atlas', (req, res, next) => {
@@ -345,6 +348,49 @@ function atlas(): Plugin {
       if (!modoApp) return responder(res, 409, { ok: false, error: 'Solo la app de doble clic se apaga así' });
       responder(res, 200, { ok: true });
       setTimeout(() => process.exit(0), 300);
+    });
+
+    // Kit Boost IA: GET da el catálogo, lo instalado y el trabajo en curso; POST lanza una acción
+    // (instalar, quitar, conectar Obsidian) con scripts/kit.mjs en segundo plano. La página
+    // consulta GET cada segundo mientras corre para mostrar el avance.
+    app.use('/__atlas/kit', async (req, res) => {
+      if (req.method === 'GET') {
+        try {
+          return responder(res, 200, { catalogo: cargarCatalogo(), estado: estadoKit(cargarCatalogo()), trabajo: trabajoKit });
+        } catch (error) {
+          return responder(res, 500, { error: String(error) });
+        }
+      }
+      if (req.method !== 'POST') return responder(res, 405, { ok: false });
+      if (trabajoKit?.corriendo) return responder(res, 409, { ok: false, error: 'Ya hay una instalación en curso' });
+      try {
+        const { accion, piezas = [], areas = [], todo = false } = (await leerJson(req)) as { accion?: string; piezas?: string[]; areas?: string[]; todo?: boolean };
+        const seguro = (x: unknown) => typeof x === 'string' && /^[a-z0-9-]{1,60}$/.test(x);
+        const ids = (Array.isArray(piezas) ? piezas : []).filter(seguro);
+        const zonas = (Array.isArray(areas) ? areas : []).filter(seguro);
+        const argumentos =
+          accion === 'instalar' ? [...(todo ? ['--todo'] : []), ...(zonas.length ? ['--area', zonas.join(',')] : []), ...ids]
+          : accion === 'quitar' ? ['--quitar', ...ids]
+          : accion === 'obsidian' ? ['--obsidian']
+          : accion === 'obsidian-quitar' ? ['--obsidian-quitar']
+          : null;
+        if (!argumentos || (accion === 'instalar' && !todo && !zonas.length && !ids.length)) return responder(res, 400, { ok: false, error: 'Pedido no válido' });
+        const trabajo = { id: Date.now(), accion, corriendo: true, log: [] as string[], ok: null as boolean | null };
+        trabajoKit = trabajo;
+        const hijo = spawn(process.execPath, [KIT, ...argumentos], { cwd: RAIZ, env: process.env });
+        const linea = (b: Buffer) => trabajo.log.push(...b.toString().split('\n').map((l) => l.trimEnd()).filter(Boolean));
+        hijo.stdout.on('data', linea);
+        hijo.stderr.on('data', linea);
+        hijo.on('close', (codigo) => {
+          trabajo.corriendo = false;
+          trabajo.ok = codigo === 0;
+          void regenerar();
+        });
+        responder(res, 202, { ok: true, id: trabajo.id });
+      } catch (error) {
+        trabajoKit = null;
+        responder(res, 400, { ok: false, error: String(error) });
+      }
     });
 
     app.use('/__atlas/regenerar', async (req, res) => {
