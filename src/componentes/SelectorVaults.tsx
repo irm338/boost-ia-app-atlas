@@ -1,0 +1,40 @@
+// Carril para saltar entre vaults. El vault central va primero y separado: es la
+// raíz de la que nacen los demás (la línea dibuja esa rama).
+import { vaultCentral } from '../lib/atlas';
+import { navegar, rutaVault } from '../lib/rutas';
+import { tono, useTema } from '../lib/tema';
+import type { Atlas } from '../lib/tipos';
+import OrbeVault from './vault/OrbeVault';
+
+export default function SelectorVaults({ atlas, actual }: { atlas: Atlas; actual: string }) {
+  const tema = useTema();
+  const core = vaultCentral(atlas);
+  if (!core) return null;
+  const hijos = atlas.vaults.filter((v) => v !== core);
+  const boton = (v: typeof core) => (
+    <button
+      key={v.slug}
+      className={`vault-pastilla ${v.slug === actual ? 'activa' : ''} ${v === core ? 'raiz' : ''}`}
+      style={{ ['--vault' as string]: v.color, ['--vault-texto' as string]: tono(v.color, tema) }}
+      onClick={() => navegar(rutaVault(v.slug))}
+      aria-current={v.slug === actual ? 'page' : undefined}
+    >
+      <OrbeVault color={v.color} semilla={v.slug} tamano={v === core ? 24 : 20} simple activo={v.slug === actual} />
+      {v.nombre}
+      <span className="mono">{v.notas.toLocaleString('es-GT')}</span>
+    </button>
+  );
+  return (
+    <nav className="selector-vaults" aria-label="Vaults">
+      {boton(core)}
+      {hijos.length > 0 && (
+        <>
+          <svg className="selector-rama" viewBox="0 0 40 24" aria-hidden="true">
+            <path d="M0 12 H18 M18 12 C26 12 26 4 40 4 M18 12 C26 12 26 20 40 20" fill="none" stroke="currentColor" />
+          </svg>
+          <div className="selector-hijos">{hijos.map(boton)}</div>
+        </>
+      )}
+    </nav>
+  );
+}

@@ -1,0 +1,224 @@
+// Carga perezosa de los datos del atlas con caché. Cada archivo se pide una sola
+// vez; `recargarDatos()` vacía la caché y avisa a los componentes.
+import { useEffect, useState, useSyncExternalStore } from 'react';
+import type { Agente, Atlas, DatosProyectos, DatosSalud, DatosSkills, DatosTareas, DatosVault, DetalleSkill, Recientes, Tarea } from './tipos';
+
+const cache = new Map<string, Promise<unknown>>();
+let version = 0;
+const oyentes = new Set<() => void>();
+
+function pedir<T>(ruta: string): Promise<T> {
+  if (!cache.has(ruta)) {
+    const promesa = fetch(`/datos/${ruta}?v=${version}`).then(async (r) => {
+      if (!r.ok) throw new Error(`No se pudo leer ${ruta} (${r.status}). Ejecuta npm run instalar.`);
+      return r.json();
+    });
+    promesa.catch(() => cache.delete(ruta));
+    cache.set(ruta, promesa);
+  }
+  return cache.get(ruta) as Promise<T>;
+}
+
+export const cargarAtlas = () => pedir<Atlas>('atlas.json');
+export const cargarVault = (slug: string) => pedir<DatosVault>(`vault/${slug}.json`);
+export const cargarBloque = (bloque: string) => pedir<Record<string, string>>(`contenido/${bloque}.json`);
+export const cargarSkills = () => pedir<DatosSkills>('skills.json');
+export const cargarDetalleSkill = (archivo: string) => pedir<DetalleSkill>(`skills/${archivo}.json`);
+export const cargarAgentes = () => pedir<{ agentes: Agente[] }>('agentes.json');
+export const cargarRecientes = () => pedir<Recientes>('recientes.json');
+export const cargarTareas = () => pedir<DatosTareas>('tareas.json');
+export const cargarProyectos = () => pedir<DatosProyectos>('proyectos.json');
+export const cargarSalud = () => pedir<DatosSalud>('salud.json');
+
+/** Marca una tarea como hecha en su nota (el servidor cambia solo esa casilla). */
+export async function marcarTareaHecha(t: Tarea): Promise<{ ok: boolean; error?: string }> {
+  try {
+    const r = await fetch('/__atlas/tarea', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ s: t.s, r: t.r, l: t.l, h: t.h }) });
+    return await r.json();
+  } catch {
+    return { ok: false, error: 'El servidor no responde' };
+  }
+}
+
+export function recargarDatos() {
+  cache.clear();
+  version += 1;
+  oyentes.forEach((f) => f());
+}
+
+export function useVersionDatos() {
+  return useSyncExternalStore(
+    (f) => {
+      oyentes.add(f);
+      return () => oyentes.delete(f);
+    },
+    () => version,
+  );
+}
+
+export interface Estado<T> {
+  datos: T | null;
+  error: string | null;
+  cargando: boolean;
+}
+
+/** Ejecuta un cargador y vuelve a hacerlo cuando cambia la clave o se recargan los datos. */
+export function useDatos<T>(clave: string | null, cargador: () => Promise<T>): Estado<T> {
+  const v = useVersionDatos();
+  const [estado, setEstado] = useState<Estado<T>>({ datos: null, error: null, cargando: clave !== null });
+  useEffect(() => {
+    if (clave === null) {
+      setEstado({ datos: null, error: null, cargando: false });
+      return;
+    }
+    let vivo = true;
+    setEstado((e) => ({ ...e, cargando: true, error: null }));
+    cargador()
+      .then((datos) => vivo && setEstado({ datos, error: null, cargando: false }))
+      .catch((e: Error) => vivo && setEstado({ datos: null, error: e.message, cargando: false }));
+    return () => {
+      vivo = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [clave, v]);
+  return estado;
+}
+
+export async function regenerarEnServidor(): Promise<{ ok: boolean; salida: string }> {
+  const r = await fetch('/__atlas/regenerar', { method: 'POST' });
+  if (!r.ok) return { ok: false, salida: `El servidor respondió ${r.status}` };
+  return r.json();
+}
+
+// --- Estado del servidor ----------------------------------------------------------
+// La página pregunta cada 15 s si hay datos nuevos (en la app no hay recarga en
+// caliente), si el servidor está buscando cambios y si hay una versión nueva del
+// atlas. De paso le avisa que sigue en uso. Mientras se actualiza, pregunta seguido
+// y, cuando vuelve con otra versión, recarga la página.
+export interface VersionNueva {
+  version: string;
+  notas: string;
+  url: string;
+  /** la app puede instalarla sola */
+  automatica: boolean;
+  /** copia de desarrollo: se actualiza con git pull */
+  git: boolean;
+}
+interface EstadoServidor {
+  buscando: boolean;
+  nueva: VersionNueva | null;
+  progreso: string | null;
+}
+let estadoActual: EstadoServidor = { buscando: false, nueva: null, progreso: null };
+let generadoVisto: string | null = null;
+let versionVista: string | null = null;
+let carpetaApp: string | null = null;
+/** Carpeta de la app en este equipo (la informa el servidor). */
+export const carpetaDeLaApp = () => carpetaApp;
+let esperandoReinicio = false;
+const oyentesEstado = new Set<() => void>();
+const cambiarEstado = (cambio: Partial<EstadoServidor>) => {
+  const nuevo = { ...estadoActual, ...cambio };
+  if (nuevo.buscando === estadoActual.buscando && nuevo.nueva?.version === estadoActual.nueva?.version && nuevo.progreso === estadoActual.progreso) return;
+  estadoActual = nuevo;
+  oyentesEstado.forEach((f) => f());
+};
+
+async function consultarEstado() {
+  try {
+    const r = await fetch('/__atlas/estado', { cache: 'no-store' });
+    if (!r.ok) return;
+    const d = (await r.json()) as { generado: string | null; buscando: boolean; version?: string; carpeta?: string; actualizacion?: VersionNueva | null; progreso?: string | null };
+    carpetaApp = d.carpeta ?? carpetaApp;
+    // Volvió con otra versión: la página se recarga para usar el código nuevo.
+    if (d.version && versionVista && d.version !== versionVista) {
+      location.reload();
+      return;
+    }
+    versionVista ??= d.version ?? null;
+    if (generadoVisto && d.generado && d.generado !== generadoVisto) recargarDatos();
+    generadoVisto = d.generado ?? generadoVisto;
+    cambiarEstado({ buscando: d.buscando, nueva: d.actualizacion ?? null, progreso: d.progreso ?? (esperandoReinicio ? estadoActual.progreso : null) });
+  } catch {
+    /* servidor apagado, reiniciándose o sin conexión */
+  }
+}
+
+function programarConsulta() {
+  setTimeout(
+    async () => {
+      await consultarEstado();
+      programarConsulta();
+    },
+    esperandoReinicio || estadoActual.progreso ? 2000 : 15_000,
+  );
+}
+
+if (typeof window !== 'undefined') {
+  void consultarEstado();
+  programarConsulta();
+  // Al volver a la pestaña se pregunta enseguida.
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') void consultarEstado();
+  });
+}
+
+const suscribirEstado = (f: () => void) => {
+  oyentesEstado.add(f);
+  return () => oyentesEstado.delete(f);
+};
+
+/** La versión nueva disponible (si la hay) y en qué paso va la actualización. */
+export function useActualizacion() {
+  return useSyncExternalStore(suscribirEstado, () => estadoActual);
+}
+
+/** Pide al servidor que instale la versión nueva; la página se recarga sola al terminar. */
+export async function actualizarAtlas(): Promise<{ ok: boolean; error?: string }> {
+  cambiarEstado({ progreso: 'Empezando…' });
+  esperandoReinicio = true;
+  try {
+    const r = await fetch('/__atlas/actualizar', { method: 'POST' });
+    const d = (await r.json()) as { ok: boolean; error?: string };
+    if (!d.ok) {
+      esperandoReinicio = false;
+      cambiarEstado({ progreso: null });
+    } else cambiarEstado({ progreso: 'Reiniciando con la versión nueva…' });
+    return d;
+  } catch {
+    // La conexión se corta cuando el servidor se reinicia: se sigue esperando.
+    return { ok: true };
+  }
+}
+
+/** true mientras el servidor vuelve a leer vaults, skills y agentes. */
+export function useBuscandoCambios() {
+  return useSyncExternalStore(
+    (f) => {
+      oyentesEstado.add(f);
+      return () => oyentesEstado.delete(f);
+    },
+    () => estadoActual.buscando,
+  );
+}
+
+export interface VaultListo {
+  ok: boolean;
+  error?: string;
+  ruta?: string;
+  nombre?: string;
+  creado?: boolean;
+  obsidian?: string;
+}
+
+/** Crea el vault inicial con notas guía (`inicial`) o agrega un vault que ya existe (`ruta`). */
+export async function agregarVault(pedido: { inicial: true } | { ruta: string }): Promise<VaultListo> {
+  try {
+    const r = await fetch('/__atlas/vault', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(pedido) });
+    const datos = (await r.json()) as VaultListo;
+    if (datos.ok) recargarDatos();
+    return datos;
+  } catch {
+    return { ok: false, error: 'El servidor no responde' };
+  }
+}

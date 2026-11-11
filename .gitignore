@@ -1,0 +1,22 @@
+# Dependencias y compilados
+node_modules/
+dist/
+
+# Configuración de cada equipo (rutas locales). La escribe `npm run instalar`.
+atlas.config.json
+
+# Datos generados: contenido personal de los vaults. Se regeneran con `npm run datos`.
+datos/
+datos.nuevo*/
+datos.viejo*/
+
+# Enlace que crea el sistema de memoria en cada proyecto (es un symlink, sin barra final)
+graphify-out
+
+# macOS / editores
+.DS_Store
+*.log
+.vscode/
+.idea/
+# Caché local del atlas (conteos de uso de skills)
+.atlas-cache/
