@@ -1,0 +1,4 @@
+interface:
+  display_name: "PostgreSQL Docker DevOps Doc"
+  short_description: "Corporate PostgreSQL Docker runbooks"
+  default_prompt: "Use $postgres-docker-devops-doc to create a client-ready Linux Docker PostgreSQL operations guide."

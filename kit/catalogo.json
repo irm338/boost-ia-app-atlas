@@ -1,0 +1,1769 @@
+{
+  "kit": {
+    "nombre": "Boost IA",
+    "titulo": "Boost IA Atlas",
+    "autor": "Campuslands Guatemala",
+    "repo": "anndreloopez012/boost-ia-app-atlas-software",
+    "dedicatoria": "Para la generación que egresa de Campuslands: esta es la forma en que trabajamos con IA, para que la hagas tuya."
+  },
+  "areas": [
+    {
+      "id": "metodo",
+      "nombre": "Método",
+      "lema": "Pensar antes de teclear",
+      "color": "#b997ff",
+      "descripcion": "Cómo convierto una idea en un plan y un plan en código que funciona: preguntas, especificación, tareas pequeñas, pruebas y verificación."
+    },
+    {
+      "id": "frontend",
+      "nombre": "Frontend",
+      "lema": "Interfaces que se sienten bien",
+      "color": "#2caaff",
+      "descripcion": "Diseño e implementación de interfaces con React, Vite, shadcn/ui y Tailwind, cuidando accesibilidad, rendimiento y un diseño con criterio."
+    },
+    {
+      "id": "backend",
+      "nombre": "Backend",
+      "lema": "APIs, datos y servicios sólidos",
+      "color": "#00d9a4",
+      "descripcion": "APIs en Node, bases de datos, Supabase, Firebase, pagos, automatizaciones e integración de modelos de IA."
+    },
+    {
+      "id": "calidad",
+      "nombre": "Calidad",
+      "lema": "Si no se probó, no está listo",
+      "color": "#57bbff",
+      "descripcion": "Pruebas automáticas, revisión de código, depuración de causa raíz y rendimiento medido."
+    },
+    {
+      "id": "seguridad",
+      "nombre": "Seguridad",
+      "lema": "Piensa como atacante",
+      "color": "#ff8a7a",
+      "descripcion": "Revisión de seguridad durante el desarrollo, auditoría antes de publicar y auditorías completas con metodología profesional."
+    },
+    {
+      "id": "despliegue",
+      "nombre": "Despliegue",
+      "lema": "Publicar sin miedo",
+      "color": "#ffc56b",
+      "descripcion": "Git ordenado por ramas, integración continua y publicación en servidores propios o en Vercel."
+    },
+    {
+      "id": "video",
+      "nombre": "Video e imagen",
+      "lema": "Producción audiovisual con IA",
+      "color": "#7a3cff",
+      "descripcion": "Videos hechos con código (HyperFrames y Remotion), imágenes y clips con IA (Higgsfield), voz y música (ElevenLabs)."
+    },
+    {
+      "id": "memoria",
+      "nombre": "Memoria y documentación",
+      "lema": "Lo que aprendes se queda",
+      "color": "#7fffdc",
+      "descripcion": "Tu memoria en Obsidian, el grafo de tu código y diagramas que explican la arquitectura."
+    }
+  ],
+  "agentes": [
+    {
+      "slug": "engineering-lifecycle-lead",
+      "area": "metodo",
+      "nombre": "Líder del ciclo de ingeniería",
+      "descripcion": "Dirige una tarea de software de punta a punta en seis fases: definir, planear, construir, verificar, revisar y publicar. Úsalo cuando vas a construir algo que no es un cambio de una línea.",
+      "pidelo": "Construye el módulo de reservas de principio a fin, con pruebas y revisión.",
+      "skills": [
+        "using-agent-skills",
+        "spec-driven-development",
+        "idea-refine",
+        "interview-me",
+        "planning-and-task-breakdown",
+        "context-engineering",
+        "incremental-implementation",
+        "source-driven-development",
+        "test-driven-development",
+        "debugging-and-error-recovery",
+        "code-review-and-quality",
+        "security-and-hardening",
+        "performance-optimization",
+        "shipping-and-launch",
+        "git-workflow-and-versioning",
+        "documentation-and-adrs",
+        "executing-plans",
+        "verification-before-completion",
+        "finishing-a-development-branch",
+        "using-git-worktrees"
+      ],
+      "subagentes": [
+        "codebase-scout",
+        "code-reviewer",
+        "test-engineer",
+        "security-auditor"
+      ]
+    },
+    {
+      "slug": "project-delivery-lead",
+      "area": "metodo",
+      "nombre": "Líder de entrega de proyectos",
+      "descripcion": "Convierte una idea suelta en un plan ejecutable: hace las preguntas correctas, propone el alcance, arma el plan por tareas y da seguimiento hasta entregarlo.",
+      "pidelo": "Tengo una idea para una app de tutorías. Ayúdame a convertirla en un plan.",
+      "skills": [
+        "brainstorming",
+        "writing-plans",
+        "executing-plans",
+        "subagent-driven-development",
+        "dispatching-parallel-agents",
+        "idea-refine",
+        "planning-and-task-breakdown"
+      ],
+      "subagentes": [
+        "codebase-scout"
+      ]
+    },
+    {
+      "slug": "codebase-scout",
+      "area": "memoria",
+      "nombre": "Explorador del código",
+      "descripcion": "Explora un repositorio en modo solo lectura y devuelve un resumen corto: dónde está cada cosa, cómo se conecta y qué archivos importan para la tarea.",
+      "pidelo": "¿Dónde se valida el inicio de sesión en este proyecto?",
+      "skills": [
+        "context-engineering"
+      ],
+      "subagentes": []
+    },
+    {
+      "slug": "fullstack-web-engineer",
+      "area": "frontend",
+      "nombre": "Ingeniero web fullstack",
+      "descripcion": "Construye aplicaciones web completas con TypeScript: interfaz en React y Vite con shadcn/ui y Tailwind, formularios con React Hook Form y Zod, y backend en Node, Express o Supabase.",
+      "pidelo": "Crea el formulario de registro con validación y su endpoint en Express.",
+      "skills": [
+        "frontend-ui-engineering",
+        "api-and-interface-design",
+        "vercel-react-best-practices",
+        "vercel-composition-patterns",
+        "shadcn",
+        "tailwind-css-patterns",
+        "vite",
+        "zod",
+        "react-hook-form",
+        "typescript-advanced-types",
+        "nodejs-backend-patterns",
+        "nodejs-express-server",
+        "supabase",
+        "web-design-guidelines",
+        "frontend-design",
+        "impeccable"
+      ],
+      "subagentes": [
+        "codebase-scout"
+      ]
+    },
+    {
+      "slug": "firebase-platform-engineer",
+      "area": "backend",
+      "nombre": "Ingeniero de Firebase",
+      "descripcion": "Implementa proyectos sobre Firebase: Authentication, Firestore, Cloud Functions, Hosting, App Hosting, Remote Config y reglas de seguridad con pruebas.",
+      "pidelo": "Configura Firestore con reglas para que cada usuario vea solo sus datos.",
+      "skills": [
+        "firebase-basics",
+        "firebase-auth-basics",
+        "firebase-firestore",
+        "firebase-data-connect",
+        "firebase-hosting-basics",
+        "firebase-app-hosting-basics",
+        "firebase-remote-config-basics",
+        "firebase-crashlytics",
+        "firebase-ai-logic-basics",
+        "firebase-security-rules-auditor",
+        "firestore-rules-creation"
+      ],
+      "subagentes": [
+        "codebase-scout"
+      ]
+    },
+    {
+      "slug": "mobile-app-engineer",
+      "area": "frontend",
+      "nombre": "Ingeniero de apps móviles",
+      "descripcion": "Desarrolla y compila apps móviles con React Native y Expo para iOS y Android, cuidando fluidez, almacenamiento seguro y las guías de diseño de cada plataforma.",
+      "pidelo": "Haz la pantalla de perfil de la app en Expo.",
+      "skills": [
+        "vercel-react-native-skills",
+        "typescript-advanced-types",
+        "zod"
+      ],
+      "subagentes": [
+        "codebase-scout"
+      ]
+    },
+    {
+      "slug": "payments-commerce-engineer",
+      "area": "backend",
+      "nombre": "Ingeniero de pagos",
+      "descripcion": "Integra cobros con Stripe: checkout, suscripciones, webhooks y facturación recurrente, con manejo seguro de eventos y sin guardar datos de tarjetas.",
+      "pidelo": "Agrega suscripción mensual con Stripe en modo de prueba.",
+      "skills": [
+        "stripe-best-practices",
+        "upgrade-stripe",
+        "security-and-hardening"
+      ],
+      "subagentes": [
+        "codebase-scout"
+      ]
+    },
+    {
+      "slug": "automation-n8n-engineer",
+      "area": "backend",
+      "nombre": "Ingeniero de automatizaciones n8n",
+      "descripcion": "Diseña y mantiene flujos de automatización en n8n: nodos, expresiones, código en JavaScript o Python, manejo de errores y extracción de datos web de forma ética.",
+      "pidelo": "Arma un flujo en n8n que guarde los formularios nuevos en una hoja de cálculo.",
+      "skills": [
+        "n8n-workflow-patterns",
+        "n8n-node-configuration",
+        "n8n-expression-syntax",
+        "n8n-code-javascript",
+        "n8n-code-python",
+        "n8n-code-tool",
+        "n8n-mcp-tools-expert",
+        "n8n-validation-expert"
+      ],
+      "subagentes": [
+        "codebase-scout"
+      ]
+    },
+    {
+      "slug": "genai-api-engineer",
+      "area": "backend",
+      "nombre": "Ingeniero de APIs de IA",
+      "descripcion": "Integra modelos de IA en aplicaciones por API (Gemini, OpenAI, Claude): salidas estructuradas, streaming, imágenes, reintentos y control de costos.",
+      "pidelo": "Agrega a mi app un resumen automático con la API de Gemini.",
+      "skills": [
+        "gemini-api-dev",
+        "imagegen",
+        "security-and-hardening"
+      ],
+      "subagentes": [
+        "codebase-scout"
+      ]
+    },
+    {
+      "slug": "db-performance-engineer",
+      "area": "backend",
+      "nombre": "Ingeniero de bases de datos",
+      "descripcion": "Diseña y optimiza bases de datos PostgreSQL, Supabase y Redis: modelo de datos, índices, consultas lentas, seguridad por filas (RLS) y respaldos.",
+      "pidelo": "Esta consulta tarda 4 segundos. Optimízala.",
+      "skills": [
+        "supabase-postgres-best-practices",
+        "supabase",
+        "postgres-docker-devops-doc"
+      ],
+      "subagentes": [
+        "codebase-scout"
+      ]
+    },
+    {
+      "slug": "code-reviewer",
+      "area": "calidad",
+      "nombre": "Revisor de código",
+      "descripcion": "Revisa cambios como un ingeniero senior en cinco dimensiones: corrección, legibilidad, arquitectura, seguridad y rendimiento, con un veredicto claro y sugerencias concretas.",
+      "pidelo": "Revisa los cambios de esta rama antes de fusionar.",
+      "skills": [
+        "code-review-and-quality",
+        "code-simplification",
+        "security-and-hardening",
+        "requesting-code-review",
+        "receiving-code-review"
+      ],
+      "subagentes": [
+        "codebase-scout"
+      ]
+    },
+    {
+      "slug": "root-cause-debugger",
+      "area": "calidad",
+      "nombre": "Depurador de causa raíz",
+      "descripcion": "Encuentra la causa real de un error difícil: lo reproduce, plantea hipótesis, instrumenta el código y prueba la corrección sin parches a ciegas.",
+      "pidelo": "Las imágenes no cargan solo en Safari. Encuentra por qué.",
+      "skills": [
+        "systematic-debugging",
+        "debugging-and-error-recovery",
+        "chrome-devtools",
+        "memory-leak-debugging",
+        "troubleshooting"
+      ],
+      "subagentes": [
+        "codebase-scout"
+      ]
+    },
+    {
+      "slug": "test-engineer",
+      "area": "calidad",
+      "nombre": "Ingeniero de pruebas",
+      "descripcion": "Diseña y escribe pruebas automáticas con TDD: unitarias con Vitest y de punta a punta con Playwright, y demuestra un error con una prueba antes de arreglarlo.",
+      "pidelo": "Escribe las pruebas del carrito de compras.",
+      "skills": [
+        "test-driven-development",
+        "vitest",
+        "playwright",
+        "browser-testing-with-devtools"
+      ],
+      "subagentes": [
+        "codebase-scout"
+      ]
+    },
+    {
+      "slug": "testing-qa-sentinel",
+      "area": "calidad",
+      "nombre": "Centinela de calidad",
+      "descripcion": "Verifica en modo solo lectura que una pantalla o función esté lista: pruebas, revisión visual en tres anchos (390, 834 y 1512 px) y accesibilidad.",
+      "pidelo": "Verifica que la pantalla de pagos esté lista para publicar.",
+      "skills": [
+        "verification-before-completion",
+        "playwright",
+        "agent-browser",
+        "vitest",
+        "accessibility",
+        "a11y-debugging"
+      ],
+      "subagentes": []
+    },
+    {
+      "slug": "web-performance-auditor",
+      "area": "calidad",
+      "nombre": "Auditor de rendimiento web",
+      "descripcion": "Mide y mejora la velocidad de un sitio: Core Web Vitals (LCP, INP, CLS), tiempo de carga, peso del JavaScript y red.",
+      "pidelo": "Mi página tarda en cargar en el celular. Mide y dime qué mejorar.",
+      "skills": [
+        "performance-optimization",
+        "debug-optimize-lcp",
+        "chrome-devtools",
+        "browser-testing-with-devtools"
+      ],
+      "subagentes": [
+        "codebase-scout"
+      ]
+    },
+    {
+      "slug": "dokploy-cloud-ops",
+      "area": "despliegue",
+      "nombre": "Ingeniero de despliegue",
+      "descripcion": "Publica aplicaciones en servidores propios con Docker, Dokploy y Traefik (o en Vercel), con HTTPS, chequeos de salud y despliegues sin cortes.",
+      "pidelo": "Publica esta API en mi servidor con Docker y HTTPS.",
+      "skills": [
+        "ci-cd-and-automation",
+        "shipping-and-launch",
+        "postgres-docker-devops-doc",
+        "deploy-to-vercel",
+        "vercel-cli-with-tokens"
+      ],
+      "subagentes": [
+        "deploy-preflight-checker",
+        "codebase-scout"
+      ]
+    },
+    {
+      "slug": "deploy-preflight-checker",
+      "area": "despliegue",
+      "nombre": "Verificador previo al despliegue",
+      "descripcion": "Revisa, sin cambiar nada, que todo esté listo para publicar: variables de entorno, chequeo de salud, puertos, secretos y certificados.",
+      "pidelo": "¿Está listo este proyecto para publicarse?",
+      "skills": [
+        "shipping-and-launch"
+      ],
+      "subagentes": []
+    },
+    {
+      "slug": "security-auditor",
+      "area": "seguridad",
+      "nombre": "Auditor de seguridad",
+      "descripcion": "Revisa el código en busca de vulnerabilidades explotables con OWASP Top 10 y modelado de amenazas STRIDE, y propone la corrección exacta.",
+      "pidelo": "Revisa la seguridad del módulo de usuarios.",
+      "skills": [
+        "security-and-hardening",
+        "code-review-and-quality"
+      ],
+      "subagentes": [
+        "codebase-scout"
+      ]
+    },
+    {
+      "slug": "app-security-auditor",
+      "area": "seguridad",
+      "nombre": "Auditor de seguridad de la app publicada",
+      "descripcion": "Revisa en modo solo lectura lo que rodea a la app antes de publicarla: secretos expuestos, CORS, separación de datos entre clientes, dependencias y configuración de Docker o Nginx.",
+      "pidelo": "Antes de publicar, busca secretos expuestos y revisa CORS.",
+      "skills": [
+        "security-audit",
+        "security-and-hardening"
+      ],
+      "subagentes": [
+        "codebase-scout"
+      ]
+    },
+    {
+      "slug": "security-audit-expert",
+      "area": "seguridad",
+      "nombre": "Auditor experto en seguridad",
+      "descripcion": "Hace una auditoría de seguridad completa y defensiva en seis fases con la metodología de Cloudflare: reconocimiento, búsqueda, verificación independiente, validación, segunda revisión e informe.",
+      "pidelo": "Haz una auditoría de seguridad completa del repositorio.",
+      "skills": [
+        "security-audit",
+        "systematic-debugging"
+      ],
+      "subagentes": [
+        "codebase-scout"
+      ]
+    },
+    {
+      "slug": "video-director-cinematographer",
+      "area": "video",
+      "nombre": "Director de video",
+      "descripcion": "Ordena una idea desordenada en un video bien dirigido: detecta qué falta, elige el estilo y el motor (HyperFrames, Remotion, Higgsfield o Veo) y arma el guion técnico.",
+      "pidelo": "Quiero un video de 30 segundos para presentar mi proyecto final.",
+      "skills": [
+        "hyperframes",
+        "video-prompt-engineering",
+        "higgsfield-generate"
+      ],
+      "subagentes": [
+        "video-asset-auditor"
+      ]
+    },
+    {
+      "slug": "prompt-director-cinematographer",
+      "area": "video",
+      "nombre": "Director de prompts de imagen y video",
+      "descripcion": "Escribe prompts precisos para generar imágenes y video con IA (Higgsfield, Veo, Flow): cámara, luz, movimiento, consistencia de personaje y lo que no debe aparecer.",
+      "pidelo": "Escríbeme el prompt para un clip del lago de Atitlán al amanecer.",
+      "skills": [
+        "video-prompt-engineering",
+        "higgsfield-generate",
+        "higgsfield-soul-id",
+        "higgsfield-product-photoshoot",
+        "imagegen"
+      ],
+      "subagentes": []
+    },
+    {
+      "slug": "ai-video-motion-director",
+      "area": "video",
+      "nombre": "Director técnico de animación",
+      "descripcion": "Produce y renderiza videos con código: HyperFrames (HTML determinista) o Remotion (React), con subtítulos, música y voz de ElevenLabs, e imágenes o clips de Higgsfield.",
+      "pidelo": "Produce el video con este guion y súbele subtítulos.",
+      "skills": [
+        "hyperframes",
+        "hyperframes-cli",
+        "remotion-best-practices",
+        "text-to-speech",
+        "higgsfield-generate",
+        "media-use"
+      ],
+      "subagentes": [
+        "video-asset-auditor"
+      ]
+    },
+    {
+      "slug": "video-asset-auditor",
+      "area": "video",
+      "nombre": "Auditor de recursos de video",
+      "descripcion": "Revisa, sin cambiar nada, que imágenes, clips, audio y subtítulos estén listos antes de renderizar: resolución, proporción, pistas de audio y tiempos.",
+      "pidelo": "Revisa que los clips y el audio estén listos para renderizar.",
+      "skills": [
+        "media-use",
+        "hyperframes"
+      ],
+      "subagentes": []
+    },
+    {
+      "slug": "editorial-diagram-architect",
+      "area": "memoria",
+      "nombre": "Arquitecto de diagramas",
+      "descripcion": "Convierte arquitecturas, flujos y procesos en diagramas limpios en HTML y SVG con diagram-design, listos para guardar en el vault de Obsidian de la persona.",
+      "pidelo": "Haz el diagrama de la arquitectura de mi proyecto.",
+      "skills": [
+        "diagram-design",
+        "documentation-and-adrs"
+      ],
+      "subagentes": []
+    },
+    {
+      "slug": "research",
+      "area": "seguridad",
+      "nombre": "Rol research de security-audit",
+      "descripcion": "Rol de solo lectura que la skill security-audit usa para reconocer el código y verificar candidatos. No se usa fuera de una auditoría.",
+      "skills": [
+        "security-audit"
+      ],
+      "subagentes": []
+    },
+    {
+      "slug": "general",
+      "area": "seguridad",
+      "nombre": "Rol general de security-audit",
+      "descripcion": "Rol aislado que la skill security-audit usa para buscar y verificar hallazgos con ejecución en un entorno aislado. No se usa fuera de una auditoría.",
+      "skills": [
+        "security-audit"
+      ],
+      "subagentes": []
+    }
+  ],
+  "skills": [
+    {
+      "slug": "brainstorming",
+      "area": "metodo",
+      "kit": "superpowers",
+      "nombre": "Lluvia de ideas guiada",
+      "descripcion": "Antes de construir, hace preguntas una a una, propone caminos y deja un diseño aprobado.",
+      "pidelo": "Quiero una app para reservar canchas de fútbol en mi colonia. Ayúdame a aterrizarla.",
+      "ruta": "skills/brainstorming"
+    },
+    {
+      "slug": "writing-plans",
+      "area": "metodo",
+      "kit": "superpowers",
+      "nombre": "Planes por tareas",
+      "descripcion": "Convierte un diseño en un plan de tareas pequeñas, cada una con su prueba y su verificación.",
+      "ruta": "skills/writing-plans"
+    },
+    {
+      "slug": "executing-plans",
+      "area": "metodo",
+      "kit": "superpowers",
+      "nombre": "Ejecutar un plan",
+      "descripcion": "Avanza el plan tarea por tarea, con puntos de control para revisar.",
+      "ruta": "skills/executing-plans"
+    },
+    {
+      "slug": "subagent-driven-development",
+      "area": "metodo",
+      "kit": "superpowers",
+      "nombre": "Desarrollo con subagentes",
+      "descripcion": "Reparte las tareas de un plan entre subagentes y revisa cada entrega antes de seguir.",
+      "ruta": "skills/subagent-driven-development"
+    },
+    {
+      "slug": "dispatching-parallel-agents",
+      "area": "metodo",
+      "kit": "superpowers",
+      "nombre": "Agentes en paralelo",
+      "descripcion": "Lanza varios agentes a la vez cuando las tareas no dependen entre sí.",
+      "ruta": "skills/dispatching-parallel-agents"
+    },
+    {
+      "slug": "systematic-debugging",
+      "area": "calidad",
+      "kit": "superpowers",
+      "nombre": "Depuración sistemática",
+      "descripcion": "Encuentra la causa raíz con hipótesis y evidencia antes de proponer un arreglo.",
+      "pidelo": "El login falla solo en producción. Encuentra la causa.",
+      "ruta": "skills/systematic-debugging"
+    },
+    {
+      "slug": "test-driven-development",
+      "area": "calidad",
+      "kit": "superpowers",
+      "nombre": "Desarrollo guiado por pruebas",
+      "descripcion": "Rojo, verde, refactor: primero la prueba que falla, luego el código mínimo que la pasa.",
+      "ruta": "skills/test-driven-development"
+    },
+    {
+      "slug": "verification-before-completion",
+      "area": "calidad",
+      "kit": "superpowers",
+      "nombre": "Verificar antes de entregar",
+      "descripcion": "Prohíbe decir «listo» sin haber corrido las pruebas y visto el resultado.",
+      "ruta": "skills/verification-before-completion"
+    },
+    {
+      "slug": "requesting-code-review",
+      "area": "calidad",
+      "kit": "superpowers",
+      "nombre": "Pedir revisión",
+      "descripcion": "Prepara el cambio para que otro lo revise con contexto.",
+      "ruta": "skills/requesting-code-review"
+    },
+    {
+      "slug": "receiving-code-review",
+      "area": "calidad",
+      "kit": "superpowers",
+      "nombre": "Recibir revisión",
+      "descripcion": "Atiende comentarios de revisión con rigor técnico, sin aceptar a ciegas.",
+      "ruta": "skills/receiving-code-review"
+    },
+    {
+      "slug": "using-git-worktrees",
+      "area": "despliegue",
+      "kit": "superpowers",
+      "nombre": "Worktrees de Git",
+      "descripcion": "Trabaja varias ramas a la vez en carpetas separadas sin mezclar cambios.",
+      "ruta": "skills/using-git-worktrees"
+    },
+    {
+      "slug": "finishing-a-development-branch",
+      "area": "despliegue",
+      "kit": "superpowers",
+      "nombre": "Cerrar una rama",
+      "descripcion": "Decide cómo integrar el trabajo terminado: fusionar, abrir PR o limpiar.",
+      "ruta": "skills/finishing-a-development-branch"
+    },
+    {
+      "slug": "using-agent-skills",
+      "area": "metodo",
+      "kit": "agent-skills",
+      "nombre": "Mapa de Agent Skills",
+      "descripcion": "Índice que le dice a la IA qué skill del ciclo usar en cada momento.",
+      "ruta": "skills/using-agent-skills"
+    },
+    {
+      "slug": "spec-driven-development",
+      "area": "metodo",
+      "kit": "agent-skills",
+      "nombre": "Desarrollo por especificación",
+      "descripcion": "Escribe la especificación (objetivo, alcance, criterios) antes del código.",
+      "pidelo": "Escribe la especificación del módulo de inventario antes de programarlo.",
+      "ruta": "skills/spec-driven-development"
+    },
+    {
+      "slug": "idea-refine",
+      "area": "metodo",
+      "kit": "agent-skills",
+      "nombre": "Refinar una idea",
+      "descripcion": "Afila una idea vaga hasta que tenga problema, público y propuesta claros.",
+      "ruta": "skills/idea-refine"
+    },
+    {
+      "slug": "interview-me",
+      "area": "metodo",
+      "kit": "agent-skills",
+      "nombre": "Entrevístame",
+      "descripcion": "La IA te entrevista para sacar los requisitos que tienes en la cabeza.",
+      "ruta": "skills/interview-me"
+    },
+    {
+      "slug": "planning-and-task-breakdown",
+      "area": "metodo",
+      "kit": "agent-skills",
+      "nombre": "Partir en tareas",
+      "descripcion": "Divide el trabajo en tareas verificables y en el orden correcto.",
+      "ruta": "skills/planning-and-task-breakdown"
+    },
+    {
+      "slug": "context-engineering",
+      "area": "metodo",
+      "kit": "agent-skills",
+      "nombre": "Ingeniería de contexto",
+      "descripcion": "Le da a la IA solo el contexto que necesita para no perderse.",
+      "ruta": "skills/context-engineering"
+    },
+    {
+      "slug": "incremental-implementation",
+      "area": "metodo",
+      "kit": "agent-skills",
+      "nombre": "Implementación incremental",
+      "descripcion": "Construye en rebanadas finas que siempre dejan el proyecto funcionando.",
+      "ruta": "skills/incremental-implementation"
+    },
+    {
+      "slug": "source-driven-development",
+      "area": "metodo",
+      "kit": "agent-skills",
+      "nombre": "Basado en la documentación",
+      "descripcion": "Consulta la documentación oficial antes de usar una librería, en vez de adivinar.",
+      "ruta": "skills/source-driven-development"
+    },
+    {
+      "slug": "doubt-driven-development",
+      "area": "metodo",
+      "kit": "agent-skills",
+      "nombre": "Desarrollo con duda",
+      "descripcion": "Cuestiona las suposiciones antes de darlas por ciertas.",
+      "ruta": "skills/doubt-driven-development"
+    },
+    {
+      "slug": "constraint-driven-development",
+      "area": "metodo",
+      "kit": "agent-skills",
+      "nombre": "Desarrollo por restricciones",
+      "descripcion": "Diseña a partir de los límites reales: tiempo, costo, plataforma.",
+      "ruta": "skills/constraint-driven-development"
+    },
+    {
+      "slug": "api-and-interface-design",
+      "area": "backend",
+      "kit": "agent-skills",
+      "nombre": "Diseño de APIs",
+      "descripcion": "Contratos de API claros, versionables y difíciles de usar mal.",
+      "ruta": "skills/api-and-interface-design"
+    },
+    {
+      "slug": "frontend-ui-engineering",
+      "area": "frontend",
+      "kit": "agent-skills",
+      "nombre": "Ingeniería de interfaces",
+      "descripcion": "Componentes, estado, accesibilidad y rendimiento en el frontend.",
+      "ruta": "skills/frontend-ui-engineering"
+    },
+    {
+      "slug": "code-review-and-quality",
+      "area": "calidad",
+      "kit": "agent-skills",
+      "nombre": "Revisión y calidad",
+      "descripcion": "Revisión de código en cinco dimensiones con veredicto claro.",
+      "ruta": "skills/code-review-and-quality"
+    },
+    {
+      "slug": "code-simplification",
+      "area": "calidad",
+      "kit": "agent-skills",
+      "nombre": "Simplificar código",
+      "descripcion": "Quita complejidad sin cambiar el comportamiento.",
+      "ruta": "skills/code-simplification"
+    },
+    {
+      "slug": "debugging-and-error-recovery",
+      "area": "calidad",
+      "kit": "agent-skills",
+      "nombre": "Depurar y recuperarse",
+      "descripcion": "Qué hacer cuando algo falla: aislar, reproducir y corregir.",
+      "ruta": "skills/debugging-and-error-recovery"
+    },
+    {
+      "slug": "browser-testing-with-devtools",
+      "area": "calidad",
+      "kit": "agent-skills",
+      "nombre": "Probar en el navegador",
+      "descripcion": "Verifica la interfaz real con DevTools: consola, red y rendimiento.",
+      "ruta": "skills/browser-testing-with-devtools"
+    },
+    {
+      "slug": "performance-optimization",
+      "area": "calidad",
+      "kit": "agent-skills",
+      "nombre": "Optimizar rendimiento",
+      "descripcion": "Mide, encuentra el cuello de botella y mejora con números.",
+      "ruta": "skills/performance-optimization"
+    },
+    {
+      "slug": "observability-and-instrumentation",
+      "area": "calidad",
+      "kit": "agent-skills",
+      "nombre": "Observabilidad",
+      "descripcion": "Logs, métricas y trazas para saber qué pasa en producción.",
+      "ruta": "skills/observability-and-instrumentation"
+    },
+    {
+      "slug": "security-and-hardening",
+      "area": "seguridad",
+      "kit": "agent-skills",
+      "nombre": "Seguridad y endurecimiento",
+      "descripcion": "OWASP, entradas, autenticación, secretos y dependencias.",
+      "pidelo": "Revisa la seguridad de mi API de usuarios.",
+      "ruta": "skills/security-and-hardening"
+    },
+    {
+      "slug": "ci-cd-and-automation",
+      "area": "despliegue",
+      "kit": "agent-skills",
+      "nombre": "CI/CD",
+      "descripcion": "Pruebas y despliegues automáticos en cada cambio.",
+      "ruta": "skills/ci-cd-and-automation"
+    },
+    {
+      "slug": "git-workflow-and-versioning",
+      "area": "despliegue",
+      "kit": "agent-skills",
+      "nombre": "Flujo de Git",
+      "descripcion": "Ramas, commits claros y versiones.",
+      "ruta": "skills/git-workflow-and-versioning"
+    },
+    {
+      "slug": "shipping-and-launch",
+      "area": "despliegue",
+      "kit": "agent-skills",
+      "nombre": "Publicar y lanzar",
+      "descripcion": "Lista de verificación para salir a producción sin sorpresas.",
+      "ruta": "skills/shipping-and-launch"
+    },
+    {
+      "slug": "deprecation-and-migration",
+      "area": "despliegue",
+      "kit": "agent-skills",
+      "nombre": "Migraciones",
+      "descripcion": "Cambiar o retirar algo sin romper a quien lo usa.",
+      "ruta": "skills/deprecation-and-migration"
+    },
+    {
+      "slug": "documentation-and-adrs",
+      "area": "memoria",
+      "kit": "agent-skills",
+      "nombre": "Documentación y decisiones",
+      "descripcion": "README útil y registros de decisiones de arquitectura (ADR).",
+      "ruta": "skills/documentation-and-adrs"
+    },
+    {
+      "slug": "frontend-design",
+      "area": "frontend",
+      "kit": "anthropic-skills",
+      "nombre": "Diseño frontend con criterio",
+      "descripcion": "Interfaces con dirección visual propia, lejos del diseño genérico de IA.",
+      "pidelo": "Diseña la página de inicio de una cafetería en Antigua con personalidad.",
+      "ruta": "skills/frontend-design"
+    },
+    {
+      "slug": "skill-creator",
+      "area": "metodo",
+      "kit": "anthropic-skills",
+      "nombre": "Crear skills",
+      "descripcion": "Te guía para crear y mejorar tus propias skills.",
+      "ruta": "skills/skill-creator"
+    },
+    {
+      "slug": "impeccable",
+      "area": "frontend",
+      "kit": "impeccable",
+      "nombre": "Impeccable",
+      "descripcion": "Diseño de alto nivel: auditar, criticar, pulir, tipografía, color, espaciado y jerarquía.",
+      "pidelo": "Audita el diseño de este dashboard y púlelo.",
+      "ruta": ".claude/skills/impeccable"
+    },
+    {
+      "slug": "vercel-react-best-practices",
+      "area": "frontend",
+      "kit": "vercel-skills",
+      "nombre": "Buenas prácticas de React",
+      "descripcion": "Rendimiento y patrones de React y Next.js según Vercel.",
+      "ruta": "skills/react-best-practices"
+    },
+    {
+      "slug": "vercel-composition-patterns",
+      "area": "frontend",
+      "kit": "vercel-skills",
+      "nombre": "Composición de componentes",
+      "descripcion": "Componentes flexibles sin montones de props booleanas.",
+      "ruta": "skills/composition-patterns"
+    },
+    {
+      "slug": "vercel-react-native-skills",
+      "area": "frontend",
+      "kit": "vercel-skills",
+      "nombre": "React Native",
+      "descripcion": "Buenas prácticas para apps móviles con React Native y Expo.",
+      "ruta": "skills/react-native-skills"
+    },
+    {
+      "slug": "web-design-guidelines",
+      "area": "frontend",
+      "kit": "vercel-skills",
+      "nombre": "Guías de diseño web",
+      "descripcion": "Revisa una interfaz contra las guías de interfaz web de Vercel.",
+      "ruta": "skills/web-design-guidelines"
+    },
+    {
+      "slug": "vite",
+      "area": "frontend",
+      "kit": "antfu-skills",
+      "nombre": "Vite",
+      "descripcion": "Configuración y uso de Vite desde su documentación oficial.",
+      "ruta": "skills/vite"
+    },
+    {
+      "slug": "accessibility",
+      "area": "frontend",
+      "kit": "web-quality",
+      "nombre": "Accesibilidad",
+      "descripcion": "WCAG en la práctica: teclado, contraste, lectores de pantalla.",
+      "ruta": "skills/accessibility"
+    },
+    {
+      "slug": "seo",
+      "area": "frontend",
+      "kit": "web-quality",
+      "nombre": "SEO",
+      "descripcion": "Metadatos, datos estructurados y buenas prácticas para buscadores.",
+      "ruta": "skills/seo"
+    },
+    {
+      "slug": "supabase",
+      "area": "backend",
+      "kit": "supabase-skills",
+      "nombre": "Supabase",
+      "descripcion": "Auth, base de datos, almacenamiento y funciones en Supabase.",
+      "ruta": "skills/supabase"
+    },
+    {
+      "slug": "supabase-postgres-best-practices",
+      "area": "backend",
+      "kit": "supabase-skills",
+      "nombre": "PostgreSQL con Supabase",
+      "descripcion": "Índices, RLS y consultas con las recomendaciones oficiales.",
+      "ruta": "skills/supabase-postgres-best-practices"
+    },
+    {
+      "slug": "firebase-basics",
+      "area": "backend",
+      "kit": "firebase-skills",
+      "nombre": "Firebase: lo básico",
+      "descripcion": "Arrancar un proyecto Firebase con el CLI.",
+      "ruta": "skills/firebase-basics"
+    },
+    {
+      "slug": "firebase-auth-basics",
+      "area": "backend",
+      "kit": "firebase-skills",
+      "nombre": "Firebase Authentication",
+      "descripcion": "Inicio de sesión con correo, Google y más.",
+      "ruta": "skills/firebase-auth-basics"
+    },
+    {
+      "slug": "firebase-firestore",
+      "area": "backend",
+      "kit": "firebase-skills",
+      "nombre": "Cloud Firestore",
+      "descripcion": "Modelo de datos y consultas en Firestore.",
+      "ruta": "skills/firebase-firestore"
+    },
+    {
+      "slug": "firebase-hosting-basics",
+      "area": "despliegue",
+      "kit": "firebase-skills",
+      "nombre": "Firebase Hosting",
+      "descripcion": "Publicar sitios estáticos en Firebase.",
+      "ruta": "skills/firebase-hosting-basics"
+    },
+    {
+      "slug": "firebase-app-hosting-basics",
+      "area": "despliegue",
+      "kit": "firebase-skills",
+      "nombre": "Firebase App Hosting",
+      "descripcion": "Publicar apps con servidor en Firebase.",
+      "ruta": "skills/firebase-app-hosting-basics"
+    },
+    {
+      "slug": "firebase-security-rules-auditor",
+      "area": "seguridad",
+      "kit": "firebase-skills",
+      "nombre": "Auditor de reglas de Firebase",
+      "descripcion": "Revisa reglas de seguridad de Firestore y Storage.",
+      "ruta": "skills/firebase-security-rules-auditor"
+    },
+    {
+      "slug": "stripe-best-practices",
+      "area": "backend",
+      "kit": "stripe-skills",
+      "nombre": "Stripe",
+      "descripcion": "Integraciones de pago con las buenas prácticas de Stripe.",
+      "ruta": "skills/stripe-best-practices"
+    },
+    {
+      "slug": "n8n-workflow-patterns",
+      "area": "backend",
+      "kit": "n8n-skills",
+      "nombre": "Patrones de flujos n8n",
+      "descripcion": "Arquitecturas probadas para flujos de n8n.",
+      "ruta": "skills/n8n-workflow-patterns"
+    },
+    {
+      "slug": "n8n-node-configuration",
+      "area": "backend",
+      "kit": "n8n-skills",
+      "nombre": "Configurar nodos n8n",
+      "descripcion": "Parámetros correctos de cada nodo.",
+      "ruta": "skills/n8n-node-configuration"
+    },
+    {
+      "slug": "n8n-expression-syntax",
+      "area": "backend",
+      "kit": "n8n-skills",
+      "nombre": "Expresiones n8n",
+      "descripcion": "Sintaxis de expresiones sin errores.",
+      "ruta": "skills/n8n-expression-syntax"
+    },
+    {
+      "slug": "n8n-code-javascript",
+      "area": "backend",
+      "kit": "n8n-skills",
+      "nombre": "Código JavaScript en n8n",
+      "descripcion": "El nodo Code en JavaScript.",
+      "ruta": "skills/n8n-code-javascript"
+    },
+    {
+      "slug": "n8n-code-python",
+      "area": "backend",
+      "kit": "n8n-skills",
+      "nombre": "Código Python en n8n",
+      "descripcion": "El nodo Code en Python.",
+      "ruta": "skills/n8n-code-python"
+    },
+    {
+      "slug": "n8n-validation-expert",
+      "area": "backend",
+      "kit": "n8n-skills",
+      "nombre": "Validar flujos n8n",
+      "descripcion": "Interpreta y corrige errores de validación.",
+      "ruta": "skills/n8n-validation-expert"
+    },
+    {
+      "slug": "n8n-mcp-tools-expert",
+      "area": "backend",
+      "kit": "n8n-skills",
+      "nombre": "Herramientas MCP de n8n",
+      "descripcion": "Usa el servidor MCP de n8n.",
+      "ruta": "skills/n8n-mcp-tools-expert"
+    },
+    {
+      "slug": "gemini-api-dev",
+      "area": "backend",
+      "kit": "gemini-skills",
+      "nombre": "API de Gemini",
+      "descripcion": "Desarrollo con la API de Gemini: texto, imágenes y salidas estructuradas.",
+      "ruta": "skills/gemini-api-dev"
+    },
+    {
+      "slug": "imagegen",
+      "area": "video",
+      "kit": "openai-skills",
+      "nombre": "Generar imágenes",
+      "descripcion": "Generación y edición de imágenes con la API de OpenAI.",
+      "ruta": "skills/.system/imagegen"
+    },
+    {
+      "slug": "playwright",
+      "area": "calidad",
+      "kit": "openai-skills",
+      "nombre": "Playwright",
+      "descripcion": "Pruebas de punta a punta en el navegador.",
+      "ruta": "skills/.curated/playwright"
+    },
+    {
+      "slug": "vitest",
+      "area": "calidad",
+      "kit": "antfu-skills",
+      "nombre": "Vitest",
+      "descripcion": "Pruebas unitarias rápidas con Vitest.",
+      "ruta": "skills/vitest"
+    },
+    {
+      "slug": "agent-browser",
+      "area": "calidad",
+      "kit": "agent-browser",
+      "nombre": "Navegador para agentes",
+      "descripcion": "La IA abre tu app, hace clic, llena formularios y toma capturas.",
+      "pidelo": "Abre localhost:5173 y prueba el registro de usuarios.",
+      "ruta": "skills/agent-browser"
+    },
+    {
+      "slug": "chrome-devtools",
+      "area": "calidad",
+      "kit": "chrome-devtools",
+      "nombre": "Chrome DevTools",
+      "descripcion": "Depuración con las herramientas de Chrome.",
+      "ruta": "skills/chrome-devtools"
+    },
+    {
+      "slug": "debug-optimize-lcp",
+      "area": "calidad",
+      "kit": "chrome-devtools",
+      "nombre": "Optimizar LCP",
+      "descripcion": "Encuentra por qué tarda en aparecer lo principal de la página.",
+      "ruta": "skills/debug-optimize-lcp"
+    },
+    {
+      "slug": "memory-leak-debugging",
+      "area": "calidad",
+      "kit": "chrome-devtools",
+      "nombre": "Fugas de memoria",
+      "descripcion": "Encuentra y corrige fugas de memoria.",
+      "ruta": "skills/memory-leak-debugging"
+    },
+    {
+      "slug": "a11y-debugging",
+      "area": "calidad",
+      "kit": "chrome-devtools",
+      "nombre": "Depurar accesibilidad",
+      "descripcion": "Problemas de accesibilidad vistos en el navegador.",
+      "ruta": "skills/a11y-debugging"
+    },
+    {
+      "slug": "troubleshooting",
+      "area": "calidad",
+      "kit": "chrome-devtools",
+      "nombre": "Diagnóstico de DevTools",
+      "descripcion": "Cuando la conexión con DevTools falla.",
+      "ruta": "skills/troubleshooting"
+    },
+    {
+      "slug": "security-audit",
+      "area": "seguridad",
+      "kit": "security-audit",
+      "nombre": "Auditoría de seguridad",
+      "descripcion": "Auditoría completa en seis fases con verificación independiente de cada hallazgo.",
+      "pidelo": "Haz una auditoría de seguridad completa de este repositorio.",
+      "ruta": "skills/security-audit"
+    },
+    {
+      "slug": "deploy-to-vercel",
+      "area": "despliegue",
+      "kit": "vercel-skills",
+      "nombre": "Publicar en Vercel",
+      "descripcion": "Despliega en Vercel paso a paso.",
+      "ruta": "skills/deploy-to-vercel"
+    },
+    {
+      "slug": "diagram-design",
+      "area": "memoria",
+      "kit": "diagram-design",
+      "nombre": "Diagramas editoriales",
+      "descripcion": "Arquitecturas y flujos como diagramas limpios en HTML y SVG.",
+      "pidelo": "Dibuja la arquitectura de mi app: frontend, API y base de datos.",
+      "ruta": "skills/diagram-design"
+    },
+    {
+      "slug": "hyperframes",
+      "area": "video",
+      "kit": "hyperframes",
+      "nombre": "HyperFrames",
+      "descripcion": "Punto de entrada para cualquier video con HyperFrames: promos, explicativos, subtítulos, gráficos animados y más (sus guías vienen dentro).",
+      "pidelo": "Haz un video de 20 segundos que presente mi portafolio.",
+      "ruta": "skills/hyperframes"
+    },
+    {
+      "slug": "hyperframes-cli",
+      "area": "video",
+      "kit": "hyperframes",
+      "nombre": "HyperFrames: CLI",
+      "descripcion": "Previsualizar, validar y renderizar desde la terminal.",
+      "ruta": "skills/hyperframes-cli"
+    },
+    {
+      "slug": "hyperframes-registry",
+      "area": "video",
+      "kit": "hyperframes",
+      "nombre": "HyperFrames: registro",
+      "descripcion": "Bloques y componentes listos para usar.",
+      "ruta": "skills/hyperframes-registry"
+    },
+    {
+      "slug": "slideshow",
+      "area": "video",
+      "kit": "hyperframes",
+      "nombre": "Presentación animada",
+      "descripcion": "Diapositivas que se convierten en video.",
+      "ruta": "skills/slideshow"
+    },
+    {
+      "slug": "remotion-to-hyperframes",
+      "area": "video",
+      "kit": "hyperframes",
+      "nombre": "De Remotion a HyperFrames",
+      "descripcion": "Migra composiciones de Remotion.",
+      "ruta": "skills/remotion-to-hyperframes"
+    },
+    {
+      "slug": "media-use",
+      "area": "video",
+      "kit": "hyperframes",
+      "nombre": "Uso de medios",
+      "descripcion": "Imágenes, clips y audio dentro de un video.",
+      "ruta": "skills/media-use"
+    },
+    {
+      "slug": "remotion-best-practices",
+      "area": "video",
+      "kit": "remotion",
+      "nombre": "Remotion",
+      "descripcion": "Videos programados con React.",
+      "pidelo": "Haz un intro animado de 5 segundos en Remotion.",
+      "ruta": "skills/remotion-best-practices"
+    },
+    {
+      "slug": "higgsfield-generate",
+      "area": "video",
+      "kit": "higgsfield",
+      "nombre": "Generar con Higgsfield",
+      "descripcion": "Imágenes, video, 3D y audio con los modelos de Higgsfield.",
+      "pidelo": "Genera una foto de producto de mi taza con fondo de estudio.",
+      "ruta": "higgsfield-generate"
+    },
+    {
+      "slug": "higgsfield-soul-id",
+      "area": "video",
+      "kit": "higgsfield",
+      "nombre": "Personaje consistente",
+      "descripcion": "Entrena un personaje para que salga igual en todas las tomas.",
+      "ruta": "higgsfield-soul-id"
+    },
+    {
+      "slug": "higgsfield-product-photoshoot",
+      "area": "video",
+      "kit": "higgsfield",
+      "nombre": "Sesión de fotos de producto",
+      "descripcion": "Fotos de estudio y estilo de vida para un producto.",
+      "ruta": "higgsfield-product-photoshoot"
+    },
+    {
+      "slug": "higgsfield-marketplace-cards",
+      "area": "video",
+      "kit": "higgsfield",
+      "nombre": "Tarjetas para tiendas en línea",
+      "descripcion": "Imágenes de producto listas para Amazon, Mercado Libre y otras tiendas.",
+      "ruta": "higgsfield-marketplace-cards"
+    },
+    {
+      "slug": "text-to-speech",
+      "area": "video",
+      "kit": "elevenlabs",
+      "nombre": "Texto a voz",
+      "descripcion": "Locuciones naturales en español y otros idiomas.",
+      "pidelo": "Convierte este guion en una locución con voz cálida.",
+      "ruta": "text-to-speech"
+    },
+    {
+      "slug": "music",
+      "area": "video",
+      "kit": "elevenlabs",
+      "nombre": "Música con IA",
+      "descripcion": "Pistas musicales a la medida de tu video.",
+      "ruta": "music"
+    },
+    {
+      "slug": "sound-effects",
+      "area": "video",
+      "kit": "elevenlabs",
+      "nombre": "Efectos de sonido",
+      "descripcion": "Efectos a partir de una descripción.",
+      "ruta": "sound-effects"
+    },
+    {
+      "slug": "speech-to-text",
+      "area": "video",
+      "kit": "elevenlabs",
+      "nombre": "Voz a texto",
+      "descripcion": "Transcribe audio y video con marcas de tiempo.",
+      "ruta": "speech-to-text"
+    },
+    {
+      "slug": "firebase-remote-config-basics",
+      "area": "backend",
+      "kit": "firebase-skills",
+      "nombre": "Firebase Remote Config",
+      "descripcion": "Cambiar el comportamiento de la app sin publicar otra versión.",
+      "ruta": "skills/firebase-remote-config-basics"
+    },
+    {
+      "slug": "firebase-crashlytics",
+      "area": "calidad",
+      "kit": "firebase-skills",
+      "nombre": "Firebase Crashlytics",
+      "descripcion": "Reportes de errores de apps móviles.",
+      "ruta": "skills/firebase-crashlytics"
+    },
+    {
+      "slug": "firebase-ai-logic-basics",
+      "area": "backend",
+      "kit": "firebase-skills",
+      "nombre": "Firebase AI Logic",
+      "descripcion": "Gemini desde la app con Firebase.",
+      "ruta": "skills/firebase-ai-logic-basics"
+    },
+    {
+      "slug": "firebase-data-connect",
+      "area": "backend",
+      "kit": "firebase-skills",
+      "nombre": "Firebase Data Connect",
+      "descripcion": "PostgreSQL administrado con GraphQL en Firebase.",
+      "ruta": "skills/firebase-data-connect-basics"
+    },
+    {
+      "slug": "firestore-rules-creation",
+      "area": "seguridad",
+      "kit": "firebase-skills",
+      "nombre": "Crear reglas de Firestore",
+      "descripcion": "Reglas de seguridad de Firestore desde cero, con pruebas.",
+      "ruta": "skills/firestore-rules-creation"
+    },
+    {
+      "slug": "upgrade-stripe",
+      "area": "backend",
+      "kit": "stripe-skills",
+      "nombre": "Actualizar Stripe",
+      "descripcion": "Migrar a versiones nuevas de la API de Stripe.",
+      "ruta": "skills/upgrade-stripe"
+    },
+    {
+      "slug": "n8n-code-tool",
+      "area": "backend",
+      "kit": "n8n-skills",
+      "nombre": "Herramientas de código en n8n",
+      "descripcion": "Nodos de herramienta con código para agentes de n8n.",
+      "ruta": "skills/n8n-code-tool"
+    },
+    {
+      "slug": "vercel-cli-with-tokens",
+      "area": "despliegue",
+      "kit": "vercel-skills",
+      "nombre": "Vercel CLI con tokens",
+      "descripcion": "Desplegar en Vercel desde la terminal o CI con tokens.",
+      "ruta": "skills/vercel-cli-with-tokens"
+    },
+    {
+      "slug": "shadcn",
+      "area": "frontend",
+      "kit": "shadcn",
+      "nombre": "shadcn/ui",
+      "descripcion": "Agregar y personalizar componentes de shadcn/ui.",
+      "pidelo": "Agrega una tabla con filtros usando shadcn/ui.",
+      "ruta": "skills/shadcn"
+    },
+    {
+      "slug": "ui-ux-pro-max",
+      "area": "frontend",
+      "kit": "ui-ux-pro-max",
+      "nombre": "UI UX Pro Max",
+      "descripcion": "Elige estilo, paleta y tipografía con criterio para tu tipo de producto.",
+      "ruta": ".claude/skills/ui-ux-pro-max"
+    },
+    {
+      "slug": "tailwind-css-patterns",
+      "area": "frontend",
+      "kit": "developer-kit",
+      "nombre": "Patrones de Tailwind",
+      "descripcion": "Clases ordenadas, diseño responsive y componentes consistentes.",
+      "ruta": "plugins/developer-kit-typescript/skills/tailwind-css-patterns"
+    },
+    {
+      "slug": "react-hook-form",
+      "area": "frontend",
+      "kit": "dot-skills",
+      "nombre": "React Hook Form",
+      "descripcion": "Formularios rápidos y accesibles.",
+      "ruta": "skills/.curated/react-hook-form"
+    },
+    {
+      "slug": "zod",
+      "area": "frontend",
+      "kit": "dot-skills",
+      "nombre": "Zod",
+      "descripcion": "Validación con tipos para formularios, APIs y variables de entorno.",
+      "ruta": "skills/.curated/zod"
+    },
+    {
+      "slug": "typescript-advanced-types",
+      "area": "frontend",
+      "kit": "wshobson-agents",
+      "nombre": "TypeScript avanzado",
+      "descripcion": "Genéricos, tipos condicionales y utilidades para código tipado de verdad.",
+      "ruta": "plugins/javascript-typescript/skills/typescript-advanced-types"
+    },
+    {
+      "slug": "nodejs-backend-patterns",
+      "area": "backend",
+      "kit": "wshobson-agents",
+      "nombre": "Patrones de backend en Node",
+      "descripcion": "Capas, errores, validación y estructura de un backend en Node.",
+      "ruta": "plugins/javascript-typescript/skills/nodejs-backend-patterns"
+    },
+    {
+      "slug": "nodejs-express-server",
+      "area": "backend",
+      "kit": "useful-ai-prompts",
+      "nombre": "Servidor Express",
+      "descripcion": "Un servidor Express bien armado: rutas, middleware y errores.",
+      "ruta": "skills/nodejs-express-server"
+    },
+    {
+      "slug": "debug-mode",
+      "area": "calidad",
+      "kit": "debug-mode",
+      "nombre": "Modo depuración",
+      "descripcion": "Hipótesis, logs temporales y verificación para errores difíciles.",
+      "ruta": "debug-mode"
+    },
+    {
+      "slug": "commit-push-convention",
+      "area": "despliegue",
+      "kit": "propia",
+      "nombre": "Commits con convención",
+      "descripcion": "Commits con formato feat(pantalla) o fix(pantalla) y push ordenado.",
+      "pidelo": "Haz commit y push de estos cambios con la convención."
+    },
+    {
+      "slug": "postgres-docker-devops-doc",
+      "area": "backend",
+      "kit": "propia",
+      "nombre": "PostgreSQL en Docker",
+      "descripcion": "Documenta y prepara PostgreSQL en Docker: respaldos, restauración y entrega."
+    },
+    {
+      "slug": "cloudflare-dns",
+      "area": "despliegue",
+      "kit": "propia",
+      "nombre": "DNS en Cloudflare",
+      "descripcion": "Registros DNS en Cloudflare para tus dominios y servicios."
+    },
+    {
+      "slug": "design-system-builder",
+      "area": "frontend",
+      "kit": "propia",
+      "nombre": "Construir un design system",
+      "descripcion": "Tokens, componentes, escalas y documentación de un sistema de diseño."
+    },
+    {
+      "slug": "video-prompt-engineering",
+      "area": "video",
+      "kit": "propia",
+      "nombre": "Prompts para video con IA",
+      "descripcion": "Estructura, lenguaje de cámara y refinamiento de prompts para Higgsfield, Runway, Kling y más."
+    },
+    {
+      "slug": "video-continuity",
+      "area": "video",
+      "kit": "propia",
+      "nombre": "Continuidad visual",
+      "descripcion": "Mismo personaje, estilo y color en todos los clips de una campaña."
+    }
+  ],
+  "kits": [
+    {
+      "id": "superpowers",
+      "nombre": "Superpowers",
+      "autor": "Jesse Vincent",
+      "repo": "obra/superpowers",
+      "licencia": "MIT",
+      "que": "Le da método a la IA: pregunta antes de construir, planea por tareas, depura con sistema y verifica antes de decir «listo»."
+    },
+    {
+      "id": "agent-skills",
+      "nombre": "Agent Skills",
+      "autor": "Addy Osmani",
+      "repo": "addyosmani/agent-skills",
+      "licencia": "MIT",
+      "que": "El ciclo completo de ingeniería de un equipo senior: especificar, planear, construir, verificar, revisar y publicar."
+    },
+    {
+      "id": "anthropic-skills",
+      "nombre": "Skills de Anthropic",
+      "autor": "Anthropic",
+      "repo": "anthropics/skills",
+      "licencia": "Apache-2.0",
+      "que": "Skills oficiales de Anthropic: diseño de interfaces con criterio y creación de nuevas skills."
+    },
+    {
+      "id": "impeccable",
+      "nombre": "Impeccable",
+      "autor": "Paul Bakaus",
+      "repo": "pbakaus/impeccable",
+      "licencia": "Apache-2.0",
+      "que": "Diseño de interfaces sin estética genérica de IA: auditar, pulir, tipografía, color y jerarquía."
+    },
+    {
+      "id": "vercel-skills",
+      "nombre": "Agent Skills de Vercel",
+      "autor": "Vercel",
+      "repo": "vercel-labs/agent-skills",
+      "licencia": "MIT",
+      "que": "Buenas prácticas de React y Next.js, composición de componentes, guías de diseño web y despliegue en Vercel."
+    },
+    {
+      "id": "agent-browser",
+      "nombre": "agent-browser",
+      "autor": "Vercel Labs",
+      "repo": "vercel-labs/agent-browser",
+      "licencia": "Apache-2.0",
+      "que": "Un navegador que la IA controla para probar tu app: abrir, hacer clic, llenar formularios y tomar capturas."
+    },
+    {
+      "id": "antfu-skills",
+      "nombre": "Skills de Anthony Fu",
+      "autor": "Anthony Fu",
+      "repo": "antfu/skills",
+      "licencia": "MIT",
+      "que": "Skills generadas desde la documentación oficial de Vite y Vitest."
+    },
+    {
+      "id": "web-quality",
+      "nombre": "Web Quality Skills",
+      "autor": "Addy Osmani",
+      "repo": "addyosmani/web-quality-skills",
+      "licencia": "MIT",
+      "que": "Accesibilidad y SEO revisados con las guías de calidad web."
+    },
+    {
+      "id": "supabase-skills",
+      "nombre": "Skills de Supabase",
+      "autor": "Supabase",
+      "repo": "supabase/agent-skills",
+      "licencia": "MIT",
+      "que": "Supabase y PostgreSQL con las recomendaciones oficiales: RLS, índices y consultas."
+    },
+    {
+      "id": "firebase-skills",
+      "nombre": "Skills de Firebase",
+      "autor": "Firebase (Google)",
+      "repo": "firebase/agent-skills",
+      "licencia": "Apache-2.0",
+      "que": "Skills oficiales de Firebase: Auth, Firestore, Hosting, reglas de seguridad y más."
+    },
+    {
+      "id": "chrome-devtools",
+      "nombre": "Chrome DevTools para agentes",
+      "autor": "Chrome DevTools (Google)",
+      "repo": "ChromeDevTools/chrome-devtools-mcp",
+      "licencia": "Apache-2.0",
+      "que": "Depurar como en DevTools: rendimiento, LCP, fugas de memoria y accesibilidad."
+    },
+    {
+      "id": "stripe-skills",
+      "nombre": "Skills de Stripe",
+      "autor": "Stripe",
+      "repo": "stripe/ai",
+      "licencia": "MIT",
+      "que": "Integraciones de pago con las buenas prácticas oficiales de Stripe."
+    },
+    {
+      "id": "n8n-skills",
+      "nombre": "n8n Skills",
+      "autor": "Romuald Członkowski",
+      "repo": "czlonkowski/n8n-skills",
+      "licencia": "MIT",
+      "que": "Construir flujos de n8n sin errores: nodos, expresiones, código y validación."
+    },
+    {
+      "id": "openai-skills",
+      "nombre": "Skills de OpenAI",
+      "autor": "OpenAI",
+      "repo": "openai/skills",
+      "licencia": "Apache-2.0",
+      "que": "Pruebas con Playwright y generación de imágenes."
+    },
+    {
+      "id": "gemini-skills",
+      "nombre": "Skills de Gemini",
+      "autor": "Google",
+      "repo": "google-gemini/gemini-skills",
+      "licencia": "Apache-2.0",
+      "que": "Desarrollo con la API de Gemini."
+    },
+    {
+      "id": "security-audit",
+      "nombre": "Security Audit",
+      "autor": "Cloudflare",
+      "repo": "cloudflare/security-audit-skill",
+      "licencia": "MIT",
+      "que": "Auditorías de seguridad completas en seis fases con verificación independiente de cada hallazgo."
+    },
+    {
+      "id": "diagram-design",
+      "nombre": "Diagram Design",
+      "autor": "Cathryn Lavery",
+      "repo": "cathrynlavery/diagram-design",
+      "licencia": "MIT",
+      "que": "Diagramas técnicos editoriales en HTML y SVG, sin plantillas genéricas."
+    },
+    {
+      "id": "hyperframes",
+      "nombre": "HyperFrames",
+      "autor": "HeyGen",
+      "repo": "heygen-com/hyperframes",
+      "licencia": "Apache-2.0",
+      "que": "Videos hechos con HTML, CSS y JavaScript que se renderizan igual cada vez: promos, explicativos, subtítulos y gráficos animados."
+    },
+    {
+      "id": "remotion",
+      "nombre": "Remotion Skills",
+      "autor": "Remotion",
+      "repo": "remotion-dev/skills",
+      "licencia": "Sin licencia declarada",
+      "que": "Videos programados con React, con las buenas prácticas oficiales de Remotion."
+    },
+    {
+      "id": "higgsfield",
+      "nombre": "Higgsfield Skills",
+      "autor": "Higgsfield AI",
+      "repo": "higgsfield-ai/skills",
+      "licencia": "MIT",
+      "que": "Imágenes, video, personajes consistentes y fotos de producto con IA.",
+      "requiere": "Cuenta de Higgsfield; consume sus créditos."
+    },
+    {
+      "id": "elevenlabs",
+      "nombre": "ElevenLabs Skills",
+      "autor": "ElevenLabs",
+      "repo": "elevenlabs/skills",
+      "licencia": "MIT",
+      "que": "Texto a voz, música, efectos de sonido y transcripción con IA.",
+      "requiere": "Cuenta de ElevenLabs."
+    },
+    {
+      "id": "shadcn",
+      "nombre": "shadcn/ui",
+      "autor": "shadcn",
+      "repo": "shadcn-ui/ui",
+      "licencia": "MIT",
+      "que": "La skill oficial para usar y personalizar componentes de shadcn/ui."
+    },
+    {
+      "id": "ui-ux-pro-max",
+      "nombre": "UI UX Pro Max",
+      "autor": "Next Level Builder",
+      "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "licencia": "MIT",
+      "que": "Estilos, paletas, tipografías y guías de UX para elegir con criterio el diseño de una interfaz."
+    },
+    {
+      "id": "wshobson-agents",
+      "nombre": "Agents de wshobson",
+      "autor": "Seth Hobson",
+      "repo": "wshobson/agents",
+      "licencia": "MIT",
+      "que": "Patrones de backend en Node y tipos avanzados de TypeScript."
+    },
+    {
+      "id": "developer-kit",
+      "nombre": "Developer Kit",
+      "autor": "Giuseppe Trisciuoglio",
+      "repo": "giuseppe-trisciuoglio/developer-kit",
+      "licencia": "MIT",
+      "que": "Patrones de Tailwind CSS para interfaces consistentes."
+    },
+    {
+      "id": "dot-skills",
+      "nombre": "dot-skills",
+      "autor": "Pedro Proença",
+      "repo": "pproenca/dot-skills",
+      "rama": "master",
+      "licencia": "MIT",
+      "que": "Formularios con React Hook Form y validación con Zod."
+    },
+    {
+      "id": "useful-ai-prompts",
+      "nombre": "Useful AI Prompts",
+      "autor": "AJ Geddes",
+      "repo": "aj-geddes/useful-ai-prompts",
+      "licencia": "MIT",
+      "que": "Servidores Express en Node bien estructurados."
+    },
+    {
+      "id": "debug-mode",
+      "nombre": "Debug Mode",
+      "autor": "doraemonkeys",
+      "repo": "doraemonkeys/claude-code-debug-mode",
+      "rama": "master",
+      "licencia": "MIT",
+      "que": "Modo de depuración guiado por hipótesis e instrumentación temporal."
+    }
+  ],
+  "flujos": [
+    {
+      "id": "frontend",
+      "titulo": "Una pantalla nueva",
+      "para": "Frontend",
+      "pasos": [
+        {
+          "pieza": "brainstorming",
+          "que": "Aterrizo qué necesita la persona usuaria y cómo se verá."
+        },
+        {
+          "pieza": "spec-driven-development",
+          "que": "Escribo la especificación y los criterios de «listo»."
+        },
+        {
+          "pieza": "fullstack-web-engineer",
+          "que": "Construye la pantalla con componentes tipados y accesibles."
+        },
+        {
+          "pieza": "impeccable",
+          "que": "Pulo el diseño: jerarquía, tipografía, color y espaciado."
+        },
+        {
+          "pieza": "testing-qa-sentinel",
+          "que": "La reviso en 390, 834 y 1512 px y con teclado."
+        },
+        {
+          "pieza": "code-reviewer",
+          "que": "Revisión senior antes de fusionar la rama."
+        }
+      ]
+    },
+    {
+      "id": "backend",
+      "titulo": "Una API con datos",
+      "para": "Backend",
+      "pasos": [
+        {
+          "pieza": "api-and-interface-design",
+          "que": "Diseño el contrato de la API antes de programarla."
+        },
+        {
+          "pieza": "db-performance-engineer",
+          "que": "Modelo los datos, índices y seguridad por filas."
+        },
+        {
+          "pieza": "test-driven-development",
+          "que": "Prueba primero, código después."
+        },
+        {
+          "pieza": "fullstack-web-engineer",
+          "que": "Implementa los endpoints con validación en la frontera."
+        },
+        {
+          "pieza": "security-auditor",
+          "que": "Busca huecos de autenticación, autorización y entradas."
+        },
+        {
+          "pieza": "dokploy-cloud-ops",
+          "que": "Publica con Docker, HTTPS y chequeo de salud."
+        }
+      ]
+    },
+    {
+      "id": "seguridad",
+      "titulo": "Antes de publicar",
+      "para": "Seguridad",
+      "pasos": [
+        {
+          "pieza": "security-auditor",
+          "que": "Revisión del código con OWASP y STRIDE."
+        },
+        {
+          "pieza": "app-security-auditor",
+          "que": "Secretos, CORS, dependencias y configuración del servidor."
+        },
+        {
+          "pieza": "deploy-preflight-checker",
+          "que": "Lista de verificación previa al despliegue."
+        },
+        {
+          "pieza": "security-audit-expert",
+          "que": "Auditoría completa en seis fases cuando el proyecto lo amerita."
+        }
+      ]
+    },
+    {
+      "id": "video",
+      "titulo": "Un video con IA",
+      "para": "Video e imagen",
+      "pasos": [
+        {
+          "pieza": "video-director-cinematographer",
+          "que": "Ordeno la idea, elijo estilo y escribo el guion."
+        },
+        {
+          "pieza": "prompt-director-cinematographer",
+          "que": "Prompts precisos para las tomas que hace la IA."
+        },
+        {
+          "pieza": "higgsfield-generate",
+          "que": "Genero imágenes y clips (con confirmación, porque gasta créditos)."
+        },
+        {
+          "pieza": "ai-video-motion-director",
+          "que": "Armo el video con HyperFrames o Remotion, voz y subtítulos."
+        },
+        {
+          "pieza": "video-asset-auditor",
+          "que": "Reviso los recursos antes del render final."
+        }
+      ]
+    }
+  ]
+}
