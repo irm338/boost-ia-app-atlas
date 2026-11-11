@@ -1,4 +1,4 @@
-import { ArrowRight, FolderPlus, Sparkles } from 'lucide-react';
+import { ArrowRight, FolderPlus } from 'lucide-react';
 import { useState } from 'react';
 import { agregarVault, type VaultListo } from '../lib/datos';
 
@@ -8,15 +8,15 @@ let ultimo: VaultListo | null = null;
 export const vaultRecienAgregado = () => Boolean(ultimo?.ok);
 
 /**
- * Para quien todavía no tiene vaults: crea uno con notas guía en un clic, o agrega
- * la carpeta del que ya tiene. Aparece en el Universo y en Vaults mientras no haya ninguno.
+ * Cuando el atlas no encontró vaults: explica cómo tener uno en Obsidian y deja agregar la
+ * carpeta de uno que ya existe. Boost IA nunca crea vaults ni notas: solo lee los tuyos.
  */
 export default function EmpezarVault() {
   const [estado, setEstado] = useState<'listo' | 'trabajando'>('listo');
   const [resultado, setResultado] = useState<VaultListo | null>(ultimo);
   const [ruta, setRuta] = useState('');
 
-  const pedir = async (pedido: { inicial: true } | { ruta: string }) => {
+  const pedir = async (pedido: { ruta: string }) => {
     setEstado('trabajando');
     setResultado(null);
     ultimo = await agregarVault(pedido);
@@ -29,7 +29,7 @@ export default function EmpezarVault() {
       <div className="empezar" role="status">
         <p className="rotulo">Listo</p>
         <p>
-          <strong>{resultado.nombre}</strong> {resultado.creado ? 'quedó creado en' : 'ya está en el atlas desde'} <code>{resultado.ruta}</code>.
+          <strong>{resultado.nombre}</strong> ya está en el atlas desde <code>{resultado.ruta}</code>.
         </p>
         <a className="boton-primario" href={resultado.obsidian}>
           Abrir en Obsidian <ArrowRight size={15} />
@@ -47,13 +47,16 @@ export default function EmpezarVault() {
 
   return (
     <div className="empezar">
-      <p className="rotulo">Empieza tu memoria</p>
-      <p>Un vault es una carpeta de notas. Crea uno con notas guía que te enseñan a usarlo, o suma el que ya tienes.</p>
-      <button type="button" className="boton-primario" disabled={estado === 'trabajando'} onClick={() => pedir({ inicial: true })}>
-        <Sparkles size={16} /> {estado === 'trabajando' ? 'Preparando tu vault…' : 'Crear mi primer vault'}
-      </button>
-      <details className="empezar-tengo">
-        <summary>Ya tengo un vault</summary>
+      <p className="rotulo">Tu memoria</p>
+      <p>
+        Boost IA lee los vaults de Obsidian que ya tienes; no crea ninguno. Abre{' '}
+        <a href="https://obsidian.md/download" target="_blank" rel="noreferrer">
+          Obsidian
+        </a>
+        , crea o abre tu vault y el atlas lo encontrará solo. Si está en otra carpeta, escríbela aquí:
+      </p>
+      <details className="empezar-tengo" open>
+        <summary>Agregar la carpeta de mi vault</summary>
         <form
           onSubmit={(e) => {
             e.preventDefault();

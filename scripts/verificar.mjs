@@ -12,6 +12,7 @@ import path from 'node:path';
 import { RAIZ } from './lib/config.mjs';
 import { descomprimir, esMasNueva } from './lib/actualizacion.mjs';
 import { registrosDeObsidian } from './lib/detectar.mjs';
+import * as kitLib from './lib/kit.mjs';
 
 const fallas = [];
 const ok = (condicion, mensaje) => {
@@ -172,29 +173,8 @@ try {
   const enVacio = (extra) => spawnSync(process.execPath, [path.join(RAIZ, 'scripts', 'instalar.mjs'), '--solo-detectar', '--json', ...extra], { cwd: RAIZ, env: entornoVacio, encoding: 'utf8' });
   const sinNada = JSON.parse(enVacio([]).stdout || '{}');
   ok(sinNada.vaults?.length === 0, 'en un equipo sin vaults no crea ninguno por su cuenta');
-  const inicial = JSON.parse(enVacio(['--vault-inicial']).stdout || '{}');
-  const rutaInicial = path.join(vacio, 'Documents', 'Mi memoria');
-  ok(
-    inicial.vaultInicial?.creado && inicial.centro === 'Mi memoria' && fs.existsSync(path.join(rutaInicial, 'Empieza aquí.md')) && fs.existsSync(path.join(rutaInicial, '.obsidian')) && !fs.existsSync(path.join(rutaInicial, 'Ideas', '.gitkeep')),
-    'con --vault-inicial crea «Mi memoria» con notas guía y lo deja como vault central',
-  );
-  fs.writeFileSync(path.join(rutaInicial, 'Empieza aquí.md'), 'mía');
-  const otraVez = JSON.parse(enVacio(['--vault-inicial']).stdout || '{}');
-  ok(otraVez.vaultInicial?.creado === false && otraVez.vaults.length === 1 && fs.readFileSync(path.join(rutaInicial, 'Empieza aquí.md'), 'utf8') === 'mía', 'pedirlo otra vez reutiliza el mismo vault sin sobrescribir nada');
-
-  // La ruta «Aprende» no cuenta las notas guía como «tu primera nota»: su lista debe
-  // coincidir con las notas que trae el vault inicial.
-  const guia = fs.readFileSync(path.join(RAIZ, 'src', 'lib', 'aprende.ts'), 'utf8').match(/DE_LA_GUIA = new Set\(\[([^\]]*)\]/)?.[1].match(/'([^']+)'/g)?.map((x) => x.slice(1, -1)) ?? [];
-  const notasGuia = [];
-  const recorrerGuia = (dir) => {
-    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-      if (e.name.startsWith('.')) continue;
-      if (e.isDirectory()) recorrerGuia(path.join(dir, e.name));
-      else if (e.name.endsWith('.md')) notasGuia.push(e.name.slice(0, -3));
-    }
-  };
-  recorrerGuia(path.join(RAIZ, 'instalador', 'vault-inicial'));
-  ok(notasGuia.length > 0 && notasGuia.every((t) => guia.includes(t)), 'la ruta Aprende reconoce todas las notas guía del vault inicial');
+  const pedido = enVacio(['--vault-inicial']);
+  ok(pedido.status !== 0 && !fs.existsSync(path.join(vacio, 'Documents', 'Mi memoria')), 'Boost IA nunca crea vaults: --vault-inicial se rechaza sin tocar Documentos');
 
   const notas = spawnSync(process.execPath, [path.join(RAIZ, 'scripts', 'notas-version.mjs'), 'v0.0.0'], { cwd: RAIZ, encoding: 'utf8' });
   ok(notas.status === 0 && notas.stdout.includes('Instalar con doble clic'), 'arma las notas de la versión para GitHub Releases');
@@ -251,6 +231,56 @@ try {
   const notasAntes = fs.readdirSync(path.join(home, 'Documents')).length;
   const borrado = spawnSync(process.execPath, [path.join(carpetaInstalada, 'scripts', 'desinstalar.mjs'), '--si', '--json'], { cwd: carpetaInstalada, env: { ...entorno, ATLAS_CONFIG: '', LOCALAPPDATA: path.join(home, 'AppData', 'Local'), XDG_DATA_HOME: '' }, encoding: 'utf8' });
   ok(borrado.status === 0 && !fs.existsSync(carpetaInstalada) && fs.readdirSync(path.join(home, 'Documents')).length === notasAntes, 'el desinstalador borra la app instalada y deja los vaults intactos');
+
+  // --- Kit Boost IA -------------------------------------------------------------
+  console.log('\nKit Boost IA');
+  {
+    const cat = kitLib.cargarCatalogo();
+    const slugs = new Set([...cat.agentes, ...cat.skills].map((p) => p.slug));
+    ok(slugs.size === cat.agentes.length + cat.skills.length, 'el catálogo no repite nombres de piezas');
+    ok(cat.skills.every((s) => s.kit === 'propia' || cat.kits.some((k) => k.id === s.kit)) && cat.skills.every((s) => s.kit === 'propia' || s.ruta), 'cada skill de terceros dice de qué kit viene y en qué carpeta');
+    ok(cat.skills.filter((s) => s.kit === 'propia').every((s) => fs.existsSync(path.join(RAIZ, 'kit', 'skills', s.slug, 'SKILL.md'))), 'las skills propias están en kit/skills');
+    ok(cat.agentes.every((a) => fs.existsSync(path.join(RAIZ, 'kit', 'agentes', `${a.slug}.md`))), 'cada agente del catálogo tiene su archivo en kit/agentes');
+    ok(cat.agentes.every((a) => a.skills.every((s) => slugs.has(s))), 'las skills que declara cada agente están en el catálogo');
+    ok(cat.flujos.every((f) => f.pasos.every((p) => slugs.has(p.pieza))), 'los pasos de «Cómo trabajo» apuntan a piezas del catálogo');
+    ok(cat.areas.every((a) => [...cat.agentes, ...cat.skills].some((p) => p.area === a.id)), 'ninguna área quedó vacía');
+    const versiones = kitLib.construirAgente(fs.readFileSync(path.join(RAIZ, 'kit', 'agentes', 'code-reviewer.md'), 'utf8'));
+    ok(versiones.codex.includes('sandbox_mode = "read-only"') && versiones.antigravity.includes('view_file') && versiones.claude.includes('boost-ia-kit'), 'cada agente sale en el formato de Claude Code, Codex y Antigravity');
+    const textoAgentes = cat.agentes.map((a) => fs.readFileSync(path.join(RAIZ, 'kit', 'agentes', `${a.slug}.md`), 'utf8')).join('\n');
+    ok(!/kinvo|alcore|softplus|anndre|\/Users\//i.test(textoAgentes), 'los agentes no traen nombres ni rutas personales');
+
+    // Equipo de alumno: Claude Code y Codex, un vault y una skill propia que el kit no debe pisar.
+    const casaKit = path.join(base, 'alumno');
+    const envKit = { CODEX_HOME: '' };
+    fs.mkdirSync(path.join(casaKit, '.codex'), { recursive: true });
+    escribir(path.join(casaKit, '.claude', 'skills', 'vitest', 'SKILL.md'), '---\nname: vitest\ndescription: la mía\n---\n');
+    escribir(path.join(casaKit, '.claude', 'CLAUDE.md'), '# Mis reglas\n');
+    const vaultKit = path.join(casaKit, 'Documents', 'Mi vault');
+    escribir(path.join(vaultKit, 'Nota.md'), '# Nota\n');
+    const antesVault = fs.readdirSync(vaultKit).sort().join();
+    // Descarga falsa: arma la carpeta de cada skill como si viniera de su repositorio.
+    const falsa = (kit, h, rutas) => {
+      const carpeta = path.join(kitLib.carpetaTerceros(h), kit.id);
+      for (const r of rutas) escribir(path.join(carpeta, r, 'SKILL.md'), `---\nname: ${path.basename(r)}\ndescription: prueba\n---\n`);
+      return { carpeta };
+    };
+    const elegido = kitLib.plan(cat, { piezas: ['test-engineer', 'commit-push-convention'] });
+    ok(elegido.skills.some((s) => s.slug === 'vitest') && elegido.agentes.length === 1, 'pedir un agente trae también sus skills');
+    const r = kitLib.instalar(cat, elegido, { home: casaKit, env: envKit, descargar: falsa });
+    ok(!r.errores.length && fs.existsSync(path.join(casaKit, '.claude', 'agents', 'test-engineer.md')) && fs.existsSync(path.join(casaKit, '.codex', 'agents', 'test-engineer.toml')), 'instala el agente en Claude Code y en Codex');
+    ok(fs.existsSync(path.join(casaKit, '.codex', 'skills', 'commit-push-convention', 'SKILL.md')) && fs.existsSync(path.join(casaKit, '.claude', 'skills', 'playwright', 'SKILL.md')), 'instala skills propias y de terceros');
+    ok(r.conflictos.some((c) => c.ruta.endsWith(path.join('.claude', 'skills', 'vitest'))) && fs.readFileSync(path.join(casaKit, '.claude', 'skills', 'vitest', 'SKILL.md'), 'utf8').includes('la mía'), 'no pisa una skill que la persona ya tenía con el mismo nombre');
+    const est = kitLib.estado(cat, { home: casaKit, env: envKit });
+    ok(est.piezas['test-engineer']?.claude === 'kit' && est.piezas.vitest?.claude === 'propio', 'el estado distingue lo del kit de lo propio');
+    kitLib.bloqueObsidian([{ nombre: 'Mi vault', ruta: vaultKit }], { home: casaKit, env: envKit });
+    kitLib.bloqueObsidian([{ nombre: 'Mi vault', ruta: vaultKit }], { home: casaKit, env: envKit });
+    const claudeMd = fs.readFileSync(path.join(casaKit, '.claude', 'CLAUDE.md'), 'utf8');
+    ok(claudeMd.startsWith('# Mis reglas') && claudeMd.split('boost-ia:inicio').length === 2 && claudeMd.includes(vaultKit), 'conecta Obsidian con un solo bloque y conserva las reglas de la persona');
+    ok(fs.readdirSync(vaultKit).sort().join() === antesVault, 'no crea nada dentro del vault');
+    kitLib.quitar(cat, { home: casaKit, env: envKit });
+    kitLib.bloqueObsidian([], { home: casaKit, env: envKit, quitar: true });
+    ok(!fs.existsSync(path.join(casaKit, '.claude', 'agents', 'test-engineer.md')) && fs.existsSync(path.join(casaKit, '.claude', 'skills', 'vitest')) && fs.readFileSync(path.join(casaKit, '.claude', 'CLAUDE.md'), 'utf8').trim() === '# Mis reglas', 'quitar el kit deja solo lo que era de la persona');
+  }
 } finally {
   fs.rmSync(base, { recursive: true, force: true });
 }
