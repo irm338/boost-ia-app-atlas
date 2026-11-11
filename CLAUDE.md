@@ -1,4 +1,4 @@
-# Atlas de memoria · Claude Code
+# Boost IA Atlas · Claude Code
 
 Las instrucciones de este repositorio (instalación, comandos y reglas) están en AGENTS.md y se cargan aquí:
 
@@ -8,4 +8,4 @@ Las instrucciones de este repositorio (instalación, comandos y reglas) están e
 
 - Dentro de una sesión de Claude Code no se puede abrir otra con `claude -p` (se bloquea por sesión anidada). Para traducir usa `npm run traducir -- --lotes <carpeta>`, traduce los lotes tú mismo o con subagentes, y luego `npm run traducir -- --importar <carpeta>`.
 - La skill `/instalar-atlas` (en `.claude/skills/`) resume la instalación paso a paso.
-- Para dejar el atlas abierto usa `bash iniciar.sh` como proceso en segundo plano.
+- Para dejar Boost IA abierto usa `bash iniciar.sh` como proceso en segundo plano.

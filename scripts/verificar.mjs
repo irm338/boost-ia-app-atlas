@@ -243,6 +243,7 @@ try {
     ok(cat.agentes.every((a) => fs.existsSync(path.join(RAIZ, 'kit', 'agentes', `${a.slug}.md`))), 'cada agente del catálogo tiene su archivo en kit/agentes');
     ok(cat.agentes.every((a) => a.skills.every((s) => slugs.has(s))), 'las skills que declara cada agente están en el catálogo');
     ok(cat.flujos.every((f) => f.pasos.every((p) => slugs.has(p.pieza))), 'los pasos de «Cómo trabajo» apuntan a piezas del catálogo');
+    ok(spawnSync(process.execPath, [path.join(RAIZ, 'scripts', 'kit-docs.mjs'), '--revisar']).status === 0, 'docs/KIT.md está al día con el catálogo');
     ok(cat.areas.every((a) => [...cat.agentes, ...cat.skills].some((p) => p.area === a.id)), 'ninguna área quedó vacía');
     const versiones = kitLib.construirAgente(fs.readFileSync(path.join(RAIZ, 'kit', 'agentes', 'code-reviewer.md'), 'utf8'));
     ok(versiones.codex.includes('sandbox_mode = "read-only"') && versiones.antigravity.includes('view_file') && versiones.claude.includes('boost-ia-kit'), 'cada agente sale en el formato de Claude Code, Codex y Antigravity');

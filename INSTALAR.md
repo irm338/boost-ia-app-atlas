@@ -1,15 +1,15 @@
-# Instalar el Atlas de memoria
+# Instalar el Boost IA Atlas
 
 Esta guía sirve para dos lectores: **la IA** que hace la instalación (Claude Code, Codex o Antigravity) y **la persona** que quiera entender qué pasa o hacerlo a mano.
 
 ## La forma más fácil: doble clic
 
-Descarga el último `atlas-memoria-vX.Y.Z.zip` de [Releases](https://github.com/anndreloopez012/atlas-memoria/releases/latest), descomprímelo y haz doble clic en `Instalar en Mac.command`, `Instalar en Windows.cmd` o `Instalar en Linux.sh`. El instalador:
+Descarga el último `boost-ia-atlas-vX.Y.Z.zip` de [Releases](https://github.com/anndreloopez012/boost-ia-app-atlas-software/releases/latest), descomprímelo y haz doble clic en `Instalar en Mac.command`, `Instalar en Windows.cmd` o `Instalar en Linux.sh`. El instalador:
 
-1. Copia la app a una carpeta fija: macOS `~/Library/Application Support/Atlas de memoria`, Windows `%LOCALAPPDATA%\Atlas de memoria`, Linux `~/.local/share/atlas-memoria` (la descarga se puede borrar).
+1. Copia la app a una carpeta fija: macOS `~/Library/Application Support/Boost IA Atlas`, Windows `%LOCALAPPDATA%\Boost IA Atlas`, Linux `~/.local/share/boost-ia-atlas` (la descarga se puede borrar).
 2. Instala Node.js si falta (Homebrew, fnm o nvm sin sudo; winget en Windows) y las dependencias.
 3. Detecta vaults, skills y agentes, verifica y genera los datos.
-4. Crea el acceso **«Atlas de memoria»** con su ícono y lo abre.
+4. Crea el acceso **«Boost IA Atlas»** con su ícono y lo abre.
 
 Avisos del sistema la primera vez: en macOS, **Ajustes del Sistema › Privacidad y seguridad › Abrir igualmente**; en Windows, **Más información › Ejecutar de todas formas**; en Linux, clic derecho › **Ejecutar como programa**. La primera apertura también puede pedir permiso para leer tus carpetas (Documentos, donde suelen estar los vaults): acéptalo.
 
@@ -20,14 +20,13 @@ Después se abre siempre con doble clic. Cada apertura busca cambios en vaults, 
 Abre Claude Code, Codex o Antigravity y escribe:
 
 ```text
-Instala este repositorio: https://github.com/anndreloopez012/atlas-memoria
+Instala este repositorio: https://github.com/anndreloopez012/boost-ia-app-atlas-software
 ```
 
-La IA clona el repositorio, instala lo que falte (Node.js, dependencias), detecta tus vaults, skills y agentes, verifica que todo funcione, traduce al español lo que haga falta y te deja el atlas abierto en el navegador. Solo te preguntará si no encuentra tus vaults o si hay carpetas dudosas.
+La IA clona el repositorio, instala lo que falte (Node.js, dependencias), detecta tus vaults, skills y agentes, verifica que todo funcione, te pregunta si quieres todo el kit o algunas áreas, lo instala en tus IA, conecta tu memoria de Obsidian y te deja Boost IA abierto en el navegador.
 
 Las instrucciones exactas que sigue la IA están en [AGENTS.md](AGENTS.md) (Codex y Antigravity lo leen solos; Claude Code lo importa desde [CLAUDE.md](CLAUDE.md); Gemini CLI, desde [GEMINI.md](GEMINI.md)). También existe la skill `/instalar-atlas` en `.agents/skills/` y `.claude/skills/`.
 
-> Si el repositorio es privado, la persona necesita acceso. El dueño la agrega como colaboradora en GitHub, y la IA clona con `gh repo clone` usando la sesión de esa persona.
 
 ## Qué necesita el equipo
 
@@ -44,7 +43,7 @@ Las instrucciones exactas que sigue la IA están en [AGENTS.md](AGENTS.md) (Code
 ### 1. Conseguir el repositorio
 
 ```bash
-git clone https://github.com/anndreloopez012/atlas-memoria ~/atlas-memoria
+git clone https://github.com/anndreloopez012/boost-ia-app-atlas-software ~/boost-ia-app-atlas-software
 ```
 
 Cualquier carpeta sirve. Si tienes una carpeta de proyectos (`~/Documents/PROYECTOS`, `~/Projects`…), la IA la usa.
@@ -86,7 +85,7 @@ Cada opción vuelve a detectar, guardar y generar:
 | Situación | Comando |
 |---|---|
 | No encontró un vault | `npm run instalar -- --vault "/ruta/al/vault"` |
-| No tiene ningún vault | `npm run instalar -- --vault-inicial` crea «Mi memoria» en Documentos con notas guía (también desde la portada del atlas: «Crear mi primer vault») |
+| No tiene ningún vault | Boost IA no crea vaults: que lo cree en Obsidian (gratis) y vuelva a correr el instalador. El kit se instala igual sin vaults. |
 | Encontró uno que no quieres | `npm run instalar -- --quitar-vault "Nombre"` |
 | El vault central no es el que usas como principal | `npm run instalar -- --centro "Nombre"` |
 | Tienes skills en otra carpeta | `npm run instalar -- --skills "Claude=~/mis-skills"` |
@@ -109,7 +108,27 @@ El atlas muestra todo texto descriptivo en español; las skills nuevas suelen tr
 
 Las traducciones quedan en `traducciones/es.json`: lo que ya se tradujo en un equipo sirve para todos los que compartan esas skills.
 
-### 5. Abrir el atlas
+### 5. Instalar el kit
+
+```bash
+npm run kit -- --lista
+```
+
+```bash
+npm run kit -- --todo
+```
+
+O solo algunas áreas: `npm run kit -- --area frontend,backend,seguridad`. Necesita git e internet (descarga solo las carpetas de cada skill, unos 45 MB el kit completo) y se instala en las IA que tengas: Claude Code, Codex o Antigravity.
+
+Si tienes vaults de Obsidian, conéctalos con tus IA (agrega un bloque con sus rutas a tus instrucciones globales; no escribe nada en los vaults):
+
+```bash
+npm run kit -- --obsidian
+```
+
+Cierra y vuelve a abrir tu IA para que cargue lo nuevo.
+
+### 6. Abrir Boost IA
 
 macOS o Linux:
 
@@ -125,7 +144,7 @@ powershell -ExecutionPolicy Bypass -File iniciar.ps1
 
 Entra a <http://localhost:5190>. Mientras esté abierto, cualquier cambio en tus vaults aparece solo en unos segundos. Para cerrarlo, `Ctrl + C` en esa terminal.
 
-### 6. Actualizar
+### 7. Actualizar
 
 ```bash
 git pull
@@ -135,7 +154,11 @@ git pull
 bash instalar.sh
 ```
 
-Se conserva tu configuración y se agrega lo nuevo que aparezca.
+```bash
+npm run kit -- --todo
+```
+
+Se conserva tu configuración, se agrega lo nuevo que aparezca y se actualiza el kit.
 
 ## Problemas frecuentes
 
@@ -159,9 +182,9 @@ Doble clic en el desinstalador de tu sistema (está en la descarga y en la carpe
 | Sistema | Desinstalador | También |
 |---|---|---|
 | macOS | `Desinstalar en Mac.command` | — |
-| Windows | `Desinstalar en Windows.cmd` | Menú Inicio › «Desinstalar Atlas de memoria» |
+| Windows | `Desinstalar en Windows.cmd` | Menú Inicio › «Desinstalar Boost IA Atlas» |
 | Linux | `Desinstalar en Linux.sh` | Clic derecho en el ícono › Desinstalar |
 
-Muestra qué va a quitar y pide confirmar; apaga el atlas si está abierto, quita los accesos de doble clic y borra la app instalada. **Nunca toca tus vaults ni tus notas** (tampoco «Mi memoria»). Por terminal: `npm run desinstalar` (`-- --si` para no preguntar). En una copia con git (la de quien desarrolla) solo quita los accesos, los datos generados y la caché: el código queda.
+Muestra qué va a quitar y pide confirmar; apaga el atlas si está abierto, quita el kit de tus IA (solo lo que puso el kit; con `--conservar-kit` lo deja), los accesos de doble clic y la app instalada. **Nunca toca tus vaults ni tus notas.** Por terminal: `npm run desinstalar` (`-- --si` para no preguntar). En una copia con git (la de quien desarrolla) solo quita los accesos, los datos generados y la caché: el código queda.
 
 Lo único que el instalador pudo agregar fuera de la app es Node.js (con Homebrew, fnm, nvm o winget), y puede quedarse para otros usos. Si lo quieres quitar, usa el mismo gestor con el que se instaló.

@@ -1,5 +1,30 @@
 # Cambios
 
+## 3.0.0 · 2026-11-10 · Boost IA
+
+Boost IA Atlas nace del Atlas de memoria 2.3.0 como regalo de Campuslands a sus egresados: la forma de trabajar con IA en frontend, backend, seguridad, video e imagen, lista para instalar.
+
+### El kit
+- `kit/catalogo.json` con 8 áreas (método, frontend, backend, calidad, seguridad, despliegue, video e imagen, memoria), 27 agentes, 113 skills y 28 kits de la comunidad.
+- 25 agentes reescritos para alumnos (rol, cómo trabaja, paso a paso, límites y memoria en Obsidian), más los roles `research` y `general` que usa la skill `security-audit`.
+- 6 skills propias en `kit/skills`; las de terceros se descargan de su repositorio original (solo las carpetas necesarias, ~45 MB el kit completo), con autor y licencia a la vista.
+- `npm run kit` instala todo, por áreas o por piezas en Claude Code, Codex y Antigravity; un agente arrastra sus skills; nunca pisa lo que la persona ya tenía; quita solo lo suyo. Sin internet usa la copia descargada.
+
+### La portada
+- Nueva portada **Kit** con la identidad de Campuslands: dedicatoria, Orbit, tres tarjetas (tus IA, tu memoria, tu kit), «Cómo trabajo» con cuatro recorridos (una pantalla nueva, una API con datos, antes de publicar, un video con IA), catálogo filtrable con ficha de cada pieza («Pídelo así», skills que usa, origen y estado en cada IA) y créditos a la comunidad.
+- Instalar y quitar desde la app, con el avance en vivo. El Universo pasa a `#/universo`.
+
+### Obsidian
+- El atlas solo lee los vaults que cada persona ya tiene: se quitó el vault inicial y todo lo que creaba notas guía.
+- «Conectar mis vaults con mis IA» agrega un bloque entre marcas en las instrucciones globales de cada IA con las rutas de los vaults, para que los agentes los lean. No escribe nada en los vaults.
+
+### Identidad
+- Paleta y tipografía de Campuslands (navy espacial, aqua, cian, violeta para IA, oro), Poppins, logo oficial y nueva marca Boost IA. Temas «Órbita» (oscuro) y «Campus» (claro).
+
+### Otros
+- Desinstalar también quita el kit de las IA y su bloque de Obsidian (salvo `--conservar-kit`).
+- `npm run verificar` suma 17 comprobaciones del kit en un equipo simulado.
+
 ## 2.3.0 · 2026-10-08
 
 ### Empezar de cero
