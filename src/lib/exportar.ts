@@ -55,7 +55,7 @@ export async function exportarVista(vista: string) {
   const restaurar = fijarEstilosSvg(el);
   try {
     const { toPng } = await import('html-to-image');
-    const fondo = getComputedStyle(document.body).backgroundColor || '#08090e';
+    const fondo = getComputedStyle(document.body).backgroundColor || '#030625';
     // Las páginas muy largas se exportan a menor resolución para no pesar demasiado.
     const escala = el.scrollHeight > 6000 ? 1 : 2;
     const datos = await toPng(el, {

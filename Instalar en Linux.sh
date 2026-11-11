@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-# Instalador para Linux. Copia el atlas a ~/.local/share/atlas-memoria (así sigue
+# Instalador para Linux. Copia el atlas a ~/.local/share/boost-ia-atlas (así sigue
 # funcionando aunque borres la descarga), deja Node.js listo si falta, detecta tus
-# vaults, skills y agentes, crea «Atlas de memoria» en el menú de aplicaciones y en
+# vaults, skills y agentes, crea «Boost IA Atlas» en el menú de aplicaciones y en
 # el Escritorio, y lo abre. Ejecútalo con doble clic («Ejecutar como programa») o:
 #   bash "Instalar en Linux.sh"
 set -eo pipefail
 ORIGEN="$(cd "$(dirname "$0")" && pwd)"
-DESTINO="${XDG_DATA_HOME:-$HOME/.local/share}/atlas-memoria"
+DESTINO="${XDG_DATA_HOME:-$HOME/.local/share}/boost-ia-atlas"
 echo ""
-echo "  Atlas de memoria · instalación"
+echo "  Boost IA Atlas · instalación"
 echo "  ──────────────────────────────"
 if [ "$ORIGEN" != "$DESTINO" ]; then
   echo "→ Copiando la app a $DESTINO…"
@@ -22,5 +22,5 @@ fi
 cd "$DESTINO"
 bash instalar.sh --abrir
 echo ""
-echo "Listo. Desde ahora abre «Atlas de memoria» desde el menú de aplicaciones o el Escritorio."
+echo "Listo. Desde ahora abre «Boost IA Atlas» desde el menú de aplicaciones o el Escritorio."
 if [ -t 0 ]; then read -r -p "Presiona Enter para cerrar…" _; fi

@@ -20,7 +20,7 @@
 //   --redetectar              vuelve a detectar todo (conserva centro, colores, propósitos y puerto)
 //   --solo-detectar           actualiza la configuración sin generar datos
 //   --sin-verificar           no corre la prueba de humo
-//   --sin-lanzador            no crea el acceso de doble clic «Atlas de memoria»
+//   --sin-lanzador            no crea el acceso de doble clic «Boost IA Atlas»
 //   --abrir                   al terminar, abre la app en el navegador
 //   --json                    resumen final en JSON
 import { execFileSync, spawnSync } from 'node:child_process';
@@ -133,7 +133,7 @@ for (const clave of ['vaults', 'skills', 'agentes']) {
 }
 if (config.centro && !config.vaults.some((v) => v.nombre === config.centro)) config.centro = config.vaults[0]?.nombre ?? null;
 
-fs.writeFileSync(ARCHIVO_CONFIG, `${JSON.stringify({ $comentario: 'Configuración local del Atlas de memoria para este equipo (no se sube a git). La escribe npm run instalar; puedes editarla a mano. Referencia: docs/CONFIGURACION.md', ...config }, null, 2)}\n`);
+fs.writeFileSync(ARCHIVO_CONFIG, `${JSON.stringify({ $comentario: 'Configuración local del Boost IA Atlas para este equipo (no se sube a git). La escribe npm run instalar; puedes editarla a mano. Referencia: docs/CONFIGURACION.md', ...config }, null, 2)}\n`);
 
 // --- 4. Resumen de lo detectado -----------------------------------------------
 const resumen = {
@@ -218,7 +218,7 @@ if (!bandera('--sin-lanzador')) {
   }
 }
 resumen.siguiente = {
-  dobleClic: resumen.lanzadores?.length ? `Abre «Atlas de memoria» con doble clic (${process.platform === 'darwin' ? 'en Aplicaciones o el Escritorio' : process.platform === 'win32' ? 'en el Escritorio o el menú Inicio' : 'en el menú de aplicaciones o el Escritorio'})` : null,
+  dobleClic: resumen.lanzadores?.length ? `Abre «Boost IA Atlas» con doble clic (${process.platform === 'darwin' ? 'en Aplicaciones o el Escritorio' : process.platform === 'win32' ? 'en el Escritorio o el menú Inicio' : 'en el menú de aplicaciones o el Escritorio'})` : null,
   iniciar: process.platform === 'win32' ? 'powershell -ExecutionPolicy Bypass -File iniciar.ps1' : 'bash iniciar.sh',
   url: `http://localhost:${config.puerto}`,
   traducir: totales.sinTraducir ? 'npm run traducir   (o, desde una IA: npm run traducir -- --lotes <carpeta> y luego --importar <carpeta>)' : null,

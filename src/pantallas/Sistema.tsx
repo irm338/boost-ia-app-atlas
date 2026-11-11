@@ -108,7 +108,7 @@ function ComoTrabaja({ atlas }: { atlas: Atlas }) {
       ];
 
   const curva = (x1: number, y1: number, x2: number, y2: number) => `M${x1},${y1} C${(x1 + x2) / 2},${y1} ${(x1 + x2) / 2},${y2} ${x2},${y2}`;
-  const colorCentro = core?.color ?? '#1d24f7';
+  const colorCentro = core?.color ?? '#2caaff';
   const textoCentro = mezclar(colorCentro, '#ffffff', 0.75);
 
   const cajaSvg = (c: Caja, clase: string) => {

@@ -65,7 +65,7 @@ export async function buscarActualizacion({ forzar = false } = {}) {
   let ultima = previa?.repo === repo && !forzar && Date.now() - previa.revisado < CADA ? previa.ultima : undefined;
   if (ultima === undefined) {
     try {
-      const r = await fetch(`${api}/repos/${repo}/releases/latest`, { headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'atlas-memoria' }, signal: AbortSignal.timeout(8000) });
+      const r = await fetch(`${api}/repos/${repo}/releases/latest`, { headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'boost-ia-atlas' }, signal: AbortSignal.timeout(8000) });
       if (r.status === 404) ultima = null; // sin versiones publicadas (o repositorio privado)
       else if (!r.ok) throw new Error(`GitHub respondió ${r.status}`);
       else {
@@ -141,14 +141,14 @@ export async function aplicarActualizacion(nueva, avisar = () => {}) {
   fs.mkdirSync(trabajo, { recursive: true });
 
   avisar(`Descargando la versión ${nueva.version}…`);
-  const r = await fetch(nueva.zip, { headers: { 'User-Agent': 'atlas-memoria' }, signal: AbortSignal.timeout(120_000) });
+  const r = await fetch(nueva.zip, { headers: { 'User-Agent': 'boost-ia-atlas' }, signal: AbortSignal.timeout(120_000) });
   if (!r.ok) return { ok: false, error: `No se pudo descargar (${r.status})` };
   const zip = Buffer.from(await r.arrayBuffer());
 
   avisar('Preparando los archivos…');
   const extraida = path.join(trabajo, 'nueva');
   descomprimir(zip, extraida);
-  // El zip trae una carpeta raíz («Atlas de memoria/»).
+  // El zip trae una carpeta raíz («Boost IA Atlas/»).
   const entradas = fs.readdirSync(extraida);
   const raizNueva = entradas.length === 1 && fs.statSync(path.join(extraida, entradas[0])).isDirectory() ? path.join(extraida, entradas[0]) : extraida;
   if (!fs.existsSync(path.join(raizNueva, 'package.json')) || !fs.existsSync(path.join(raizNueva, 'scripts', 'abrir.mjs'))) return { ok: false, error: 'La descarga no parece una versión del atlas' };

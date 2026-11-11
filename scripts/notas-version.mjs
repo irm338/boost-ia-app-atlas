@@ -14,12 +14,12 @@ const novedades = inicio === -1 ? '' : cambios.slice(inicio, fin === -1 ? undefi
 
 console.log(`## Instalar con doble clic
 
-1. Descarga **atlas-memoria-v${version}.zip** (abajo, en «Assets») y descomprímelo.
+1. Descarga **boost-ia-atlas-v${version}.zip** (abajo, en «Assets») y descomprímelo.
 2. Haz doble clic en el instalador de tu sistema:
    - **macOS:** \`Instalar en Mac.command\`. Si macOS dice que es de un desarrollador no identificado: Ajustes del Sistema › Privacidad y seguridad › **Abrir igualmente**.
    - **Windows:** \`Instalar en Windows.cmd\`. Si aparece «Windows protegió tu PC»: **Más información › Ejecutar de todas formas**.
    - **Linux:** \`Instalar en Linux.sh\` (clic derecho › Ejecutar como programa, o \`bash "Instalar en Linux.sh"\`).
-3. Listo: desde ahora abre **«Atlas de memoria»** con doble clic. Cada vez que lo abres busca cambios en tus vaults de Obsidian, tus skills y tus agentes, y se apaga solo al cerrar la pestaña.
+3. Listo: desde ahora abre **«Boost IA Atlas»** con doble clic. Cada vez que lo abres busca cambios en tus vaults de Obsidian, tus skills y tus agentes, y se apaga solo al cerrar la pestaña.
 
 **Actualizar:** desde la 2.3, la app avisa sola cuando hay una versión nueva («Versión X» en la barra) y se actualiza en un clic, sin tocar tu configuración ni tus notas. Desde una versión anterior, descarga esta y vuelve a ejecutar el instalador.
 

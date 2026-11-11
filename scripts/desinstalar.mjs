@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Desinstala el Atlas de memoria de este equipo: lo apaga si está abierto, quita los
+// Desinstala el Boost IA Atlas de este equipo: lo apaga si está abierto, quita los
 // accesos de doble clic (Aplicaciones, Escritorio, menú Inicio o de aplicaciones) y
 // borra la app instalada. NUNCA toca tus vaults ni tus notas (tampoco «Mi memoria»).
 //
@@ -33,9 +33,9 @@ const leerJSON = (f) => {
 
 // Dónde dejan la app los instaladores de doble clic.
 const INSTALADA = [
-  path.join(casa, 'Library', 'Application Support', 'Atlas de memoria'),
-  path.join(process.env.LOCALAPPDATA || path.join(casa, 'AppData', 'Local'), 'Atlas de memoria'),
-  path.join(process.env.XDG_DATA_HOME || path.join(casa, '.local', 'share'), 'atlas-memoria'),
+  path.join(casa, 'Library', 'Application Support', 'Boost IA Atlas'),
+  path.join(process.env.LOCALAPPDATA || path.join(casa, 'AppData', 'Local'), 'Boost IA Atlas'),
+  path.join(process.env.XDG_DATA_HOME || path.join(casa, '.local', 'share'), 'boost-ia-atlas'),
 ].map((p) => path.resolve(p));
 // Se comparan las rutas reales (en macOS /var es un enlace a /private/var).
 const real = (p) => {
@@ -69,15 +69,15 @@ function accesos() {
   const lista = [];
   const desk = escritorio();
   if (process.platform === 'darwin') {
-    lista.push(path.join(casa, 'Applications', 'Atlas de memoria.app'));
-    if (desk) lista.push(path.join(desk, 'Atlas de memoria.app'));
+    lista.push(path.join(casa, 'Applications', 'Boost IA Atlas.app'));
+    if (desk) lista.push(path.join(desk, 'Boost IA Atlas.app'));
   } else if (process.platform === 'win32') {
     const menu = path.join(process.env.APPDATA || path.join(casa, 'AppData', 'Roaming'), 'Microsoft', 'Windows', 'Start Menu', 'Programs');
-    lista.push(path.join(menu, 'Atlas de memoria.lnk'), path.join(menu, 'Desinstalar Atlas de memoria.lnk'));
-    if (desk) lista.push(path.join(desk, 'Atlas de memoria.lnk'));
+    lista.push(path.join(menu, 'Boost IA Atlas.lnk'), path.join(menu, 'Desinstalar Boost IA Atlas.lnk'));
+    if (desk) lista.push(path.join(desk, 'Boost IA Atlas.lnk'));
   } else {
-    lista.push(path.join(casa, '.local', 'share', 'applications', 'atlas-memoria.desktop'));
-    if (desk) lista.push(path.join(desk, 'atlas-memoria.desktop'));
+    lista.push(path.join(casa, '.local', 'share', 'applications', 'boost-ia-atlas.desktop'));
+    if (desk) lista.push(path.join(desk, 'boost-ia-atlas.desktop'));
   }
   // Solo los que apuntan a ESTA copia (otra instalación del atlas no se toca).
   return lista.filter((p) => {
@@ -112,7 +112,7 @@ const borrar = args.includes('--solo-accesos') ? [] : esInstalada ? [RAIZ] : ['d
 
 if (!args.includes('--si') && !comoJSON) {
   console.log('');
-  console.log('  Atlas de memoria · desinstalar');
+  console.log('  Boost IA Atlas · desinstalar');
   console.log('  ──────────────────────────────');
   console.log('  Se quitará:');
   for (const q of quitar) console.log(`    · ${q.replace(casa, '~')}`);
@@ -155,6 +155,6 @@ const resumen = { apagado, accesos: quitados, borrados, conservados: { vaults, c
 if (comoJSON) console.log(JSON.stringify(resumen, null, 2));
 else {
   log('');
-  log(`Listo: el Atlas de memoria se desinstaló${esInstalada ? '' : ' (accesos, datos y caché)'}. Tus vaults y tus notas siguen intactos.`);
+  log(`Listo: el Boost IA Atlas se desinstaló${esInstalada ? '' : ' (accesos, datos y caché)'}. Tus vaults y tus notas siguen intactos.`);
   if (!esInstalada) log(`La carpeta del código sigue en ${RAIZ}: bórrala tú si ya no la necesitas.`);
 }
