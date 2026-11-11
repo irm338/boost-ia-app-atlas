@@ -211,8 +211,8 @@ export interface VaultListo {
   obsidian?: string;
 }
 
-/** Crea el vault inicial con notas guía (`inicial`) o agrega un vault que ya existe (`ruta`). */
-export async function agregarVault(pedido: { inicial: true } | { ruta: string }): Promise<VaultListo> {
+/** Agrega un vault que ya existe (el atlas nunca crea vaults). */
+export async function agregarVault(pedido: { ruta: string }): Promise<VaultListo> {
   try {
     const r = await fetch('/__atlas/vault', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(pedido) });
     const datos = (await r.json()) as VaultListo;

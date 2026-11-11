@@ -11,7 +11,7 @@ import { capturar, modoDeCaptura } from './scripts/lib/capturar.mjs';
 import { armarPedido, fuentesPara, iasParaPreguntar, responder as responderIA } from './scripts/lib/preguntar.mjs';
 import { cargarCatalogo, estado as estadoKit } from './scripts/lib/kit.mjs';
 import { marcarHecha } from './scripts/lib/tareas.mjs';
-import { enlaceObsidianCarpeta } from './scripts/lib/vault-inicial.mjs';
+import { enlaceObsidianCarpeta } from './scripts/lib/obsidian.mjs';
 
 const RAIZ = path.dirname(fileURLToPath(import.meta.url));
 const DATOS = process.env.ATLAS_SALIDA ? path.resolve(process.env.ATLAS_SALIDA) : path.join(RAIZ, 'datos');
@@ -291,14 +291,13 @@ function atlas(): Plugin {
       });
     });
 
-    // Empezar de cero: crea el vault inicial con notas guía, o agrega uno que ya existe.
+    // Agregar un vault que la persona ya tiene (el atlas no crea vaults).
     app.use('/__atlas/vault', async (req, res) => {
       if (req.method !== 'POST') return responder(res, 405, { ok: false });
       try {
-        const { ruta, inicial } = (await leerJson(req)) as { ruta?: string; inicial?: boolean };
+        const { ruta } = (await leerJson(req)) as { ruta?: string };
         let extra: string[];
-        if (inicial) extra = ['--vault-inicial'];
-        else {
+        {
           const abs = String(ruta ?? '').trim().replace(/^~(?=$|[\\/])/, os.homedir());
           if (!abs || !path.isAbsolute(abs) || !fs.existsSync(abs) || !fs.statSync(abs).isDirectory()) return responder(res, 400, { ok: false, error: 'Esa carpeta no existe. Escribe la ruta completa, p. ej. ~/Documents/Mi vault' });
           extra = ['--vault', abs];
@@ -309,9 +308,8 @@ function atlas(): Plugin {
         if (generando) await generando;
         const { ok } = await regenerar();
         avisarDatos?.();
-        const vi = r.resumen?.vaultInicial as { ruta: string; nombre: string; creado: boolean } | undefined;
-        const abs = vi ? vi.ruta.replace(/^~(?=$|[\\/])/, os.homedir()) : String(extra[1]);
-        responder(res, 200, { ok, ruta: vi?.ruta ?? abs, nombre: vi?.nombre ?? path.basename(abs), creado: vi?.creado ?? false, obsidian: enlaceObsidianCarpeta(abs) });
+        const abs = String(extra[1]);
+        responder(res, 200, { ok, ruta: abs, nombre: path.basename(abs), creado: false, obsidian: enlaceObsidianCarpeta(abs) });
       } catch (error) {
         responder(res, 400, { ok: false, error: String(error) });
       }
