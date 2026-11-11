@@ -31,6 +31,10 @@ La lista completa, pieza por pieza, con qué hace cada una y cómo pedírsela a 
 
 ## Instalar con tu IA (lo recomendado)
 
+> **Repositorio privado, solo por invitación.** Campuslands te envía una invitación de GitHub a tu cuenta. Acéptala (llega a tu correo o en <https://github.com/notifications>) y deja tu sesión de GitHub iniciada en la computadora (`gh auth login`). Sin la invitación aceptada, GitHub responde «no encontrado». No compartas el enlace ni copias del repositorio fuera del grupo invitado.
+>
+> Por ser privado, la app no puede avisar sola de versiones nuevas. Para actualizar, pídele a tu IA «actualiza Boost IA» (hace `git pull`, reinstala y actualiza el kit).
+
 Abre **Claude Code**, **Codex** o **Antigravity** y escribe:
 
 ```text
@@ -87,7 +91,7 @@ Al conectar la memoria, el kit agrega un bloque marcado (`<!-- boost-ia:inicio -
 
 ## Descargar e instalar (sin terminal)
 
-1. Descarga el último **`boost-ia-atlas-vX.Y.Z.zip`** de [Releases](https://github.com/anndreloopez012/boost-ia-app-atlas-software/releases/latest) y descomprímelo.
+1. Con la invitación aceptada y tu sesión de GitHub abierta en el navegador, descarga el último **`boost-ia-atlas-vX.Y.Z.zip`** de [Releases](https://github.com/anndreloopez012/boost-ia-app-atlas-software/releases/latest) y descomprímelo.
 2. Haz **doble clic** en el instalador de tu sistema:
 
 | Sistema | Instalador | La primera vez |

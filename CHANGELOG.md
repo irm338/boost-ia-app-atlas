@@ -22,6 +22,8 @@ Boost IA Atlas nace del Atlas de memoria 2.3.0 como regalo de Campuslands a sus 
 - Paleta y tipografía de Campuslands (navy espacial, aqua, cian, violeta para IA, oro), Poppins, logo oficial y nueva marca Boost IA. Temas «Órbita» (oscuro) y «Campus» (claro).
 
 ### Otros
+- Repositorio privado, solo por invitación: README, `INSTALAR.md` y `AGENTS.md` explican cómo aceptar la invitación e iniciar sesión antes de instalar.
+- El recorrido de bienvenida presenta el kit (instalar, conectar la memoria, cómo trabajo) y trae a la vista cada parte que ilumina.
 - Desinstalar también quita el kit de las IA y su bloque de Obsidian (salvo `--conservar-kit`).
 - `npm run verificar` suma 17 comprobaciones del kit en un equipo simulado.
 
