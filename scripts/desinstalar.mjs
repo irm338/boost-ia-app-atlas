@@ -8,6 +8,10 @@
 //   npm run desinstalar -- --si     sin preguntar
 //   --json                          resumen en JSON (para una IA)
 //   --solo-accesos                  solo quita los accesos de doble clic
+//   --conservar-kit                 deja instalados los agentes y skills del kit en tus IA
+//
+// Si no se pide conservarlo, también quita el kit Boost IA de Claude Code, Codex y Antigravity
+// (solo lo que puso el kit) y su bloque en las instrucciones globales, para no dejar enlaces rotos.
 //
 // Una copia con git (la de quien desarrolla) conserva su código: solo se quitan los
 // accesos, los datos generados y la caché.
@@ -108,6 +112,7 @@ async function apagar() {
 }
 
 const quitar = accesos();
+const quitarKit = !args.includes('--conservar-kit') && !args.includes('--solo-accesos');
 const borrar = args.includes('--solo-accesos') ? [] : esInstalada ? [RAIZ] : ['datos', 'dist', '.atlas-cache'].map((d) => path.join(RAIZ, d)).filter((d) => fs.existsSync(d));
 
 if (!args.includes('--si') && !comoJSON) {
@@ -117,6 +122,7 @@ if (!args.includes('--si') && !comoJSON) {
   console.log('  Se quitará:');
   for (const q of quitar) console.log(`    · ${q.replace(casa, '~')}`);
   for (const b of borrar) console.log(`    · ${b.replace(casa, '~')}${b === RAIZ ? '  (la app)' : ''}`);
+  if (quitarKit) console.log('    · los agentes y skills del kit Boost IA en tus IA, y su bloque de Obsidian (lo tuyo no se toca)');
   if (!quitar.length && !borrar.length) console.log('    (nada: no encontré la app ni sus accesos)');
   console.log('  No se toca:');
   for (const v of vaults) console.log(`    · ${v}  (tu vault)`);
@@ -133,6 +139,19 @@ if (!args.includes('--si') && !comoJSON) {
 
 const apagado = await apagar();
 if (apagado) log('→ Atlas apagado.');
+// El kit primero: sus enlaces apuntan a la carpeta de la app.
+let kit = null;
+if (quitarKit) {
+  try {
+    const k = await import('./lib/kit.mjs');
+    const cat = k.cargarCatalogo();
+    kit = { piezas: k.quitar(cat).acciones.length, instrucciones: k.bloqueObsidian([], { quitar: true }).acciones.length };
+    fs.rmSync(path.join(casa, '.boost-ia'), { recursive: true, force: true });
+    log(`→ Kit quitado de tus IA (${kit.piezas} archivos y ${kit.instrucciones} bloques de instrucciones).`);
+  } catch (error) {
+    log(`  aviso: no se pudo quitar el kit: ${error.message}`);
+  }
+}
 const quitados = [];
 for (const q of quitar) {
   fs.rmSync(q, { recursive: true, force: true });
@@ -151,7 +170,7 @@ for (const b of borrar) {
 }
 if (process.platform === 'linux') spawnSync('update-desktop-database', [path.join(casa, '.local', 'share', 'applications')], { stdio: 'ignore' });
 
-const resumen = { apagado, accesos: quitados, borrados, conservados: { vaults, codigo: esInstalada ? null : RAIZ } };
+const resumen = { apagado, kit, accesos: quitados, borrados, conservados: { vaults, codigo: esInstalada ? null : RAIZ } };
 if (comoJSON) console.log(JSON.stringify(resumen, null, 2));
 else {
   log('');

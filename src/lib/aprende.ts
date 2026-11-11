@@ -29,9 +29,8 @@ export interface Paso {
   hecho: boolean;
 }
 
-// Notas que trae el vault inicial: no cuentan como «tu primera nota».
-const DE_LA_GUIA = new Set(['Empieza aquí', 'Cómo escribir notas', 'Enlazar ideas', 'Mis tareas', 'Skills y agentes', 'Mi primer proyecto', 'Qué es la bandeja', 'Nota', 'Bitácora']);
-const propia = (n: { t: string; fm: Record<string, unknown> }) => !DE_LA_GUIA.has(n.t) && n.fm?.origen !== 'atlas-inicial';
+// Notas de la guía de versiones anteriores del atlas: no cuentan como «tu primera nota».
+const propia = (n: { t: string; fm: Record<string, unknown> }) => n.fm?.origen !== 'atlas-inicial';
 
 // ---- Lo hecho en esta página (preguntar, marcar a mano) ----------------------
 const CLAVE = 'atlas:aprende';
@@ -143,17 +142,17 @@ export async function pasosAprende(atlas: Atlas): Promise<Paso[]> {
   const pasos: Omit<Paso, 'hecho'>[] = [
     {
       id: 'vault',
-      titulo: 'Crea tu vault',
+      titulo: 'Ten tu vault en Obsidian',
       porque: 'Es la carpeta donde vive tu memoria: todo lo demás sale de ahí.',
-      como: 'En la portada del atlas toca **Crear mi primer vault**: quedan notas guía en Documentos/«Mi memoria». Si ya usas Obsidian, elige **Ya tengo un vault**.',
-      ir: { texto: 'Ir a la portada', hash: '#/' },
+      como: 'Abre [Obsidian](https://obsidian.md) y crea o abre tu vault. El atlas lo encuentra solo; si no aparece, en **Vaults** escribe la ruta de su carpeta.',
+      ir: { texto: 'Ir a Vaults', hash: '#/v/' },
       visto: atlas.vaults.length > 0,
     },
     {
       id: 'nota',
       titulo: 'Escribe tu primera nota',
       porque: 'Una idea por nota, con tus palabras: así se recuerda y se puede enlazar.',
-      como: 'Abre tu vault en [Obsidian](https://obsidian.md) y crea una nota en la carpeta `Ideas` sobre algo que aprendiste hoy. La plantilla `Plantillas/Nota` te da la estructura.',
+      como: 'Abre tu vault en [Obsidian](https://obsidian.md) y crea una nota sobre algo que aprendiste hoy, en la carpeta que tú prefieras.',
       ...(central ? { ir: { texto: `Abrir ${central.nombre}`, hash: rutaVault(central.slug) } } : {}),
       visto: mias.length > 0,
     },
