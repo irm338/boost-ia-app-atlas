@@ -160,13 +160,19 @@ export function descargarTercero(kit, home = os.homedir(), rutas = []) {
   const carpeta = path.join(carpetaTerceros(home), kit.id);
   const url = `https://github.com/${kit.repo}.git`;
   const git = (...a) => execFileSync('git', a, { stdio: 'pipe', timeout: 600_000 }).toString();
+  let aviso = null;
   try {
     if (!fs.existsSync(path.join(carpeta, '.git'))) {
       fs.mkdirSync(path.dirname(carpeta), { recursive: true });
       borrar(carpeta);
       git('clone', '--depth', '1', '--filter=blob:none', '--sparse', '--quiet', ...(kit.rama ? ['--branch', kit.rama] : []), url, carpeta);
     } else {
-      git('-C', carpeta, 'pull', '--ff-only', '--quiet');
+      try {
+        git('-C', carpeta, 'pull', '--ff-only', '--quiet');
+      } catch {
+        // Sin internet (o GitHub caído): sigue con la copia que ya se había descargado.
+        aviso = 'sin conexión: usé la copia que ya tenías descargada';
+      }
     }
     let antes = [];
     try {
@@ -175,8 +181,15 @@ export function descargarTercero(kit, home = os.homedir(), rutas = []) {
       /* sin sparse todavía */
     }
     const todas = [...new Set([...antes, ...rutas])];
-    if (todas.length) git('-C', carpeta, 'sparse-checkout', 'set', '--no-cone', ...todas.map((r) => `/${r.replace(/^\/+|\/+$/g, '')}/`));
-    return { carpeta };
+    if (todas.length) {
+      try {
+        git('-C', carpeta, 'sparse-checkout', 'set', '--no-cone', ...todas.map((r) => `/${r.replace(/^\/+|\/+$/g, '')}/`));
+      } catch (e) {
+        // Sin conexión no se pueden bajar carpetas nuevas; las que ya estaban siguen sirviendo.
+        if (!aviso) throw e;
+      }
+    }
+    return { carpeta, aviso };
   } catch (e) {
     const detalle = String(e.stderr || e.message || '').trim().split('\n')[0];
     return { error: /ENOENT/.test(String(e.message)) ? 'falta git: instálalo y vuelve a intentar' : `no se pudo descargar ${url}: ${detalle.slice(0, 200)}` };
@@ -229,7 +242,10 @@ export function instalar(cat, elegido, { raiz = RAIZ, home = os.homedir(), env =
     avisar(`Descargando ${kit.nombre} (${kit.repo})…`);
     const r = descargar(kit, home, elegido.skills.filter((s) => s.kit === id).map((s) => s.ruta));
     if (r.error) errores.push(`${kit.nombre}: ${r.error}`);
-    else carpetas[id] = r.carpeta;
+    else {
+      carpetas[id] = r.carpeta;
+      if (r.aviso) avisar(`  ${kit.nombre}: ${r.aviso}`);
+    }
   }
   for (const s of elegido.skills) {
     const origen = s.kit === 'propia' ? path.join(raiz, 'kit', 'skills', s.slug) : carpetas[s.kit] && path.join(carpetas[s.kit], s.ruta);

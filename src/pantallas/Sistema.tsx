@@ -101,7 +101,7 @@ function ComoTrabaja({ atlas }: { atlas: Atlas }) {
         { x: 950, y: 364, w: 220, h: 76, titulo: 'Este atlas', texto: 'lee todo y lo dibuja', href: '#/' },
       ]
     : [
-        { x: 950, y: 46, w: 220, h: 76, titulo: 'Universo', texto: 'el mapa de todo', href: '#/' },
+        { x: 950, y: 46, w: 220, h: 76, titulo: 'Universo', texto: 'el mapa de todo', href: '#/universo' },
         { x: 950, y: 152, w: 220, h: 76, titulo: 'Lector de notas', texto: `${n(t.enlaces)} enlaces navegables`, href: core ? rutaVault(core.slug) : undefined },
         { x: 950, y: 258, w: 220, h: 76, titulo: 'Fichas de skills', texto: 'qué hace cada una', href: '#/skills' },
         { x: 950, y: 364, w: 220, h: 76, titulo: 'Búsqueda', texto: '⌘K en cualquier pantalla' },

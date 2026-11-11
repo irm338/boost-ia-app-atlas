@@ -9,10 +9,11 @@ import { alternarTema, useTema } from '../lib/tema';
 import type { Atlas } from '../lib/tipos';
 import { desdeNovedades } from '../lib/visita';
 
-// Cinco secciones como máximo: cada una con un propósito claro. Lo demás se hace
+// Seis secciones: el Kit (portada) y las cinco del atlas, cada una con un propósito claro. Lo demás se hace
 // desde el centro de mando (⌘K), así la barra no se llena de botones.
 const secciones = (atlas: Atlas | null): { vistas: Ruta['vista'][]; hash: string; etiqueta: string }[] => [
-  { vistas: ['universo'], hash: '#/', etiqueta: 'Universo' },
+  { vistas: ['kit'], hash: '#/', etiqueta: 'Kit' },
+  { vistas: ['universo'], hash: '#/universo', etiqueta: 'Universo' },
   { vistas: ['hoy'], hash: '#/hoy', etiqueta: 'Hoy' },
   { vistas: ['vault'], hash: rutaVault(atlas?.centro ?? ''), etiqueta: 'Vaults' },
   { vistas: ['skills'], hash: '#/skills', etiqueta: 'Skills' },
