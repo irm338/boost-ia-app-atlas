@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Instala el Atlas de memoria en macOS o Linux.
+# Instala el Boost IA Atlas en macOS o Linux.
 #
 # Deja Node.js listo si falta (sin sudo), instala las dependencias y ejecuta el
 # instalador del atlas: detecta vaults, skills y agentes, verifica y genera los

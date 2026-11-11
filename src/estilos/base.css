@@ -1,50 +1,67 @@
 /* Tokens, tipografía y atmósfera. Tema oscuro «Observatorio» y claro «Carta». */
+/* Paleta y tipografía de Campuslands.
+   Navy espacial de fondo, aqua como acento principal, cian para lo técnico (HUD),
+   violeta para lo que es IA y oro para los logros. Poppins en titulares, como la marca. */
 :root {
-  --f-display: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
-  --f-ui: 'Bricolage Grotesque Variable', 'Avenir Next', sans-serif;
+  --f-display: 'Poppins', 'Avenir Next', sans-serif;
+  --f-ui: 'Poppins', 'Avenir Next', sans-serif;
   --f-mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', monospace;
 
-  --fondo: #08090e;
-  --fondo-alto: #0d0f17;
-  --superficie: #11141d;
-  --superficie-2: #171b27;
-  --velo: rgba(8, 9, 14, 0.72);
-  --linea: rgba(236, 232, 221, 0.08);
-  --linea-fuerte: rgba(236, 232, 221, 0.17);
-  --tinta: #ece8dd;
-  --tinta-2: #a8a59b;
-  --tinta-3: #6d6b65;
-  --laton: #dcb56c;
-  --laton-suave: rgba(220, 181, 108, 0.14);
-  /* holograma del núcleo (interfaz tipo JARVIS) */
-  --hud: #62e3ff;
-  --peligro: #f4877a;
-  --exito: #86efac;
-  --sombra: 0 24px 60px -24px rgba(0, 0, 0, 0.7), 0 2px 0 rgba(255, 255, 255, 0.02) inset;
-  --radio: 14px;
-  --radio-s: 9px;
-  --barra: 60px;
+  /* Colores de marca (no cambian con el tema) */
+  --cl-navy: #000051;
+  --cl-espacio: #02031a;
+  --cl-azul: #2caaff;
+  --cl-cielo: #57bbff;
+  --cl-aqua: #00d9a4;
+  --cl-aqua-hondo: #00aa80;
+  --cl-violeta: #7a3cff;
+  --cl-lila: #b997ff;
+  --cl-oro: #ffc56b;
+
+  /* Tema oscuro «Órbita» */
+  --fondo: #030625;
+  --fondo-alto: #060b33;
+  --superficie: #0a1142;
+  --superficie-2: #111a55;
+  --velo: rgba(3, 6, 37, 0.74);
+  --linea: rgba(170, 196, 255, 0.1);
+  --linea-fuerte: rgba(170, 196, 255, 0.22);
+  --tinta: #eef4ff;
+  --tinta-2: #a9b7e0;
+  --tinta-3: #6c7aab;
+  --laton: #00d9a4;
+  --laton-suave: rgba(0, 217, 164, 0.14);
+  --hud: #2caaff;
+  --ia: #b997ff;
+  --peligro: #ff8a7a;
+  --exito: #00d9a4;
+  --sombra: 0 28px 60px -26px rgba(0, 0, 20, 0.85), 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+  --radio: 18px;
+  --radio-s: 11px;
+  --barra: 64px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   color-scheme: dark;
 }
 
+/* Tema claro «Campus»: blanco y azul, como la formación en la marca. */
 :root[data-tema='claro'] {
-  --fondo: #f3efe5;
-  --fondo-alto: #ece6d8;
-  --superficie: #fbf9f3;
-  --superficie-2: #f1ecdf;
-  --velo: rgba(243, 239, 229, 0.78);
-  --linea: rgba(27, 26, 23, 0.1);
-  --linea-fuerte: rgba(27, 26, 23, 0.2);
-  --tinta: #1c1b18;
-  --tinta-2: #56534b;
-  --tinta-3: #8a867b;
-  --laton: #94641a;
-  --laton-suave: rgba(148, 100, 26, 0.12);
-  --hud: #0b6a99;
-  --peligro: #b4412f;
-  --exito: #23804a;
-  --sombra: 0 24px 50px -28px rgba(60, 45, 20, 0.35);
+  --fondo: #f3f6ff;
+  --fondo-alto: #e9efff;
+  --superficie: #ffffff;
+  --superficie-2: #edf2ff;
+  --velo: rgba(243, 246, 255, 0.8);
+  --linea: rgba(0, 0, 81, 0.09);
+  --linea-fuerte: rgba(0, 0, 81, 0.18);
+  --tinta: #000051;
+  --tinta-2: #3b4677;
+  --tinta-3: #7581aa;
+  --laton: #008f6c;
+  --laton-suave: rgba(0, 170, 128, 0.12);
+  --hud: #0a72d1;
+  --ia: #6b2ef0;
+  --peligro: #c23b2b;
+  --exito: #008f6c;
+  --sombra: 0 26px 50px -30px rgba(0, 0, 81, 0.28);
   color-scheme: light;
 }
 
@@ -67,20 +84,20 @@ body {
   font-family: var(--f-ui);
   font-size: 15px;
   line-height: 1.55;
-  font-variation-settings: 'wdth' 92;
-  -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow: hidden;
 }
 
-/* Atmósfera: retícula de carta celeste que se desvanece hacia los bordes + grano. */
+/* Atmósfera: nebulosas de marca sobre una retícula que se desvanece hacia los bordes + grano. */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
   background-image:
-    radial-gradient(ellipse 70% 55% at 50% 42%, color-mix(in oklab, #1d24f7 16%, transparent), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 18% 0%, color-mix(in oklab, var(--cl-azul) 16%, transparent), transparent 70%),
+    radial-gradient(ellipse 50% 45% at 92% 100%, color-mix(in oklab, var(--cl-aqua) 10%, transparent), transparent 70%),
     linear-gradient(var(--linea) 1px, transparent 1px),
     linear-gradient(90deg, var(--linea) 1px, transparent 1px);
   background-size: 100% 100%, 72px 72px, 72px 72px;
@@ -141,9 +158,18 @@ button {
 
 .display {
   font-family: var(--f-display);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1.02;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  font-style: normal !important;
+}
+
+/* Texto con el degradado de marca (aqua → cian): solo para palabras clave. */
+.marca-degradado {
+  background: linear-gradient(100deg, var(--cl-aqua), var(--cl-azul) 60%, var(--cl-lila));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .mono {

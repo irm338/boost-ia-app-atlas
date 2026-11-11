@@ -69,7 +69,7 @@ const fecha = (iso: string | null) => (iso ? new Date(iso).toLocaleDateString('e
 /** El resumen como texto (Markdown) para pegar en un chat, un correo o una tarea. */
 export function avanceComoTexto(a: Avance): string {
   const l: string[] = [];
-  l.push(`# Mi avance en el Atlas de memoria${a.nombre ? ` · ${a.nombre}` : ''}`, '', `Generado el ${fecha(a.generado)}.`, '');
+  l.push(`# Mi avance en el Boost IA Atlas${a.nombre ? ` · ${a.nombre}` : ''}`, '', `Generado el ${fecha(a.generado)}.`, '');
   l.push('## Memoria', `- ${pl(a.totales.notas, 'nota', 'notas')}, ${pl(a.totales.palabras, 'palabra', 'palabras')} y ${pl(a.totales.enlaces, 'enlace', 'enlaces')} en ${pl(a.vaults.length, 'vault', 'vaults')}.`);
   for (const v of a.vaults) l.push(`  - ${v.nombre}: ${pl(v.notas, 'nota', 'notas')}, ${pl(v.enlaces, 'enlace', 'enlaces')}, última edición ${fecha(v.ultima)}.`);
   l.push('', '## Constancia (notas escritas o editadas por semana)');
@@ -102,20 +102,20 @@ export function avanceComoHTML(a: Avance): string {
   const json = JSON.stringify(a).replace(/</g, '\\u003c');
   return `<!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mi avance${a.nombre ? ` · ${esc(a.nombre)}` : ''} · Atlas de memoria</title>
+<title>Mi avance${a.nombre ? ` · ${esc(a.nombre)}` : ''} · Boost IA Atlas</title>
 <style>
-:root{--fondo:#f6f3ec;--papel:#fffdf8;--tinta:#1c1b18;--tenue:#6d6b65;--linea:#e4ded0;--acento:#94641a;--ok:#23804a}
-@media (prefers-color-scheme:dark){:root{--fondo:#0b0c11;--papel:#12151e;--tinta:#ece8dd;--tenue:#a8a59b;--linea:#262a36;--acento:#dcb56c;--ok:#86efac}}
-*{box-sizing:border-box}body{margin:0;background:var(--fondo);color:var(--tinta);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
-main{max-width:860px;margin:0 auto;padding:40px 16px 60px}h1{font:600 30px/1.15 Georgia,serif;margin:0 0 4px}h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--acento);margin:0 0 12px}
+:root{--fondo:#f3f6ff;--papel:#fff;--tinta:#000051;--tenue:#5a6590;--linea:#dde4f7;--acento:#008f6c;--ok:#008f6c}
+@media (prefers-color-scheme:dark){:root{--fondo:#030625;--papel:#0a1142;--tinta:#eef4ff;--tenue:#a9b7e0;--linea:#1b2563;--acento:#00d9a4;--ok:#00d9a4}}
+*{box-sizing:border-box}body{margin:0;background:var(--fondo);color:var(--tinta);font:15px/1.55 Poppins,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:860px;margin:0 auto;padding:40px 16px 60px}h1{font:700 30px/1.15 Poppins,system-ui,sans-serif;letter-spacing:-.02em;margin:0 0 4px}h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--acento);margin:0 0 12px}
 .tenue{color:var(--tenue)}.rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:22px}
 section{background:var(--papel);border:1px solid var(--linea);border-radius:14px;padding:18px}
-.cifras{display:flex;flex-wrap:wrap;gap:22px;margin:22px 0 0}.cifras div{display:flex;flex-direction:column}.cifras b{font:600 28px Georgia,serif}.cifras span{font-size:12px;color:var(--tenue);text-transform:uppercase;letter-spacing:.08em}
+.cifras{display:flex;flex-wrap:wrap;gap:22px;margin:22px 0 0}.cifras div{display:flex;flex-direction:column}.cifras b{font:700 28px Poppins,system-ui,sans-serif}.cifras span{font-size:12px;color:var(--tenue);text-transform:uppercase;letter-spacing:.08em}
 .barras{display:flex;align-items:flex-end;gap:10px;height:140px}.barra{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:4px}.barra span{display:block;width:100%;min-height:3px;background:var(--acento);border-radius:6px 6px 2px 2px}.barra small{font-size:11px;color:var(--tenue)}.barra b{font-size:12px}
 ul{margin:0;padding-left:18px}li{margin:3px 0}.paso{list-style:none;margin-left:-18px}.paso::before{content:"○ ";color:var(--tenue)}.paso.hecho::before{content:"● ";color:var(--ok)}
 footer{margin-top:28px;font-size:13px;color:var(--tenue)}
 </style></head><body><main>
-<p class="tenue">Atlas de memoria · ${esc(fecha(a.generado))}</p>
+<p class="tenue">Boost IA Atlas · ${esc(fecha(a.generado))}</p>
 <h1>Mi avance${a.nombre ? ` · ${esc(a.nombre)}` : ''}</h1>
 <div class="cifras"><div><b>${n(a.totales.notas)}</b><span>notas</span></div><div><b>${n(a.totales.enlaces)}</b><span>enlaces</span></div><div><b>${n(a.totales.palabras)}</b><span>palabras</span></div><div><b>${a.aprende.hechos}/${a.aprende.total}</b><span>ruta Aprende</span></div></div>
 <div class="rejilla">

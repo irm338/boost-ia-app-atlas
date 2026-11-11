@@ -1,13 +1,13 @@
 #!/bin/bash
 # Instalador de doble clic para macOS. Copia el atlas a
-# ~/Library/Application Support/Atlas de memoria (así sigue funcionando aunque
+# ~/Library/Application Support/Boost IA Atlas (así sigue funcionando aunque
 # borres la descarga), deja Node.js listo si falta, detecta tus vaults, skills y
-# agentes, crea «Atlas de memoria» en Aplicaciones y en el Escritorio, y lo abre.
+# agentes, crea «Boost IA Atlas» en Aplicaciones y en el Escritorio, y lo abre.
 set -eo pipefail
 ORIGEN="$(cd "$(dirname "$0")" && pwd)"
-DESTINO="$HOME/Library/Application Support/Atlas de memoria"
+DESTINO="$HOME/Library/Application Support/Boost IA Atlas"
 echo ""
-echo "  Atlas de memoria · instalación"
+echo "  Boost IA Atlas · instalación"
 echo "  ──────────────────────────────"
 if [ "$ORIGEN" != "$DESTINO" ]; then
   echo "→ Copiando la app a $DESTINO…"
@@ -17,5 +17,5 @@ fi
 cd "$DESTINO"
 bash instalar.sh --abrir
 echo ""
-echo "Listo. Desde ahora abre «Atlas de memoria» con doble clic en Aplicaciones o en el Escritorio."
+echo "Listo. Desde ahora abre «Boost IA Atlas» con doble clic en Aplicaciones o en el Escritorio."
 echo "Puedes cerrar esta ventana y borrar la descarga."

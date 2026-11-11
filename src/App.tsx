@@ -57,7 +57,7 @@ export default function App() {
 
   useEffect(() => {
     const titulos: Record<string, string> = { universo: 'Universo', hoy: 'Hoy', vault: 'Vaults', skills: 'Skills', agentes: 'Agentes', sistema: 'Sistema' };
-    document.title = `${titulos[ruta.vista]} · Atlas de memoria`;
+    document.title = `${titulos[ruta.vista]} · Boost IA Atlas`;
   }, [ruta.vista]);
 
   return (

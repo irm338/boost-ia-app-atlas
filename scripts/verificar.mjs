@@ -203,11 +203,11 @@ try {
   console.log('\nActualizaciones');
   ok(esMasNueva('2.10.0', '2.9.3') && esMasNueva('v3.0.0', '2.9.9') && !esMasNueva('2.2.0', '2.2.0') && !esMasNueva('2.1.9', '2.2.0'), 'compara versiones (2.10.0 es más nueva que 2.9.3)');
   const zipPrueba = path.join(base, 'version.zip');
-  const archivo = spawnSync('git', ['archive', '--format=zip', '--prefix=Atlas de memoria/', '-o', zipPrueba, 'HEAD'], { cwd: RAIZ });
+  const archivo = spawnSync('git', ['archive', '--format=zip', '--prefix=Boost IA Atlas/', '-o', zipPrueba, 'HEAD'], { cwd: RAIZ });
   if (archivo.status === 0) {
     const extraidos = descomprimir(fs.readFileSync(zipPrueba), path.join(base, 'version'));
-    const lanzadorMac = path.join(base, 'version', 'Atlas de memoria', 'Instalar en Mac.command');
-    ok(extraidos.includes('Atlas de memoria/package.json') && fs.existsSync(lanzadorMac) && (process.platform === 'win32' || (fs.statSync(lanzadorMac).mode & 0o111) !== 0), 'descomprime una versión descargada (con permisos de ejecución)');
+    const lanzadorMac = path.join(base, 'version', 'Boost IA Atlas', 'Instalar en Mac.command');
+    ok(extraidos.includes('Boost IA Atlas/package.json') && fs.existsSync(lanzadorMac) && (process.platform === 'win32' || (fs.statSync(lanzadorMac).mode & 0o111) !== 0), 'descomprime una versión descargada (con permisos de ejecución)');
   }
 
   // --- Instrucciones para las IAs ---------------------------------------------
@@ -238,13 +238,13 @@ try {
     const creados = JSON.parse((l.stdout || '{}').trim().split('\n').pop() || '{}').lanzadores || [];
     const app = creados.find((c) => c.endsWith('.app') || c.endsWith('.desktop'));
     const listo = process.platform === 'darwin' ? app && fs.existsSync(path.join(app, 'Contents', 'MacOS', 'atlas')) : app && fs.readFileSync(app, 'utf8').includes('iniciar.sh');
-    ok(Boolean(listo) && creados.every((c) => c.startsWith(home)), 'crea el acceso de doble clic «Atlas de memoria» en la carpeta personal');
+    ok(Boolean(listo) && creados.every((c) => c.startsWith(home)), 'crea el acceso de doble clic «Boost IA Atlas» en la carpeta personal');
     const fuera = correr('desinstalar.mjs', ['--si', '--json', '--solo-accesos']);
     const quitados = JSON.parse(fuera.stdout || '{}').accesos ?? [];
     ok(fuera.status === 0 && creados.every((c) => !fs.existsSync(c)) && quitados.length === creados.length, 'el desinstalador quita los accesos de doble clic');
   }
   // Una app instalada por el instalador de doble clic se borra entera; los vaults no.
-  const carpetaInstalada = process.platform === 'darwin' ? path.join(home, 'Library', 'Application Support', 'Atlas de memoria') : process.platform === 'win32' ? path.join(home, 'AppData', 'Local', 'Atlas de memoria') : path.join(home, '.local', 'share', 'atlas-memoria');
+  const carpetaInstalada = process.platform === 'darwin' ? path.join(home, 'Library', 'Application Support', 'Boost IA Atlas') : process.platform === 'win32' ? path.join(home, 'AppData', 'Local', 'Boost IA Atlas') : path.join(home, '.local', 'share', 'boost-ia-atlas');
   fs.mkdirSync(path.join(carpetaInstalada, 'scripts'), { recursive: true });
   fs.copyFileSync(path.join(RAIZ, 'scripts', 'desinstalar.mjs'), path.join(carpetaInstalada, 'scripts', 'desinstalar.mjs'));
   fs.writeFileSync(path.join(carpetaInstalada, 'atlas.config.json'), JSON.stringify({ vaults: [{ nombre: 'Uno', ruta: path.join(home, 'Uno') }], puerto: 59999 }));
