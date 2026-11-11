@@ -1,7 +1,7 @@
 // Portada del kit Boost IA: el regalo de Campuslands. Muestra qué trae el kit, cómo se
 // trabaja con él (flujos), el catálogo completo para instalar por piezas o áreas, los kits de
 // la comunidad con su crédito y la conexión con los vaults de Obsidian que la persona ya tiene.
-import { ArrowRight, Bot, Brain, Check, ChevronRight, Copy, ExternalLink, LoaderCircle, Package, Plug, Rocket, Search, Sparkles, Trash2, X } from 'lucide-react';
+import { ArrowRight, Bot, Brain, Check, ChevronRight, Copy, ExternalLink, LoaderCircle, Package, Plug, Printer, Rocket, Search, Sparkles, Trash2, X } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import orbit from '../assets/marca/orbit.webp';
 import { LogoCampuslands, Marca } from '../componentes/BarraSuperior';
@@ -9,6 +9,10 @@ import { ajena, instalada, piezas as todasLasPiezas, useKit, type Accion, type C
 import type { Atlas } from '../lib/tipos';
 
 type Filtro = 'todo' | 'agente' | 'skill';
+
+// Ilustraciones del kit (generadas con Codex): portada y una por área.
+const IMAGENES = import.meta.glob('../assets/kit/*.webp', { eager: true, import: 'default' }) as Record<string, string>;
+const imagen = (id: string) => IMAGENES[`../assets/kit/${id}.webp`];
 
 export default function Kit({ atlas }: { atlas: Atlas }) {
   const { datos, error, ejecutar } = useKit();
@@ -79,11 +83,24 @@ export default function Kit({ atlas }: { atlas: Atlas }) {
         </p>
       )}
 
+      <Misiones
+        cat={cat}
+        est={est}
+        ocupado={ocupado}
+        lanzar={lanzar}
+        elegir={(a) => {
+          setArea(a);
+          setTipo('todo');
+          setBusca('');
+          requestAnimationFrame(() => document.getElementById('catalogo')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+        }}
+      />
+
       <Flujos cat={cat} porSlug={porSlug} abrir={setFicha} />
 
       <section className="kit-seccion" id="catalogo" aria-labelledby="titulo-catalogo">
         <header className="kit-seccion-cabeza">
-          <p className="rotulo">03 · El catálogo</p>
+          <p className="rotulo">04 · El catálogo</p>
           <h2 id="titulo-catalogo" className="display">
             Todo lo que trae el kit
           </h2>
@@ -137,6 +154,8 @@ export default function Kit({ atlas }: { atlas: Atlas }) {
         {!visibles.length && <p className="kit-vacio">Nada coincide con «{busca}». Prueba con otra palabra.</p>}
       </section>
 
+      <Chuleta cat={cat} />
+
       <Comunidad cat={cat} />
 
       <footer className="kit-pie">
@@ -156,8 +175,16 @@ export default function Kit({ atlas }: { atlas: Atlas }) {
 
 function Portada({ cat, est, puestas, total, ocupado, instalarTodo }: { cat: Catalogo; est: EstadoKit; puestas: number; total: number; ocupado: boolean; instalarTodo: () => void }) {
   const kitsUsados = new Set(cat.skills.filter((s) => s.kit !== 'propia').map((s) => s.kit)).size;
+  // Paralaje suave: Orbit y las órbitas siguen un poco al mouse (nada si se prefiere menos movimiento).
+  const mover = (e: React.MouseEvent<HTMLElement>) => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty('--mx', String((e.clientX - r.left) / r.width - 0.5));
+    e.currentTarget.style.setProperty('--my', String((e.clientY - r.top) / r.height - 0.5));
+  };
   return (
-    <section className="kit-portada">
+    <section className="kit-portada" onMouseMove={mover}>
+      {imagen('portada') && <img className="kit-portada-fondo" src={imagen('portada')} alt="" aria-hidden="true" />}
       <div className="kit-portada-texto">
         <p className="kit-sello">
           <Sparkles size={14} /> Regalo de Campuslands para su generación de egresados
@@ -243,14 +270,52 @@ function Conexion({ atlas, cat, est, puestas, total, ocupado, lanzar }: { atlas:
   const vaults = atlas.vaults;
   const conectadas = est.ias.filter((i) => est.obsidian[i.id]).length;
   const obsidianListo = est.ias.length > 0 && conectadas === est.ias.length;
+  const [probado, setProbado] = useState(() => leerProbado());
+  const [copiado, setCopiado] = useState(false);
+  const primerPedido = 'Usa el agente engineering-lifecycle-lead para crear una página de una sola pantalla que muestre mi nombre, mi carrera en Campuslands y tres proyectos, con pruebas y revisión antes de terminar.';
+  const hechos = [est.ias.length > 0, obsidianListo, puestas > 0, probado];
+  const avance = hechos.filter(Boolean).length;
+
+  const copiar = async () => {
+    try {
+      await navigator.clipboard.writeText(primerPedido);
+      setCopiado(true);
+      setTimeout(() => setCopiado(false), 1600);
+    } catch {
+      /* sin portapapeles */
+    }
+  };
+  const marcar = () => {
+    const nuevo = !probado;
+    setProbado(nuevo);
+    try {
+      localStorage.setItem('boost-primer-pedido', nuevo ? '1' : '0');
+    } catch {
+      /* sin almacenamiento */
+    }
+  };
+
   return (
     <section className="kit-seccion kit-conexion" aria-labelledby="titulo-conexion">
       <header className="kit-seccion-cabeza">
-        <p className="rotulo">01 · Tu equipo</p>
+        <p className="rotulo">01 · Tu ruta de despegue</p>
         <h2 id="titulo-conexion" className="display">
-          Tres piezas que trabajan juntas
+          Cuatro pasos y estás en órbita
         </h2>
+        <p>Cada paso se marca solo cuando la app ve que ya lo hiciste.</p>
       </header>
+
+      <div className="kit-trayectoria" aria-hidden="true" style={{ '--avance': avance / 4 } as React.CSSProperties}>
+        <svg viewBox="0 0 1000 120" preserveAspectRatio="none">
+          <path d="M10 110 C 300 110, 520 90, 700 55 S 930 10, 990 8" className="kit-trayectoria-base" />
+          <path d="M10 110 C 300 110, 520 90, 700 55 S 930 10, 990 8" className="kit-trayectoria-hecha" pathLength={1} />
+        </svg>
+        <span className="kit-cohete">
+          <Rocket size={20} />
+        </span>
+        <span className="kit-trayectoria-texto mono">{avance === 4 ? 'en órbita' : `${avance} de 4`}</span>
+      </div>
+
       <ol className="kit-pasos">
         <li className={est.ias.length ? 'listo' : ''}>
           <span className="kit-paso-icono">
@@ -296,7 +361,7 @@ function Conexion({ atlas, cat, est, puestas, total, ocupado, lanzar }: { atlas:
             </div>
           )}
         </li>
-        <li className={puestas === total ? 'listo' : ''}>
+        <li className={puestas > 0 ? 'listo' : ''}>
           <span className="kit-paso-icono">
             <Package size={18} />
           </span>
@@ -304,13 +369,145 @@ function Conexion({ atlas, cat, est, puestas, total, ocupado, lanzar }: { atlas:
           <p>
             {puestas
               ? `${puestas} de ${total} piezas instaladas. Puedes quitar cualquiera cuando quieras; el kit nunca toca lo que ya tenías.`
-              : `${cat.agentes.length} agentes y ${cat.skills.length} skills listos para instalar.`}
+              : `${cat.agentes.length} agentes y ${cat.skills.length} skills listos para instalar: todo, por misión o pieza por pieza.`}
           </p>
           <div className="kit-barra" role="progressbar" aria-valuemin={0} aria-valuemax={total} aria-valuenow={puestas} aria-label="Piezas instaladas">
             <span style={{ width: `${(puestas / Math.max(total, 1)) * 100}%` }} />
           </div>
         </li>
+        <li className={probado ? 'listo' : ''}>
+          <span className="kit-paso-icono">
+            <Sparkles size={18} />
+          </span>
+          <h3>Tu primer pedido</h3>
+          <p>Abre tu IA en una carpeta vacía y pega esto. Mira cómo planea, construye, prueba y revisa sola.</p>
+          <p className="kit-primer-pedido">«{primerPedido}»</p>
+          <div className="kit-paso-accion">
+            <button className="kit-boton-texto" onClick={copiar}>
+              {copiado ? <Check size={13} /> : <Copy size={13} />} {copiado ? 'Copiado' : 'Copiar el pedido'}
+            </button>
+            <button className="kit-boton-texto" onClick={marcar} aria-pressed={probado}>
+              {probado ? 'Ya lo probé ✓' : 'Ya lo probé'}
+            </button>
+          </div>
+        </li>
       </ol>
+    </section>
+  );
+}
+
+function leerProbado() {
+  try {
+    return localStorage.getItem('boost-primer-pedido') === '1';
+  } catch {
+    return false;
+  }
+}
+
+// ---------------------------------------------------------------- misiones (áreas ilustradas)
+
+function Misiones({ cat, est, ocupado, elegir, lanzar }: { cat: Catalogo; est: EstadoKit; ocupado: boolean; elegir: (area: string) => void; lanzar: (a: Accion) => void }) {
+  return (
+    <section className="kit-seccion" aria-labelledby="titulo-misiones">
+      <header className="kit-seccion-cabeza">
+        <p className="rotulo">02 · Elige tu misión</p>
+        <h2 id="titulo-misiones" className="display">
+          Ocho misiones, un mismo método
+        </h2>
+        <p>Cada misión junta los agentes y skills de un tipo de trabajo. Entra para ver sus piezas o instálala completa.</p>
+      </header>
+      <ul className="kit-misiones">
+        {cat.areas.map((a, i) => {
+          const piezas = [...cat.agentes, ...cat.skills].filter((p) => p.area === a.id);
+          const puestas = piezas.filter((p) => instalada(est, p.slug)).length;
+          const agentes = cat.agentes.filter((p) => p.area === a.id).length;
+          return (
+            <li key={a.id} className={`kit-mision ${i === 0 ? 'grande' : ''} ${i === cat.areas.length - 1 && cat.areas.length % 4 === 0 ? 'ancha' : ''}`} style={{ '--area': a.color, '--i': i } as React.CSSProperties}>
+              <button className="kit-mision-abrir" onClick={() => elegir(a.id)} aria-label={`Ver la misión ${a.nombre}`}>
+                {imagen(a.id) && <img src={imagen(a.id)} alt="" loading="lazy" />}
+                <span className="kit-mision-texto">
+                  <span className="rotulo">
+                    {String(i + 1).padStart(2, '0')}
+                    <span className="kit-mision-lema"> · {a.lema}</span>
+                  </span>
+                  <strong>{a.nombre}</strong>
+                  <span className="kit-mision-cuenta">
+                    {agentes} agentes · {piezas.length - agentes} skills
+                  </span>
+                </span>
+              </button>
+              <div className="kit-mision-pie">
+                <span className="kit-anillo" style={{ '--p': puestas / Math.max(piezas.length, 1) } as React.CSSProperties} aria-label={`${puestas} de ${piezas.length} instaladas`}>
+                  <span className="mono">{puestas === piezas.length ? <Check size={12} /> : `${puestas}/${piezas.length}`}</span>
+                </span>
+                <button className="kit-boton-texto" disabled={ocupado || !est.ias.length} onClick={() => lanzar({ accion: 'instalar', areas: [a.id] })}>
+                  {puestas === piezas.length ? 'Actualizar' : 'Instalar misión'}
+                </button>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  );
+}
+
+// ---------------------------------------------------------------- chuleta de prompts
+
+function Chuleta({ cat }: { cat: Catalogo }) {
+  const [area, setArea] = useState(cat.areas[0]?.id);
+  const [copiado, setCopiado] = useState<string | null>(null);
+  const conPedido = [...cat.agentes, ...cat.skills].filter((p) => p.pidelo);
+  const copiar = async (slug: string, texto: string) => {
+    try {
+      await navigator.clipboard.writeText(texto);
+      setCopiado(slug);
+      setTimeout(() => setCopiado(null), 1600);
+    } catch {
+      /* sin portapapeles */
+    }
+  };
+  return (
+    <section className="kit-seccion kit-chuleta" id="chuleta" aria-labelledby="titulo-chuleta">
+      <header className="kit-seccion-cabeza">
+        <p className="rotulo">05 · La chuleta</p>
+        <h2 id="titulo-chuleta" className="display">
+          Pedidos listos para copiar
+        </h2>
+        <p>
+          No tienes que recordar nombres: pide en español lo que necesitas y tu IA elige la pieza. Estos son buenos puntos de partida. Imprímela y tenla a la mano en clase.
+        </p>
+        <button className="boton-secundario kit-imprimir" onClick={() => window.print()}>
+          <Printer size={14} /> Imprimir la chuleta
+        </button>
+      </header>
+      <div className="kit-chuleta-tabs" role="tablist">
+        {cat.areas.map((a) => (
+          <button key={a.id} role="tab" aria-selected={area === a.id} className={area === a.id ? 'activa' : ''} style={{ '--area': a.color } as React.CSSProperties} onClick={() => setArea(a.id)}>
+            <span className="kit-punto" /> {a.nombre}
+          </button>
+        ))}
+      </div>
+      {cat.areas.map((a) => (
+        <div key={a.id} className={`kit-chuleta-area ${area === a.id ? 'visible' : ''}`} style={{ '--area': a.color } as React.CSSProperties}>
+          <h3 className="kit-solo-impresion">{a.nombre}</h3>
+          <ul>
+            {conPedido
+              .filter((p) => p.area === a.id)
+              .map((p) => (
+                <li key={p.slug}>
+                  <button onClick={() => copiar(p.slug, p.pidelo!)} title="Copiar el pedido">
+                    <span className="kit-chuleta-pedido">«{p.pidelo}»</span>
+                    <span className="kit-chuleta-pieza">
+                      <span className="mono">{p.slug}</span>
+                      <span className="kit-chuleta-copiar">{copiado === p.slug ? <Check size={13} /> : <Copy size={13} />}</span>
+                    </span>
+                  </button>
+                </li>
+              ))}
+          </ul>
+        </div>
+      ))}
     </section>
   );
 }
@@ -325,7 +522,7 @@ function Flujos({ cat, porSlug, abrir }: { cat: Catalogo; porSlug: Map<string, P
   return (
     <section className="kit-seccion kit-flujos" aria-labelledby="titulo-flujos">
       <header className="kit-seccion-cabeza">
-        <p className="rotulo">02 · Cómo trabajo</p>
+        <p className="rotulo">03 · Cómo trabajo</p>
         <h2 id="titulo-flujos" className="display">
           El orden importa más que la herramienta
         </h2>
@@ -422,6 +619,7 @@ function Ficha({ p, cat, est, ocupado, cerrar, abrir, lanzar }: { p: Pieza; cat:
   return (
     <div className="kit-ficha-fondo" onClick={cerrar}>
       <aside className="kit-ficha" role="dialog" aria-modal="true" aria-labelledby="ficha-titulo" style={{ '--area': area?.color } as React.CSSProperties} onClick={(e) => e.stopPropagation()}>
+        {imagen(p.area) && <img className="kit-ficha-arte" src={imagen(p.area)} alt="" aria-hidden="true" />}
         <button className="icono-boton kit-ficha-cerrar" onClick={cerrar} aria-label="Cerrar">
           <X size={16} />
         </button>
@@ -547,7 +745,7 @@ function Comunidad({ cat }: { cat: Catalogo }) {
   return (
     <section className="kit-seccion" aria-labelledby="titulo-comunidad">
       <header className="kit-seccion-cabeza">
-        <p className="rotulo">04 · Gracias a la comunidad</p>
+        <p className="rotulo">06 · Gracias a la comunidad</p>
         <h2 id="titulo-comunidad" className="display">
           Sobre hombros de gigantes
         </h2>
