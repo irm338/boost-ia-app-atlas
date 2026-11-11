@@ -1,4 +1,4 @@
-// Recorrido guiado: cinco pasos que explican cómo usar el atlas. Aparece solo la
+// Recorrido guiado: seis pasos que presentan el kit y cómo usar el atlas. Aparece solo la
 // primera vez (lo recuerda el navegador) y se repite desde el centro de mando
 // («Ver el recorrido»). Cada paso ilumina una parte de la pantalla; si esa parte no
 // está a la vista, la tarjeta se muestra al centro.
@@ -15,14 +15,15 @@ interface Paso {
 }
 
 const PASOS: Paso[] = [
-  { titulo: 'Tu memoria, una sola mente', texto: 'El atlas lee tus vaults de Obsidian, tus skills y tus agentes, y los dibuja para que encuentres todo sin acordarte de dónde está.', ir: '#/' },
-  { titulo: 'Cada cerebro es un vault', texto: 'Crece con sus notas. Toca uno para entrar; las neuronas grandes son sus carpetas y llevan directo a ellas.', foco: '.cielo-lienzo svg', ir: '#/' },
-  { titulo: 'Hoy', texto: 'Lo nuevo desde tu última visita, tus pendientes, tus proyectos y tus favoritos, en una sola página.', foco: '.navegacion a[href="#/hoy"]' },
-  { titulo: 'Todo lo demás, aquí', texto: 'Buscar o pedir (⌘K) es el centro de mando: busca en todo, abre lo último que viste y reúne las acciones. Así la pantalla no se llena de botones.', foco: '.buscar-boton' },
-  { titulo: 'Guarda lo que usas seguido', texto: 'La estrella ☆ en una nota, skill o agente la guarda en favoritos: aparece en Hoy y arriba del centro de mando.' },
+  { titulo: 'Bienvenida a tu Boost IA', texto: 'Es el regalo de Campuslands: los agentes y skills con los que trabajamos todos los días en frontend, backend, seguridad, video e imagen, listos para tus IA.', ir: '#/' },
+  { titulo: 'Instálalo con un clic', texto: 'Todo el kit, un área o pieza por pieza. Se instala en Claude Code, Codex o Antigravity y nunca toca lo que ya tenías.', foco: '.kit-acciones', ir: '#/' },
+  { titulo: 'Conecta tu memoria', texto: 'Leo los vaults de Obsidian que ya tienes y le digo a tus IA dónde están para que recuerden lo que decidiste. No creo nada dentro de ellos.', foco: '.kit-pasos > li:nth-child(2)', ir: '#/' },
+  { titulo: 'Así trabajamos', texto: 'En «Cómo trabajo» está el orden de cada recorrido: una pantalla, una API, antes de publicar y un video. Toca cada paso para ver qué hace esa pieza.', foco: '.kit-flujo-tabs', ir: '#/' },
+  { titulo: 'Tu memoria dibujada', texto: 'En Universo y Vaults ves tus notas, tus skills y tus agentes como un mapa; en Hoy, tus pendientes y proyectos.', foco: '.navegacion a[href="#/universo"]' },
+  { titulo: 'Todo lo demás, aquí', texto: 'Buscar o pedir (⌘K) es el centro de mando: busca en todo, abre lo último que viste y reúne las acciones.', foco: '.buscar-boton' },
 ];
 
-const CLAVE = 'atlas-recorrido-visto';
+const CLAVE = 'boost-recorrido-visto';
 
 function yaVisto() {
   try {
@@ -61,12 +62,21 @@ export default function Recorrido({ listo }: { listo: boolean }) {
       const r = el?.getBoundingClientRect();
       setCaja(r && r.width > 0 && r.bottom > 0 && r.top < window.innerHeight ? r : null);
     };
+    // Si la parte está más abajo (p. ej. «Cómo trabajo» en el Kit), se trae a la vista antes de medirla.
+    const traer = setTimeout(() => {
+      const el = actual.foco ? document.querySelector(actual.foco) : null;
+      const r = el?.getBoundingClientRect();
+      if (el && r && (r.top < 80 || r.bottom > window.innerHeight - 40)) el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }, 60);
     cuadro = requestAnimationFrame(medir);
     const t = setTimeout(medir, 350);
+    const t2 = setTimeout(medir, 900);
     window.addEventListener('resize', medir);
     return () => {
       cancelAnimationFrame(cuadro);
+      clearTimeout(traer);
       clearTimeout(t);
+      clearTimeout(t2);
       window.removeEventListener('resize', medir);
     };
   }, [actual]);
