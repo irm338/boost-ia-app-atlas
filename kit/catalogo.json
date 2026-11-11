@@ -523,7 +523,8 @@
       "kit": "superpowers",
       "nombre": "Planes por tareas",
       "descripcion": "Convierte un diseño en un plan de tareas pequeñas, cada una con su prueba y su verificación.",
-      "ruta": "skills/writing-plans"
+      "ruta": "skills/writing-plans",
+      "pidelo": "Con este diseño aprobado, arma el plan de tareas para construir el carrito de compras."
     },
     {
       "slug": "executing-plans",
@@ -564,7 +565,8 @@
       "kit": "superpowers",
       "nombre": "Desarrollo guiado por pruebas",
       "descripcion": "Rojo, verde, refactor: primero la prueba que falla, luego el código mínimo que la pasa.",
-      "ruta": "skills/test-driven-development"
+      "ruta": "skills/test-driven-development",
+      "pidelo": "Agrega la función de descuento por cupón empezando por sus pruebas."
     },
     {
       "slug": "verification-before-completion",
@@ -637,7 +639,8 @@
       "kit": "agent-skills",
       "nombre": "Entrevístame",
       "descripcion": "La IA te entrevista para sacar los requisitos que tienes en la cabeza.",
-      "ruta": "skills/interview-me"
+      "ruta": "skills/interview-me",
+      "pidelo": "Entrevístame para sacar los requisitos de la app de mi tienda de barrio."
     },
     {
       "slug": "planning-and-task-breakdown",
@@ -645,7 +648,8 @@
       "kit": "agent-skills",
       "nombre": "Partir en tareas",
       "descripcion": "Divide el trabajo en tareas verificables y en el orden correcto.",
-      "ruta": "skills/planning-and-task-breakdown"
+      "ruta": "skills/planning-and-task-breakdown",
+      "pidelo": "Parte en tareas de menos de una hora el sistema de inscripciones de mi academia."
     },
     {
       "slug": "context-engineering",
@@ -693,7 +697,8 @@
       "kit": "agent-skills",
       "nombre": "Diseño de APIs",
       "descripcion": "Contratos de API claros, versionables y difíciles de usar mal.",
-      "ruta": "skills/api-and-interface-design"
+      "ruta": "skills/api-and-interface-design",
+      "pidelo": "Diseña la API REST de una app de citas para una clínica en Quetzaltenango."
     },
     {
       "slug": "frontend-ui-engineering",
@@ -701,7 +706,8 @@
       "kit": "agent-skills",
       "nombre": "Ingeniería de interfaces",
       "descripcion": "Componentes, estado, accesibilidad y rendimiento en el frontend.",
-      "ruta": "skills/frontend-ui-engineering"
+      "ruta": "skills/frontend-ui-engineering",
+      "pidelo": "Crea un dashboard de ventas responsive con tarjetas de resumen y una tabla filtrable."
     },
     {
       "slug": "code-review-and-quality",
@@ -709,7 +715,8 @@
       "kit": "agent-skills",
       "nombre": "Revisión y calidad",
       "descripcion": "Revisión de código en cinco dimensiones con veredicto claro.",
-      "ruta": "skills/code-review-and-quality"
+      "ruta": "skills/code-review-and-quality",
+      "pidelo": "Revisa mi último commit y dime qué mejorarías antes de entregarlo."
     },
     {
       "slug": "code-simplification",
@@ -741,7 +748,8 @@
       "kit": "agent-skills",
       "nombre": "Optimizar rendimiento",
       "descripcion": "Mide, encuentra el cuello de botella y mejora con números.",
-      "ruta": "skills/performance-optimization"
+      "ruta": "skills/performance-optimization",
+      "pidelo": "Mi API tarda 3 segundos en listar productos. Encuentra por qué."
     },
     {
       "slug": "observability-and-instrumentation",
@@ -766,7 +774,8 @@
       "kit": "agent-skills",
       "nombre": "CI/CD",
       "descripcion": "Pruebas y despliegues automáticos en cada cambio.",
-      "ruta": "skills/ci-cd-and-automation"
+      "ruta": "skills/ci-cd-and-automation",
+      "pidelo": "Configura GitHub Actions para correr las pruebas en cada push."
     },
     {
       "slug": "git-workflow-and-versioning",
@@ -774,7 +783,8 @@
       "kit": "agent-skills",
       "nombre": "Flujo de Git",
       "descripcion": "Ramas, commits claros y versiones.",
-      "ruta": "skills/git-workflow-and-versioning"
+      "ruta": "skills/git-workflow-and-versioning",
+      "pidelo": "Explícame y aplica un flujo de ramas para este proyecto con dev y main."
     },
     {
       "slug": "shipping-and-launch",
@@ -782,7 +792,8 @@
       "kit": "agent-skills",
       "nombre": "Publicar y lanzar",
       "descripcion": "Lista de verificación para salir a producción sin sorpresas.",
-      "ruta": "skills/shipping-and-launch"
+      "ruta": "skills/shipping-and-launch",
+      "pidelo": "Revisa si este proyecto está listo para publicar y dame la lista de lo que falta."
     },
     {
       "slug": "deprecation-and-migration",
@@ -798,7 +809,8 @@
       "kit": "agent-skills",
       "nombre": "Documentación y decisiones",
       "descripcion": "README útil y registros de decisiones de arquitectura (ADR).",
-      "ruta": "skills/documentation-and-adrs"
+      "ruta": "skills/documentation-and-adrs",
+      "pidelo": "Escribe el README de este proyecto y registra por qué elegimos Supabase."
     },
     {
       "slug": "frontend-design",
@@ -832,7 +844,8 @@
       "kit": "vercel-skills",
       "nombre": "Buenas prácticas de React",
       "descripcion": "Rendimiento y patrones de React y Next.js según Vercel.",
-      "ruta": "skills/react-best-practices"
+      "ruta": "skills/react-best-practices",
+      "pidelo": "Revisa este componente de React y dime por qué se vuelve a renderizar tanto."
     },
     {
       "slug": "vercel-composition-patterns",
@@ -872,7 +885,8 @@
       "kit": "web-quality",
       "nombre": "Accesibilidad",
       "descripcion": "WCAG en la práctica: teclado, contraste, lectores de pantalla.",
-      "ruta": "skills/accessibility"
+      "ruta": "skills/accessibility",
+      "pidelo": "Revisa la accesibilidad de mi página de inicio y corrige lo que falle."
     },
     {
       "slug": "seo",
@@ -888,7 +902,8 @@
       "kit": "supabase-skills",
       "nombre": "Supabase",
       "descripcion": "Auth, base de datos, almacenamiento y funciones en Supabase.",
-      "ruta": "skills/supabase"
+      "ruta": "skills/supabase",
+      "pidelo": "Crea las tablas y la autenticación en Supabase para mi app de tareas."
     },
     {
       "slug": "supabase-postgres-best-practices",
@@ -896,7 +911,8 @@
       "kit": "supabase-skills",
       "nombre": "PostgreSQL con Supabase",
       "descripcion": "Índices, RLS y consultas con las recomendaciones oficiales.",
-      "ruta": "skills/supabase-postgres-best-practices"
+      "ruta": "skills/supabase-postgres-best-practices",
+      "pidelo": "Agrega seguridad por filas para que cada usuario vea solo sus pedidos."
     },
     {
       "slug": "firebase-basics",
@@ -944,7 +960,8 @@
       "kit": "firebase-skills",
       "nombre": "Auditor de reglas de Firebase",
       "descripcion": "Revisa reglas de seguridad de Firestore y Storage.",
-      "ruta": "skills/firebase-security-rules-auditor"
+      "ruta": "skills/firebase-security-rules-auditor",
+      "pidelo": "Revisa mis reglas de Firestore y dime si alguien podría leer datos ajenos."
     },
     {
       "slug": "stripe-best-practices",
@@ -952,7 +969,8 @@
       "kit": "stripe-skills",
       "nombre": "Stripe",
       "descripcion": "Integraciones de pago con las buenas prácticas de Stripe.",
-      "ruta": "skills/stripe-best-practices"
+      "ruta": "skills/stripe-best-practices",
+      "pidelo": "Agrega pagos con Stripe en modo de prueba a mi tienda en línea."
     },
     {
       "slug": "n8n-workflow-patterns",
@@ -960,7 +978,8 @@
       "kit": "n8n-skills",
       "nombre": "Patrones de flujos n8n",
       "descripcion": "Arquitecturas probadas para flujos de n8n.",
-      "ruta": "skills/n8n-workflow-patterns"
+      "ruta": "skills/n8n-workflow-patterns",
+      "pidelo": "Arma un flujo en n8n que envíe por correo cada formulario nuevo de contacto."
     },
     {
       "slug": "n8n-node-configuration",
@@ -1016,7 +1035,8 @@
       "kit": "gemini-skills",
       "nombre": "API de Gemini",
       "descripcion": "Desarrollo con la API de Gemini: texto, imágenes y salidas estructuradas.",
-      "ruta": "skills/gemini-api-dev"
+      "ruta": "skills/gemini-api-dev",
+      "pidelo": "Agrega a mi app un botón que resuma reseñas de clientes con la API de Gemini."
     },
     {
       "slug": "imagegen",
@@ -1024,7 +1044,8 @@
       "kit": "openai-skills",
       "nombre": "Generar imágenes",
       "descripcion": "Generación y edición de imágenes con la API de OpenAI.",
-      "ruta": "skills/.system/imagegen"
+      "ruta": "skills/.system/imagegen",
+      "pidelo": "Genera la ilustración de portada para mi proyecto final."
     },
     {
       "slug": "playwright",
@@ -1032,7 +1053,8 @@
       "kit": "openai-skills",
       "nombre": "Playwright",
       "descripcion": "Pruebas de punta a punta en el navegador.",
-      "ruta": "skills/.curated/playwright"
+      "ruta": "skills/.curated/playwright",
+      "pidelo": "Escribe una prueba de Playwright que registre un usuario y compre un producto."
     },
     {
       "slug": "vitest",
@@ -1040,7 +1062,8 @@
       "kit": "antfu-skills",
       "nombre": "Vitest",
       "descripcion": "Pruebas unitarias rápidas con Vitest.",
-      "ruta": "skills/vitest"
+      "ruta": "skills/vitest",
+      "pidelo": "Escribe pruebas con Vitest para la función que calcula el IVA."
     },
     {
       "slug": "agent-browser",
@@ -1106,7 +1129,8 @@
       "kit": "vercel-skills",
       "nombre": "Publicar en Vercel",
       "descripcion": "Despliega en Vercel paso a paso.",
-      "ruta": "skills/deploy-to-vercel"
+      "ruta": "skills/deploy-to-vercel",
+      "pidelo": "Publica este proyecto de Vite en Vercel y dame la URL."
     },
     {
       "slug": "diagram-design",
@@ -1279,7 +1303,8 @@
       "kit": "firebase-skills",
       "nombre": "Crear reglas de Firestore",
       "descripcion": "Reglas de seguridad de Firestore desde cero, con pruebas.",
-      "ruta": "skills/firestore-rules-creation"
+      "ruta": "skills/firestore-rules-creation",
+      "pidelo": "Escribe reglas de Firestore para que cada estudiante vea solo sus notas."
     },
     {
       "slug": "upgrade-stripe",
@@ -1328,7 +1353,8 @@
       "kit": "developer-kit",
       "nombre": "Patrones de Tailwind",
       "descripcion": "Clases ordenadas, diseño responsive y componentes consistentes.",
-      "ruta": "plugins/developer-kit-typescript/skills/tailwind-css-patterns"
+      "ruta": "plugins/developer-kit-typescript/skills/tailwind-css-patterns",
+      "pidelo": "Convierte este diseño en componentes con Tailwind que se vean bien en celular."
     },
     {
       "slug": "react-hook-form",
@@ -1336,7 +1362,8 @@
       "kit": "dot-skills",
       "nombre": "React Hook Form",
       "descripcion": "Formularios rápidos y accesibles.",
-      "ruta": "skills/.curated/react-hook-form"
+      "ruta": "skills/.curated/react-hook-form",
+      "pidelo": "Haz el formulario de inscripción con DPI, correo y teléfono, validado con Zod."
     },
     {
       "slug": "zod",
@@ -1368,7 +1395,8 @@
       "kit": "useful-ai-prompts",
       "nombre": "Servidor Express",
       "descripcion": "Un servidor Express bien armado: rutas, middleware y errores.",
-      "ruta": "skills/nodejs-express-server"
+      "ruta": "skills/nodejs-express-server",
+      "pidelo": "Crea un servidor Express con rutas de productos, validación y manejo de errores."
     },
     {
       "slug": "debug-mode",
@@ -1398,28 +1426,32 @@
       "area": "despliegue",
       "kit": "propia",
       "nombre": "DNS en Cloudflare",
-      "descripcion": "Registros DNS en Cloudflare para tus dominios y servicios."
+      "descripcion": "Registros DNS en Cloudflare para tus dominios y servicios.",
+      "pidelo": "Apunta mi dominio a Vercel desde Cloudflare."
     },
     {
       "slug": "design-system-builder",
       "area": "frontend",
       "kit": "propia",
       "nombre": "Construir un design system",
-      "descripcion": "Tokens, componentes, escalas y documentación de un sistema de diseño."
+      "descripcion": "Tokens, componentes, escalas y documentación de un sistema de diseño.",
+      "pidelo": "Arma el sistema de diseño de mi proyecto: colores, tipografías y botones."
     },
     {
       "slug": "video-prompt-engineering",
       "area": "video",
       "kit": "propia",
       "nombre": "Prompts para video con IA",
-      "descripcion": "Estructura, lenguaje de cámara y refinamiento de prompts para Higgsfield, Runway, Kling y más."
+      "descripcion": "Estructura, lenguaje de cámara y refinamiento de prompts para Higgsfield, Runway, Kling y más.",
+      "pidelo": "Escribe el prompt para un clip del mercado de Chichicastenango al amanecer."
     },
     {
       "slug": "video-continuity",
       "area": "video",
       "kit": "propia",
       "nombre": "Continuidad visual",
-      "descripcion": "Mismo personaje, estilo y color en todos los clips de una campaña."
+      "descripcion": "Mismo personaje, estilo y color en todos los clips de una campaña.",
+      "pidelo": "Mantén al mismo personaje igual en las cinco escenas de mi anuncio."
     }
   ],
   "kits": [

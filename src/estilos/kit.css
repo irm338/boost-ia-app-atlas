@@ -1295,3 +1295,570 @@
     gap: 14px;
   }
 }
+
+/* ======================= Experiencia inmersiva (ilustraciones generadas con Codex) ======================= */
+
+/* La portada usa todo el ancho de la ventana: el recorte horizontal va en el contenedor que se desplaza. */
+.contenido:has(> .kit) {
+  overflow-x: hidden;
+}
+
+/* Portada a lo ancho de la ventana: la plataforma frente a los volcanes de Guatemala. */
+.kit-portada {
+  --mx: 0;
+  --my: 0;
+  isolation: isolate;
+  /* recorta arriba y abajo (el zoom de la imagen), nunca a los lados */
+  clip-path: inset(0 -100vw);
+}
+
+.kit-portada-fondo {
+  position: absolute;
+  z-index: -2;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 70% 60%;
+  transform: translateX(-50%) translate(calc(var(--mx) * -14px), calc(var(--my) * -10px)) scale(1.04);
+  transition: transform 0.6s var(--ease);
+  animation: kit-aparece 1.4s ease both;
+  pointer-events: none;
+}
+
+/* Velo: el texto siempre se lee sobre la imagen; abajo se funde con la página. */
+.kit-portada::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: -1px;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  background:
+    linear-gradient(90deg, var(--fondo) 0%, color-mix(in oklab, var(--fondo) 82%, transparent) 34%, transparent 62%),
+    linear-gradient(0deg, var(--fondo) 0%, transparent 26%);
+  pointer-events: none;
+}
+
+:root[data-tema='claro'] .kit-portada::before {
+  background:
+    linear-gradient(90deg, var(--fondo) 0%, color-mix(in oklab, var(--fondo) 88%, transparent) 38%, transparent 66%),
+    linear-gradient(0deg, var(--fondo) 0%, transparent 30%);
+}
+
+.kit-portada:has(.kit-portada-fondo) .kit-orbitas,
+.kit-portada:has(.kit-portada-fondo) .kit-portada-arte::before {
+  display: none;
+}
+
+.kit-portada:has(.kit-portada-fondo) .kit-orbit {
+  width: min(52%, 230px);
+  margin: -60px 0 0 -40px;
+  translate: calc(var(--mx) * 22px) calc(var(--my) * 16px);
+  transition: translate 0.5s var(--ease);
+}
+
+.kit-portada:has(.kit-portada-fondo) .kit-pase {
+  left: auto;
+  right: 6%;
+  bottom: 4%;
+}
+
+/* ---------------------------------------------------------------- trayectoria de la ruta */
+
+.kit-trayectoria {
+  position: relative;
+  height: 96px;
+  margin: -6px 0 18px;
+}
+
+.kit-trayectoria svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.kit-trayectoria path {
+  fill: none;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.kit-trayectoria-base {
+  stroke: var(--linea-fuerte);
+  stroke-dasharray: 3 8;
+}
+
+.kit-trayectoria-hecha {
+  stroke: url(#none);
+  stroke: var(--laton);
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - var(--avance));
+  filter: drop-shadow(0 0 6px var(--laton));
+  transition: stroke-dashoffset 1.2s var(--ease);
+}
+
+.kit-cohete {
+  position: absolute;
+  left: calc(1% + var(--avance) * 96%);
+  bottom: calc(6% + var(--avance) * var(--avance) * 82%);
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  translate: -50% 50%;
+  background: var(--laton);
+  color: #02031a;
+  box-shadow: 0 0 0 6px var(--laton-suave), 0 10px 30px -6px var(--laton);
+  rotate: calc(-10deg - var(--avance) * 25deg);
+  transition: left 1.2s var(--ease), bottom 1.2s var(--ease);
+}
+
+:root[data-tema='claro'] .kit-cohete {
+  color: #fff;
+}
+
+.kit-trayectoria-texto {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: var(--tinta-3);
+}
+
+.kit-pasos {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.kit-primer-pedido {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--superficie-2);
+  border: 1px dashed var(--linea-fuerte);
+  color: var(--tinta) !important;
+  font-size: 13px !important;
+  line-height: 1.5;
+}
+
+/* ---------------------------------------------------------------- misiones */
+
+.kit-misiones {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kit-mision {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 22px;
+  border: 1px solid var(--linea);
+  background: radial-gradient(120% 90% at 50% 20%, color-mix(in oklab, var(--area) 16%, var(--superficie)), var(--superficie) 70%);
+  overflow: hidden;
+  animation: kit-sube 0.7s calc(var(--i) * 60ms) var(--ease) both;
+  transition: transform 0.35s var(--ease), border-color 0.3s, box-shadow 0.35s var(--ease);
+}
+
+.kit-mision:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in oklab, var(--area) 55%, transparent);
+  box-shadow: 0 30px 60px -30px color-mix(in oklab, var(--area) 60%, transparent);
+}
+
+.kit-mision.grande {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.kit-mision-abrir {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 250px;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.kit-mision img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+  transition: transform 0.8s var(--ease), filter 0.4s;
+}
+
+.kit-mision:hover img {
+  transform: scale(1.06) translateY(-6px);
+  filter: saturate(1.15);
+}
+
+.kit-mision-abrir::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, var(--superficie) 4%, color-mix(in oklab, var(--superficie) 70%, transparent) 30%, transparent 58%);
+}
+
+.kit-mision-texto {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 18px 20px 6px;
+}
+
+.kit-mision-texto .rotulo {
+  color: var(--area);
+}
+
+.kit-mision-texto strong {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.kit-mision.grande .kit-mision-texto strong {
+  font-size: 34px;
+}
+
+.kit-mision-cuenta {
+  font-size: 13px;
+  color: var(--tinta-2);
+}
+
+.kit-mision-pie {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 20px 16px;
+}
+
+.kit-mision-pie .kit-boton-texto {
+  color: var(--area);
+}
+
+/* anillo de avance por misión */
+.kit-anillo {
+  --p: 0;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: conic-gradient(var(--area) calc(var(--p) * 360deg), var(--linea) 0);
+  mask: radial-gradient(circle, transparent 15px, #000 16px);
+  -webkit-mask: radial-gradient(circle, transparent 15px, #000 16px);
+  position: relative;
+}
+
+.kit-anillo .mono {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 9.5px !important;
+  color: var(--tinta-2);
+}
+
+.kit-mision-pie:has(.kit-anillo) {
+  isolation: isolate;
+}
+
+/* el texto del anillo no puede ir dentro de la máscara: se dibuja encima */
+.kit-anillo {
+  mask: none;
+  -webkit-mask: none;
+  background:
+    radial-gradient(circle, var(--superficie) 15px, transparent 16px),
+    conic-gradient(var(--area) calc(var(--p) * 360deg), var(--linea-fuerte) 0);
+}
+
+/* ---------------------------------------------------------------- chuleta */
+
+.kit-chuleta .kit-seccion-cabeza {
+  max-width: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 24px;
+}
+
+.kit-chuleta .kit-seccion-cabeza > * {
+  grid-column: 1;
+}
+
+.kit-imprimir {
+  grid-column: 2 !important;
+  grid-row: 1 / span 3;
+  align-self: end;
+}
+
+.kit-chuleta-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.kit-chuleta-tabs button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--linea);
+  background: transparent;
+  color: var(--tinta-2);
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.kit-chuleta-tabs button.activa {
+  color: var(--tinta);
+  border-color: color-mix(in oklab, var(--area) 60%, transparent);
+  background: color-mix(in oklab, var(--area) 13%, transparent);
+}
+
+.kit-chuleta-area {
+  display: none;
+}
+
+.kit-chuleta-area.visible {
+  display: block;
+}
+
+.kit-chuleta-area ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kit-chuleta-area li button {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  padding: 16px 18px;
+  border-radius: 16px;
+  border: 1px solid var(--linea);
+  border-top: 3px solid var(--area);
+  background: var(--superficie);
+  text-align: left;
+  cursor: copy;
+  transition: transform 0.25s var(--ease), border-color 0.2s;
+}
+
+.kit-chuleta-area li button:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklab, var(--area) 50%, var(--linea));
+}
+
+.kit-chuleta-pedido {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.kit-chuleta-pieza {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  color: var(--tinta-3);
+}
+
+.kit-chuleta-copiar {
+  color: var(--area);
+}
+
+.kit-solo-impresion {
+  display: none;
+}
+
+/* ---------------------------------------------------------------- imágenes en la ficha */
+
+.kit-ficha-arte {
+  width: calc(100% + 56px);
+  margin: -30px -28px 10px;
+  height: 190px;
+  object-fit: cover;
+  object-position: 50% 35%;
+  mask-image: linear-gradient(180deg, #000 55%, transparent);
+  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent);
+}
+
+/* ---------------------------------------------------------------- pantallas medianas y chicas */
+
+@media (max-width: 1100px) {
+  .kit-pasos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .kit-misiones {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .kit-portada-fondo {
+    object-position: 78% 50%;
+    opacity: 0.55;
+  }
+  .kit-portada:has(.kit-portada-fondo) .kit-orbit {
+    margin: 0;
+  }
+  .kit-portada:has(.kit-portada-fondo) .kit-pase {
+    right: 4px;
+  }
+}
+
+@media (max-width: 640px) {
+  .kit-pasos,
+  .kit-misiones {
+    grid-template-columns: 1fr;
+  }
+  .kit-mision.grande {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .kit-mision.grande .kit-mision-texto strong {
+    font-size: 26px;
+  }
+  .kit-chuleta .kit-seccion-cabeza {
+    display: block;
+  }
+  .kit-imprimir {
+    margin-top: 14px;
+  }
+  .kit-trayectoria {
+    height: 70px;
+  }
+}
+
+/* ---------------------------------------------------------------- impresión: solo la chuleta */
+
+@media print {
+  :root {
+    --fondo: #fff;
+    --superficie: #fff;
+    --tinta: #000051;
+    --tinta-2: #333;
+    --tinta-3: #555;
+    --linea: #ccd;
+  }
+  body {
+    overflow: visible;
+    background: #fff;
+  }
+  body::before,
+  body::after,
+  .barra,
+  .kit > :not(.kit-chuleta),
+  .kit-chuleta-tabs,
+  .kit-imprimir,
+  .kit-progreso {
+    display: none !important;
+  }
+  .app,
+  .contenido {
+    height: auto;
+    overflow: visible;
+  }
+  .kit {
+    padding: 0;
+  }
+  .kit-seccion {
+    padding-top: 0;
+  }
+  .kit-chuleta-area {
+    display: block !important;
+    break-inside: avoid-page;
+    margin-bottom: 18px;
+  }
+  .kit-solo-impresion {
+    display: block;
+    margin: 14px 0 8px;
+    font-size: 16px;
+  }
+  .kit-chuleta-area li button {
+    border-top-width: 2px;
+    padding: 8px 10px;
+    break-inside: avoid;
+  }
+  .kit-chuleta-pedido {
+    font-size: 11.5px;
+  }
+  .kit-chuleta-copiar {
+    display: none;
+  }
+}
+
+/* En las misiones chicas solo va el número: el lema se lee en la grande y en el catálogo. */
+.kit-mision:not(.grande) .kit-mision-lema {
+  display: none;
+}
+
+.kit-mision:not(.grande) .kit-mision-abrir {
+  min-height: 270px;
+}
+
+.kit-mision:not(.grande) img {
+  height: 82%;
+}
+
+/* La última misión cierra la cuadrícula (la grande ocupa 2×2): va a lo ancho, con la ilustración a la derecha. */
+.kit-mision.ancha {
+  grid-column: span 2;
+}
+
+.kit-mision.ancha img {
+  left: auto;
+  width: 55%;
+  height: 100%;
+  mask-image: linear-gradient(90deg, transparent, #000 35%);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 35%);
+}
+
+.kit-mision.ancha .kit-mision-abrir::after {
+  background: linear-gradient(90deg, var(--superficie) 38%, transparent 70%), linear-gradient(0deg, var(--superficie) 4%, transparent 40%);
+}
+
+@media (max-width: 1100px) {
+  .kit-mision.ancha {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .kit-mision.ancha {
+    grid-column: auto;
+  }
+  .kit-mision.ancha img {
+    width: 100%;
+  }
+}

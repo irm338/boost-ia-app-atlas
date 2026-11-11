@@ -82,15 +82,15 @@ Instalar el área completa: `npm run kit -- --area metodo`
 | Skill | Qué hace | Viene de |
 |---|---|---|
 | **Lluvia de ideas guiada**<br>`brainstorming` | Antes de construir, hace preguntas una a una, propone caminos y deja un diseño aprobado. Pídelo así: «Quiero una app para reservar canchas de fútbol en mi colonia. Ayúdame a aterrizarla.» | [Superpowers](https://github.com/obra/superpowers) |
-| **Planes por tareas**<br>`writing-plans` | Convierte un diseño en un plan de tareas pequeñas, cada una con su prueba y su verificación. | [Superpowers](https://github.com/obra/superpowers) |
+| **Planes por tareas**<br>`writing-plans` | Convierte un diseño en un plan de tareas pequeñas, cada una con su prueba y su verificación. Pídelo así: «Con este diseño aprobado, arma el plan de tareas para construir el carrito de compras.» | [Superpowers](https://github.com/obra/superpowers) |
 | **Ejecutar un plan**<br>`executing-plans` | Avanza el plan tarea por tarea, con puntos de control para revisar. | [Superpowers](https://github.com/obra/superpowers) |
 | **Desarrollo con subagentes**<br>`subagent-driven-development` | Reparte las tareas de un plan entre subagentes y revisa cada entrega antes de seguir. | [Superpowers](https://github.com/obra/superpowers) |
 | **Agentes en paralelo**<br>`dispatching-parallel-agents` | Lanza varios agentes a la vez cuando las tareas no dependen entre sí. | [Superpowers](https://github.com/obra/superpowers) |
 | **Mapa de Agent Skills**<br>`using-agent-skills` | Índice que le dice a la IA qué skill del ciclo usar en cada momento. | [Agent Skills](https://github.com/addyosmani/agent-skills) |
 | **Desarrollo por especificación**<br>`spec-driven-development` | Escribe la especificación (objetivo, alcance, criterios) antes del código. Pídelo así: «Escribe la especificación del módulo de inventario antes de programarlo.» | [Agent Skills](https://github.com/addyosmani/agent-skills) |
 | **Refinar una idea**<br>`idea-refine` | Afila una idea vaga hasta que tenga problema, público y propuesta claros. | [Agent Skills](https://github.com/addyosmani/agent-skills) |
-| **Entrevístame**<br>`interview-me` | La IA te entrevista para sacar los requisitos que tienes en la cabeza. | [Agent Skills](https://github.com/addyosmani/agent-skills) |
-| **Partir en tareas**<br>`planning-and-task-breakdown` | Divide el trabajo en tareas verificables y en el orden correcto. | [Agent Skills](https://github.com/addyosmani/agent-skills) |
+| **Entrevístame**<br>`interview-me` | La IA te entrevista para sacar los requisitos que tienes en la cabeza. Pídelo así: «Entrevístame para sacar los requisitos de la app de mi tienda de barrio.» | [Agent Skills](https://github.com/addyosmani/agent-skills) |
+| **Partir en tareas**<br>`planning-and-task-breakdown` | Divide el trabajo en tareas verificables y en el orden correcto. Pídelo así: «Parte en tareas de menos de una hora el sistema de inscripciones de mi academia.» | [Agent Skills](https://github.com/addyosmani/agent-skills) |
 | **Ingeniería de contexto**<br>`context-engineering` | Le da a la IA solo el contexto que necesita para no perderse. | [Agent Skills](https://github.com/addyosmani/agent-skills) |
 | **Implementación incremental**<br>`incremental-implementation` | Construye en rebanadas finas que siempre dejan el proyecto funcionando. | [Agent Skills](https://github.com/addyosmani/agent-skills) |
 | **Basado en la documentación**<br>`source-driven-development` | Consulta la documentación oficial antes de usar una librería, en vez de adivinar. | [Agent Skills](https://github.com/addyosmani/agent-skills) |
@@ -117,23 +117,23 @@ Instalar el área completa: `npm run kit -- --area frontend`
 
 | Skill | Qué hace | Viene de |
 |---|---|---|
-| **Ingeniería de interfaces**<br>`frontend-ui-engineering` | Componentes, estado, accesibilidad y rendimiento en el frontend. | [Agent Skills](https://github.com/addyosmani/agent-skills) |
+| **Ingeniería de interfaces**<br>`frontend-ui-engineering` | Componentes, estado, accesibilidad y rendimiento en el frontend. Pídelo así: «Crea un dashboard de ventas responsive con tarjetas de resumen y una tabla filtrable.» | [Agent Skills](https://github.com/addyosmani/agent-skills) |
 | **Diseño frontend con criterio**<br>`frontend-design` | Interfaces con dirección visual propia, lejos del diseño genérico de IA. Pídelo así: «Diseña la página de inicio de una cafetería en Antigua con personalidad.» | [Skills de Anthropic](https://github.com/anthropics/skills) |
 | **Impeccable**<br>`impeccable` | Diseño de alto nivel: auditar, criticar, pulir, tipografía, color, espaciado y jerarquía. Pídelo así: «Audita el diseño de este dashboard y púlelo.» | [Impeccable](https://github.com/pbakaus/impeccable) |
-| **Buenas prácticas de React**<br>`vercel-react-best-practices` | Rendimiento y patrones de React y Next.js según Vercel. | [Agent Skills de Vercel](https://github.com/vercel-labs/agent-skills) |
+| **Buenas prácticas de React**<br>`vercel-react-best-practices` | Rendimiento y patrones de React y Next.js según Vercel. Pídelo así: «Revisa este componente de React y dime por qué se vuelve a renderizar tanto.» | [Agent Skills de Vercel](https://github.com/vercel-labs/agent-skills) |
 | **Composición de componentes**<br>`vercel-composition-patterns` | Componentes flexibles sin montones de props booleanas. | [Agent Skills de Vercel](https://github.com/vercel-labs/agent-skills) |
 | **React Native**<br>`vercel-react-native-skills` | Buenas prácticas para apps móviles con React Native y Expo. | [Agent Skills de Vercel](https://github.com/vercel-labs/agent-skills) |
 | **Guías de diseño web**<br>`web-design-guidelines` | Revisa una interfaz contra las guías de interfaz web de Vercel. | [Agent Skills de Vercel](https://github.com/vercel-labs/agent-skills) |
 | **Vite**<br>`vite` | Configuración y uso de Vite desde su documentación oficial. | [Skills de Anthony Fu](https://github.com/antfu/skills) |
-| **Accesibilidad**<br>`accessibility` | WCAG en la práctica: teclado, contraste, lectores de pantalla. | [Web Quality Skills](https://github.com/addyosmani/web-quality-skills) |
+| **Accesibilidad**<br>`accessibility` | WCAG en la práctica: teclado, contraste, lectores de pantalla. Pídelo así: «Revisa la accesibilidad de mi página de inicio y corrige lo que falle.» | [Web Quality Skills](https://github.com/addyosmani/web-quality-skills) |
 | **SEO**<br>`seo` | Metadatos, datos estructurados y buenas prácticas para buscadores. | [Web Quality Skills](https://github.com/addyosmani/web-quality-skills) |
 | **shadcn/ui**<br>`shadcn` | Agregar y personalizar componentes de shadcn/ui. Pídelo así: «Agrega una tabla con filtros usando shadcn/ui.» | [shadcn/ui](https://github.com/shadcn-ui/ui) |
 | **UI UX Pro Max**<br>`ui-ux-pro-max` | Elige estilo, paleta y tipografía con criterio para tu tipo de producto. | [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) |
-| **Patrones de Tailwind**<br>`tailwind-css-patterns` | Clases ordenadas, diseño responsive y componentes consistentes. | [Developer Kit](https://github.com/giuseppe-trisciuoglio/developer-kit) |
-| **React Hook Form**<br>`react-hook-form` | Formularios rápidos y accesibles. | [dot-skills](https://github.com/pproenca/dot-skills) |
+| **Patrones de Tailwind**<br>`tailwind-css-patterns` | Clases ordenadas, diseño responsive y componentes consistentes. Pídelo así: «Convierte este diseño en componentes con Tailwind que se vean bien en celular.» | [Developer Kit](https://github.com/giuseppe-trisciuoglio/developer-kit) |
+| **React Hook Form**<br>`react-hook-form` | Formularios rápidos y accesibles. Pídelo así: «Haz el formulario de inscripción con DPI, correo y teléfono, validado con Zod.» | [dot-skills](https://github.com/pproenca/dot-skills) |
 | **Zod**<br>`zod` | Validación con tipos para formularios, APIs y variables de entorno. | [dot-skills](https://github.com/pproenca/dot-skills) |
 | **TypeScript avanzado**<br>`typescript-advanced-types` | Genéricos, tipos condicionales y utilidades para código tipado de verdad. | [Agents de wshobson](https://github.com/wshobson/agents) |
-| **Construir un design system**<br>`design-system-builder` | Tokens, componentes, escalas y documentación de un sistema de diseño. | Campuslands |
+| **Construir un design system**<br>`design-system-builder` | Tokens, componentes, escalas y documentación de un sistema de diseño. Pídelo así: «Arma el sistema de diseño de mi proyecto: colores, tipografías y botones.» | Campuslands |
 
 <a id="backend"></a>
 
@@ -157,28 +157,28 @@ Instalar el área completa: `npm run kit -- --area backend`
 
 | Skill | Qué hace | Viene de |
 |---|---|---|
-| **Diseño de APIs**<br>`api-and-interface-design` | Contratos de API claros, versionables y difíciles de usar mal. | [Agent Skills](https://github.com/addyosmani/agent-skills) |
-| **Supabase**<br>`supabase` | Auth, base de datos, almacenamiento y funciones en Supabase. | [Skills de Supabase](https://github.com/supabase/agent-skills) |
-| **PostgreSQL con Supabase**<br>`supabase-postgres-best-practices` | Índices, RLS y consultas con las recomendaciones oficiales. | [Skills de Supabase](https://github.com/supabase/agent-skills) |
+| **Diseño de APIs**<br>`api-and-interface-design` | Contratos de API claros, versionables y difíciles de usar mal. Pídelo así: «Diseña la API REST de una app de citas para una clínica en Quetzaltenango.» | [Agent Skills](https://github.com/addyosmani/agent-skills) |
+| **Supabase**<br>`supabase` | Auth, base de datos, almacenamiento y funciones en Supabase. Pídelo así: «Crea las tablas y la autenticación en Supabase para mi app de tareas.» | [Skills de Supabase](https://github.com/supabase/agent-skills) |
+| **PostgreSQL con Supabase**<br>`supabase-postgres-best-practices` | Índices, RLS y consultas con las recomendaciones oficiales. Pídelo así: «Agrega seguridad por filas para que cada usuario vea solo sus pedidos.» | [Skills de Supabase](https://github.com/supabase/agent-skills) |
 | **Firebase: lo básico**<br>`firebase-basics` | Arrancar un proyecto Firebase con el CLI. | [Skills de Firebase](https://github.com/firebase/agent-skills) |
 | **Firebase Authentication**<br>`firebase-auth-basics` | Inicio de sesión con correo, Google y más. | [Skills de Firebase](https://github.com/firebase/agent-skills) |
 | **Cloud Firestore**<br>`firebase-firestore` | Modelo de datos y consultas en Firestore. | [Skills de Firebase](https://github.com/firebase/agent-skills) |
-| **Stripe**<br>`stripe-best-practices` | Integraciones de pago con las buenas prácticas de Stripe. | [Skills de Stripe](https://github.com/stripe/ai) |
-| **Patrones de flujos n8n**<br>`n8n-workflow-patterns` | Arquitecturas probadas para flujos de n8n. | [n8n Skills](https://github.com/czlonkowski/n8n-skills) |
+| **Stripe**<br>`stripe-best-practices` | Integraciones de pago con las buenas prácticas de Stripe. Pídelo así: «Agrega pagos con Stripe en modo de prueba a mi tienda en línea.» | [Skills de Stripe](https://github.com/stripe/ai) |
+| **Patrones de flujos n8n**<br>`n8n-workflow-patterns` | Arquitecturas probadas para flujos de n8n. Pídelo así: «Arma un flujo en n8n que envíe por correo cada formulario nuevo de contacto.» | [n8n Skills](https://github.com/czlonkowski/n8n-skills) |
 | **Configurar nodos n8n**<br>`n8n-node-configuration` | Parámetros correctos de cada nodo. | [n8n Skills](https://github.com/czlonkowski/n8n-skills) |
 | **Expresiones n8n**<br>`n8n-expression-syntax` | Sintaxis de expresiones sin errores. | [n8n Skills](https://github.com/czlonkowski/n8n-skills) |
 | **Código JavaScript en n8n**<br>`n8n-code-javascript` | El nodo Code en JavaScript. | [n8n Skills](https://github.com/czlonkowski/n8n-skills) |
 | **Código Python en n8n**<br>`n8n-code-python` | El nodo Code en Python. | [n8n Skills](https://github.com/czlonkowski/n8n-skills) |
 | **Validar flujos n8n**<br>`n8n-validation-expert` | Interpreta y corrige errores de validación. | [n8n Skills](https://github.com/czlonkowski/n8n-skills) |
 | **Herramientas MCP de n8n**<br>`n8n-mcp-tools-expert` | Usa el servidor MCP de n8n. | [n8n Skills](https://github.com/czlonkowski/n8n-skills) |
-| **API de Gemini**<br>`gemini-api-dev` | Desarrollo con la API de Gemini: texto, imágenes y salidas estructuradas. | [Skills de Gemini](https://github.com/google-gemini/gemini-skills) |
+| **API de Gemini**<br>`gemini-api-dev` | Desarrollo con la API de Gemini: texto, imágenes y salidas estructuradas. Pídelo así: «Agrega a mi app un botón que resuma reseñas de clientes con la API de Gemini.» | [Skills de Gemini](https://github.com/google-gemini/gemini-skills) |
 | **Firebase Remote Config**<br>`firebase-remote-config-basics` | Cambiar el comportamiento de la app sin publicar otra versión. | [Skills de Firebase](https://github.com/firebase/agent-skills) |
 | **Firebase AI Logic**<br>`firebase-ai-logic-basics` | Gemini desde la app con Firebase. | [Skills de Firebase](https://github.com/firebase/agent-skills) |
 | **Firebase Data Connect**<br>`firebase-data-connect` | PostgreSQL administrado con GraphQL en Firebase. | [Skills de Firebase](https://github.com/firebase/agent-skills) |
 | **Actualizar Stripe**<br>`upgrade-stripe` | Migrar a versiones nuevas de la API de Stripe. | [Skills de Stripe](https://github.com/stripe/ai) |
 | **Herramientas de código en n8n**<br>`n8n-code-tool` | Nodos de herramienta con código para agentes de n8n. | [n8n Skills](https://github.com/czlonkowski/n8n-skills) |
 | **Patrones de backend en Node**<br>`nodejs-backend-patterns` | Capas, errores, validación y estructura de un backend en Node. | [Agents de wshobson](https://github.com/wshobson/agents) |
-| **Servidor Express**<br>`nodejs-express-server` | Un servidor Express bien armado: rutas, middleware y errores. | [Useful AI Prompts](https://github.com/aj-geddes/useful-ai-prompts) |
+| **Servidor Express**<br>`nodejs-express-server` | Un servidor Express bien armado: rutas, middleware y errores. Pídelo así: «Crea un servidor Express con rutas de productos, validación y manejo de errores.» | [Useful AI Prompts](https://github.com/aj-geddes/useful-ai-prompts) |
 | **PostgreSQL en Docker**<br>`postgres-docker-devops-doc` | Documenta y prepara PostgreSQL en Docker: respaldos, restauración y entrega. | Campuslands |
 
 <a id="calidad"></a>
@@ -204,18 +204,18 @@ Instalar el área completa: `npm run kit -- --area calidad`
 | Skill | Qué hace | Viene de |
 |---|---|---|
 | **Depuración sistemática**<br>`systematic-debugging` | Encuentra la causa raíz con hipótesis y evidencia antes de proponer un arreglo. Pídelo así: «El login falla solo en producción. Encuentra la causa.» | [Superpowers](https://github.com/obra/superpowers) |
-| **Desarrollo guiado por pruebas**<br>`test-driven-development` | Rojo, verde, refactor: primero la prueba que falla, luego el código mínimo que la pasa. | [Superpowers](https://github.com/obra/superpowers) |
+| **Desarrollo guiado por pruebas**<br>`test-driven-development` | Rojo, verde, refactor: primero la prueba que falla, luego el código mínimo que la pasa. Pídelo así: «Agrega la función de descuento por cupón empezando por sus pruebas.» | [Superpowers](https://github.com/obra/superpowers) |
 | **Verificar antes de entregar**<br>`verification-before-completion` | Prohíbe decir «listo» sin haber corrido las pruebas y visto el resultado. | [Superpowers](https://github.com/obra/superpowers) |
 | **Pedir revisión**<br>`requesting-code-review` | Prepara el cambio para que otro lo revise con contexto. | [Superpowers](https://github.com/obra/superpowers) |
 | **Recibir revisión**<br>`receiving-code-review` | Atiende comentarios de revisión con rigor técnico, sin aceptar a ciegas. | [Superpowers](https://github.com/obra/superpowers) |
-| **Revisión y calidad**<br>`code-review-and-quality` | Revisión de código en cinco dimensiones con veredicto claro. | [Agent Skills](https://github.com/addyosmani/agent-skills) |
+| **Revisión y calidad**<br>`code-review-and-quality` | Revisión de código en cinco dimensiones con veredicto claro. Pídelo así: «Revisa mi último commit y dime qué mejorarías antes de entregarlo.» | [Agent Skills](https://github.com/addyosmani/agent-skills) |
 | **Simplificar código**<br>`code-simplification` | Quita complejidad sin cambiar el comportamiento. | [Agent Skills](https://github.com/addyosmani/agent-skills) |
 | **Depurar y recuperarse**<br>`debugging-and-error-recovery` | Qué hacer cuando algo falla: aislar, reproducir y corregir. | [Agent Skills](https://github.com/addyosmani/agent-skills) |
 | **Probar en el navegador**<br>`browser-testing-with-devtools` | Verifica la interfaz real con DevTools: consola, red y rendimiento. | [Agent Skills](https://github.com/addyosmani/agent-skills) |
-| **Optimizar rendimiento**<br>`performance-optimization` | Mide, encuentra el cuello de botella y mejora con números. | [Agent Skills](https://github.com/addyosmani/agent-skills) |
+| **Optimizar rendimiento**<br>`performance-optimization` | Mide, encuentra el cuello de botella y mejora con números. Pídelo así: «Mi API tarda 3 segundos en listar productos. Encuentra por qué.» | [Agent Skills](https://github.com/addyosmani/agent-skills) |
 | **Observabilidad**<br>`observability-and-instrumentation` | Logs, métricas y trazas para saber qué pasa en producción. | [Agent Skills](https://github.com/addyosmani/agent-skills) |
-| **Playwright**<br>`playwright` | Pruebas de punta a punta en el navegador. | [Skills de OpenAI](https://github.com/openai/skills) |
-| **Vitest**<br>`vitest` | Pruebas unitarias rápidas con Vitest. | [Skills de Anthony Fu](https://github.com/antfu/skills) |
+| **Playwright**<br>`playwright` | Pruebas de punta a punta en el navegador. Pídelo así: «Escribe una prueba de Playwright que registre un usuario y compre un producto.» | [Skills de OpenAI](https://github.com/openai/skills) |
+| **Vitest**<br>`vitest` | Pruebas unitarias rápidas con Vitest. Pídelo así: «Escribe pruebas con Vitest para la función que calcula el IVA.» | [Skills de Anthony Fu](https://github.com/antfu/skills) |
 | **Navegador para agentes**<br>`agent-browser` | La IA abre tu app, hace clic, llena formularios y toma capturas. Pídelo así: «Abre localhost:5173 y prueba el registro de usuarios.» | [agent-browser](https://github.com/vercel-labs/agent-browser) |
 | **Chrome DevTools**<br>`chrome-devtools` | Depuración con las herramientas de Chrome. | [Chrome DevTools para agentes](https://github.com/ChromeDevTools/chrome-devtools-mcp) |
 | **Optimizar LCP**<br>`debug-optimize-lcp` | Encuentra por qué tarda en aparecer lo principal de la página. | [Chrome DevTools para agentes](https://github.com/ChromeDevTools/chrome-devtools-mcp) |
@@ -248,9 +248,9 @@ Instalar el área completa: `npm run kit -- --area seguridad`
 | Skill | Qué hace | Viene de |
 |---|---|---|
 | **Seguridad y endurecimiento**<br>`security-and-hardening` | OWASP, entradas, autenticación, secretos y dependencias. Pídelo así: «Revisa la seguridad de mi API de usuarios.» | [Agent Skills](https://github.com/addyosmani/agent-skills) |
-| **Auditor de reglas de Firebase**<br>`firebase-security-rules-auditor` | Revisa reglas de seguridad de Firestore y Storage. | [Skills de Firebase](https://github.com/firebase/agent-skills) |
+| **Auditor de reglas de Firebase**<br>`firebase-security-rules-auditor` | Revisa reglas de seguridad de Firestore y Storage. Pídelo así: «Revisa mis reglas de Firestore y dime si alguien podría leer datos ajenos.» | [Skills de Firebase](https://github.com/firebase/agent-skills) |
 | **Auditoría de seguridad**<br>`security-audit` | Auditoría completa en seis fases con verificación independiente de cada hallazgo. Pídelo así: «Haz una auditoría de seguridad completa de este repositorio.» | [Security Audit](https://github.com/cloudflare/security-audit-skill) |
-| **Crear reglas de Firestore**<br>`firestore-rules-creation` | Reglas de seguridad de Firestore desde cero, con pruebas. | [Skills de Firebase](https://github.com/firebase/agent-skills) |
+| **Crear reglas de Firestore**<br>`firestore-rules-creation` | Reglas de seguridad de Firestore desde cero, con pruebas. Pídelo así: «Escribe reglas de Firestore para que cada estudiante vea solo sus notas.» | [Skills de Firebase](https://github.com/firebase/agent-skills) |
 
 <a id="despliegue"></a>
 
@@ -273,16 +273,16 @@ Instalar el área completa: `npm run kit -- --area despliegue`
 |---|---|---|
 | **Worktrees de Git**<br>`using-git-worktrees` | Trabaja varias ramas a la vez en carpetas separadas sin mezclar cambios. | [Superpowers](https://github.com/obra/superpowers) |
 | **Cerrar una rama**<br>`finishing-a-development-branch` | Decide cómo integrar el trabajo terminado: fusionar, abrir PR o limpiar. | [Superpowers](https://github.com/obra/superpowers) |
-| **CI/CD**<br>`ci-cd-and-automation` | Pruebas y despliegues automáticos en cada cambio. | [Agent Skills](https://github.com/addyosmani/agent-skills) |
-| **Flujo de Git**<br>`git-workflow-and-versioning` | Ramas, commits claros y versiones. | [Agent Skills](https://github.com/addyosmani/agent-skills) |
-| **Publicar y lanzar**<br>`shipping-and-launch` | Lista de verificación para salir a producción sin sorpresas. | [Agent Skills](https://github.com/addyosmani/agent-skills) |
+| **CI/CD**<br>`ci-cd-and-automation` | Pruebas y despliegues automáticos en cada cambio. Pídelo así: «Configura GitHub Actions para correr las pruebas en cada push.» | [Agent Skills](https://github.com/addyosmani/agent-skills) |
+| **Flujo de Git**<br>`git-workflow-and-versioning` | Ramas, commits claros y versiones. Pídelo así: «Explícame y aplica un flujo de ramas para este proyecto con dev y main.» | [Agent Skills](https://github.com/addyosmani/agent-skills) |
+| **Publicar y lanzar**<br>`shipping-and-launch` | Lista de verificación para salir a producción sin sorpresas. Pídelo así: «Revisa si este proyecto está listo para publicar y dame la lista de lo que falta.» | [Agent Skills](https://github.com/addyosmani/agent-skills) |
 | **Migraciones**<br>`deprecation-and-migration` | Cambiar o retirar algo sin romper a quien lo usa. | [Agent Skills](https://github.com/addyosmani/agent-skills) |
 | **Firebase Hosting**<br>`firebase-hosting-basics` | Publicar sitios estáticos en Firebase. | [Skills de Firebase](https://github.com/firebase/agent-skills) |
 | **Firebase App Hosting**<br>`firebase-app-hosting-basics` | Publicar apps con servidor en Firebase. | [Skills de Firebase](https://github.com/firebase/agent-skills) |
-| **Publicar en Vercel**<br>`deploy-to-vercel` | Despliega en Vercel paso a paso. | [Agent Skills de Vercel](https://github.com/vercel-labs/agent-skills) |
+| **Publicar en Vercel**<br>`deploy-to-vercel` | Despliega en Vercel paso a paso. Pídelo así: «Publica este proyecto de Vite en Vercel y dame la URL.» | [Agent Skills de Vercel](https://github.com/vercel-labs/agent-skills) |
 | **Vercel CLI con tokens**<br>`vercel-cli-with-tokens` | Desplegar en Vercel desde la terminal o CI con tokens. | [Agent Skills de Vercel](https://github.com/vercel-labs/agent-skills) |
 | **Commits con convención**<br>`commit-push-convention` | Commits con formato feat(pantalla) o fix(pantalla) y push ordenado. Pídelo así: «Haz commit y push de estos cambios con la convención.» | Campuslands |
-| **DNS en Cloudflare**<br>`cloudflare-dns` | Registros DNS en Cloudflare para tus dominios y servicios. | Campuslands |
+| **DNS en Cloudflare**<br>`cloudflare-dns` | Registros DNS en Cloudflare para tus dominios y servicios. Pídelo así: «Apunta mi dominio a Vercel desde Cloudflare.» | Campuslands |
 
 <a id="video"></a>
 
@@ -305,7 +305,7 @@ Instalar el área completa: `npm run kit -- --area video`
 
 | Skill | Qué hace | Viene de |
 |---|---|---|
-| **Generar imágenes**<br>`imagegen` | Generación y edición de imágenes con la API de OpenAI. | [Skills de OpenAI](https://github.com/openai/skills) |
+| **Generar imágenes**<br>`imagegen` | Generación y edición de imágenes con la API de OpenAI. Pídelo así: «Genera la ilustración de portada para mi proyecto final.» | [Skills de OpenAI](https://github.com/openai/skills) |
 | **HyperFrames**<br>`hyperframes` | Punto de entrada para cualquier video con HyperFrames: promos, explicativos, subtítulos, gráficos animados y más (sus guías vienen dentro). Pídelo así: «Haz un video de 20 segundos que presente mi portafolio.» | [HyperFrames](https://github.com/heygen-com/hyperframes) |
 | **HyperFrames: CLI**<br>`hyperframes-cli` | Previsualizar, validar y renderizar desde la terminal. | [HyperFrames](https://github.com/heygen-com/hyperframes) |
 | **HyperFrames: registro**<br>`hyperframes-registry` | Bloques y componentes listos para usar. | [HyperFrames](https://github.com/heygen-com/hyperframes) |
@@ -321,8 +321,8 @@ Instalar el área completa: `npm run kit -- --area video`
 | **Música con IA**<br>`music` | Pistas musicales a la medida de tu video. | [ElevenLabs Skills](https://github.com/elevenlabs/skills) |
 | **Efectos de sonido**<br>`sound-effects` | Efectos a partir de una descripción. | [ElevenLabs Skills](https://github.com/elevenlabs/skills) |
 | **Voz a texto**<br>`speech-to-text` | Transcribe audio y video con marcas de tiempo. | [ElevenLabs Skills](https://github.com/elevenlabs/skills) |
-| **Prompts para video con IA**<br>`video-prompt-engineering` | Estructura, lenguaje de cámara y refinamiento de prompts para Higgsfield, Runway, Kling y más. | Campuslands |
-| **Continuidad visual**<br>`video-continuity` | Mismo personaje, estilo y color en todos los clips de una campaña. | Campuslands |
+| **Prompts para video con IA**<br>`video-prompt-engineering` | Estructura, lenguaje de cámara y refinamiento de prompts para Higgsfield, Runway, Kling y más. Pídelo así: «Escribe el prompt para un clip del mercado de Chichicastenango al amanecer.» | Campuslands |
+| **Continuidad visual**<br>`video-continuity` | Mismo personaje, estilo y color en todos los clips de una campaña. Pídelo así: «Mantén al mismo personaje igual en las cinco escenas de mi anuncio.» | Campuslands |
 
 <a id="memoria"></a>
 
@@ -343,7 +343,7 @@ Instalar el área completa: `npm run kit -- --area memoria`
 
 | Skill | Qué hace | Viene de |
 |---|---|---|
-| **Documentación y decisiones**<br>`documentation-and-adrs` | README útil y registros de decisiones de arquitectura (ADR). | [Agent Skills](https://github.com/addyosmani/agent-skills) |
+| **Documentación y decisiones**<br>`documentation-and-adrs` | README útil y registros de decisiones de arquitectura (ADR). Pídelo así: «Escribe el README de este proyecto y registra por qué elegimos Supabase.» | [Agent Skills](https://github.com/addyosmani/agent-skills) |
 | **Diagramas editoriales**<br>`diagram-design` | Arquitecturas y flujos como diagramas limpios en HTML y SVG. Pídelo así: «Dibuja la arquitectura de mi app: frontend, API y base de datos.» | [Diagram Design](https://github.com/cathrynlavery/diagram-design) |
 
 ## Gracias a la comunidad

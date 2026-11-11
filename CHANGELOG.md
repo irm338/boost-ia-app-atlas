@@ -21,6 +21,14 @@ Boost IA Atlas nace del Atlas de memoria 2.3.0 como regalo de Campuslands a sus 
 ### Identidad
 - Paleta y tipografía de Campuslands (navy espacial, aqua, cian, violeta para IA, oro), Poppins, logo oficial y nueva marca Boost IA. Temas «Órbita» (oscuro) y «Campus» (claro).
 
+### Experiencia inmersiva
+- Nueve ilustraciones generadas con Codex en el estilo de Orbit (`src/assets/kit/`, 356 KB en WebP): la portada a todo el ancho, con la plataforma de lanzamiento frente a los volcanes de Agua y de Fuego, y una por misión.
+- **Ruta de despegue**: cuatro pasos (tus IA, tu memoria, tu kit, tu primer pedido) con un cohete que avanza por la trayectoria según lo hecho.
+- **Elige tu misión**: galería ilustrada de las 8 áreas con su avance en un anillo y «Instalar misión».
+- **La chuleta**: 72 pedidos listos para copiar por área, con contexto guatemalteco, e impresión de una hoja limpia.
+- Orbit y el fondo siguen al mouse (sin movimiento si la persona lo prefiere así). La ficha muestra la ilustración de su área.
+- Al instalar el kit y al abrir la app se vuelven a detectar las carpetas de skills y agentes (antes, en un equipo nuevo, las skills recién instaladas no aparecían).
+
 ### Otros
 - Repositorio privado, solo por invitación: README, `INSTALAR.md` y `AGENTS.md` explican cómo aceptar la invitación e iniciar sesión antes de instalar.
 - El recorrido de bienvenida presenta el kit (instalar, conectar la memoria, cómo trabajo) y trae a la vista cada parte que ilumina.
