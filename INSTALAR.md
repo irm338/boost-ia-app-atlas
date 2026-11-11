@@ -2,6 +2,10 @@
 
 Esta guía sirve para dos lectores: **la IA** que hace la instalación (Claude Code, Codex o Antigravity) y **la persona** que quiera entender qué pasa o hacerlo a mano.
 
+## Antes de empezar: tu invitación
+
+**Repositorio privado, solo por invitación.** Campuslands te envía una invitación de GitHub a tu cuenta. Acéptala (llega a tu correo o en <https://github.com/notifications>) y deja tu sesión de GitHub iniciada en la computadora (`gh auth login`). Sin la invitación aceptada, GitHub responde «no encontrado». No compartas el enlace ni copias del repositorio fuera del grupo invitado.
+
 ## La forma más fácil: doble clic
 
 Descarga el último `boost-ia-atlas-vX.Y.Z.zip` de [Releases](https://github.com/anndreloopez012/boost-ia-app-atlas-software/releases/latest), descomprímelo y haz doble clic en `Instalar en Mac.command`, `Instalar en Windows.cmd` o `Instalar en Linux.sh`. El instalador:
@@ -24,6 +28,8 @@ Instala este repositorio: https://github.com/anndreloopez012/boost-ia-app-atlas-
 ```
 
 La IA clona el repositorio, instala lo que falte (Node.js, dependencias), detecta tus vaults, skills y agentes, verifica que todo funcione, te pregunta si quieres todo el kit o algunas áreas, lo instala en tus IA, conecta tu memoria de Obsidian y te deja Boost IA abierto en el navegador.
+
+Si la IA dice que no encuentra el repositorio, falta aceptar la invitación o iniciar sesión: `gh auth login` y vuelve a pedírselo.
 
 Las instrucciones exactas que sigue la IA están en [AGENTS.md](AGENTS.md) (Codex y Antigravity lo leen solos; Claude Code lo importa desde [CLAUDE.md](CLAUDE.md); Gemini CLI, desde [GEMINI.md](GEMINI.md)). También existe la skill `/instalar-atlas` en `.agents/skills/` y `.claude/skills/`.
 
