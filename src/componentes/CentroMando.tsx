@@ -73,7 +73,7 @@ async function construirIndice(atlas: Atlas, version: number) {
       texto: `${s.descripcion} ${s.descripcionOriginal ?? ''} ${s.secciones.map((x) => x.t).join(' ')}`,
       etiquetas: `${s.categoria} ${s.paquete ?? ''} ${s.ias.join(' ')}`,
       destino: rutaSkill(s.nombre),
-      color: '#dcb56c',
+      color: '#00d9a4',
       contexto: `${s.categoria} · ${s.ias.join(', ')}`,
     });
   }
@@ -424,8 +424,8 @@ export default function CentroMando({ atlas, vista, inicial, cerrar }: { atlas: 
         titulo: skill.nombre,
         contexto: razon,
         icono: Sparkles,
-        color: '#dcb56c',
-        ejecutar: () => abrir({ tipo: 'skill', id: skill.id, titulo: skill.nombre, contexto: `skill · ${skill.categoria}`, destino: rutaSkill(skill.nombre), color: '#dcb56c' }),
+        color: '#00d9a4',
+        ejecutar: () => abrir({ tipo: 'skill', id: skill.id, titulo: skill.nombre, contexto: `skill · ${skill.categoria}`, destino: rutaSkill(skill.nombre), color: '#00d9a4' }),
       });
     }
     const yaRecomendadas = new Set(recomendadas.map((r) => `s:${r.skill.id}`));

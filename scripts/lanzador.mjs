@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Crea el acceso de doble clic «Atlas de memoria» con su ícono:
-//   macOS    → ~/Applications/Atlas de memoria.app  (y un acceso en el Escritorio)
+// Crea el acceso de doble clic «Boost IA Atlas» con su ícono:
+//   macOS    → ~/Applications/Boost IA Atlas.app  (y un acceso en el Escritorio)
 //   Windows  → acceso directo en el Escritorio y en el menú Inicio
 //   Linux    → entrada en el menú de aplicaciones (y en el Escritorio)
 // Todos ejecutan iniciar.sh / iniciar.ps1, que abren la app (scripts/abrir.mjs).
@@ -15,7 +15,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const NOMBRE = 'Atlas de memoria';
+const NOMBRE = 'Boost IA Atlas';
 const casa = os.homedir();
 const conEscritorio = !process.argv.includes('--sin-escritorio');
 const creados = [];
@@ -43,7 +43,7 @@ function mac() {
 <plist version="1.0"><dict>
   <key>CFBundleName</key><string>${NOMBRE}</string>
   <key>CFBundleDisplayName</key><string>${NOMBRE}</string>
-  <key>CFBundleIdentifier</key><string>local.atlas-memoria</string>
+  <key>CFBundleIdentifier</key><string>local.boost-ia-atlas</string>
   <key>CFBundleExecutable</key><string>atlas</string>
   <key>CFBundleIconFile</key><string>atlas</string>
   <key>CFBundlePackageType</key><string>APPL</string>
@@ -54,7 +54,7 @@ function mac() {
   );
   // El ejecutable de la app solo llama a iniciar.sh (con el PATH de una sesión normal).
   const ejecutable = path.join(app, 'Contents', 'MacOS', 'atlas');
-  fs.writeFileSync(ejecutable, `#!/bin/bash\n# Abre el Atlas de memoria (lo creó scripts/lanzador.mjs).\nexec /bin/bash "${path.join(RAIZ, 'iniciar.sh').replace(/"/g, '\\"')}" >> "${path.join(RAIZ, '.atlas-cache', 'lanzador.log')}" 2>&1\n`);
+  fs.writeFileSync(ejecutable, `#!/bin/bash\n# Abre el Boost IA Atlas (lo creó scripts/lanzador.mjs).\nexec /bin/bash "${path.join(RAIZ, 'iniciar.sh').replace(/"/g, '\\"')}" >> "${path.join(RAIZ, '.atlas-cache', 'lanzador.log')}" 2>&1\n`);
   fs.chmodSync(ejecutable, 0o755);
   // Que el Finder tome el ícono nuevo.
   spawnSync('touch', [app]);
@@ -78,7 +78,7 @@ function windows() {
     const r = spawnSync('powershell', ['-NoProfile', '-Command', "[Environment]::GetFolderPath('Desktop')"], { encoding: 'utf8' });
     if (r.stdout?.trim()) lugares.push(r.stdout.trim());
   }
-  // En el menú Inicio también queda «Desinstalar Atlas de memoria».
+  // En el menú Inicio también queda «Desinstalar Boost IA Atlas».
   const accesos = lugares.map((carpeta) => ({ lnk: path.join(carpeta, `${NOMBRE}.lnk`), objetivo, argumentos, descripcion: `${NOMBRE}: vaults, skills y agentes` }));
   accesos.push({
     lnk: path.join(menuInicio, `Desinstalar ${NOMBRE}.lnk`),
@@ -124,13 +124,13 @@ Actions=desinstalar;
 Name=Desinstalar
 Exec=/bin/bash ${comillas(path.join(RAIZ, 'Desinstalar en Linux.sh'))}
 `;
-  const menu = path.join(casa, '.local', 'share', 'applications', 'atlas-memoria.desktop');
+  const menu = path.join(casa, '.local', 'share', 'applications', 'boost-ia-atlas.desktop');
   fs.mkdirSync(path.dirname(menu), { recursive: true });
   fs.writeFileSync(menu, entrada, { mode: 0o755 });
   creados.push(menu);
   const destino = conEscritorio && escritorio();
   if (destino) {
-    const acceso = path.join(destino, 'atlas-memoria.desktop');
+    const acceso = path.join(destino, 'boost-ia-atlas.desktop');
     fs.writeFileSync(acceso, entrada, { mode: 0o755 });
     // GNOME pide «Permitir ejecutar» a los lanzadores del Escritorio; se marca como confiable.
     spawnSync('gio', ['set', acceso, 'metadata::trusted', 'true'], { stdio: 'ignore' });

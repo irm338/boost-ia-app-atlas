@@ -8,8 +8,8 @@ export function VistaDesinstalar() {
   const carpeta = carpetaDeLaApp();
   const como = {
     mac: 'Cierra esta pestaña y haz doble clic en **Desinstalar en Mac.command**, que está en la carpeta de la app (o en la descarga).',
-    windows: 'Cierra esta pestaña y abre **Desinstalar Atlas de memoria** en el menú Inicio (o haz doble clic en **Desinstalar en Windows.cmd**, en la carpeta de la app).',
-    linux: 'Cierra esta pestaña y haz clic derecho en el ícono de «Atlas de memoria» › **Desinstalar** (o ejecuta **Desinstalar en Linux.sh**, en la carpeta de la app).',
+    windows: 'Cierra esta pestaña y abre **Desinstalar Boost IA Atlas** en el menú Inicio (o haz doble clic en **Desinstalar en Windows.cmd**, en la carpeta de la app).',
+    linux: 'Cierra esta pestaña y haz clic derecho en el ícono de «Boost IA Atlas» › **Desinstalar** (o ejecuta **Desinstalar en Linux.sh**, en la carpeta de la app).',
   }[SISTEMA];
   return (
     <div className="actualizacion">

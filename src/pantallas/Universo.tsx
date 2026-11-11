@@ -126,7 +126,7 @@ export default function Universo({ atlas }: { atlas: Atlas }) {
 
   const central = vaultCentral(atlas);
   // Sin vaults, el centro es simbólico y lleva a las skills.
-  const core = central ?? { nombre: 'Atlas', slug: '', notas: 0, color: '#1d24f7', inicio: null, carpetas: { n: '', p: '', d: 0, t: 0, a: 0, h: [] } };
+  const core = central ?? { nombre: 'Atlas', slug: '', notas: 0, color: '#2caaff', inicio: null, carpetas: { n: '', p: '', d: 0, t: 0, a: 0, h: [] } };
   const hijos = atlas.vaults.filter((v) => v !== central);
   const maxNotas = Math.max(...hijos.map((v) => v.notas), 1);
   // Con muchos vaults los planetas se achican para no chocar en la órbita.

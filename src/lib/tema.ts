@@ -1,4 +1,4 @@
-// Tema oscuro («Observatorio») o claro («Carta»). Se recuerda por navegador.
+// Tema oscuro («Órbita») o claro («Campus»). Se recuerda por navegador.
 import { useSyncExternalStore } from 'react';
 
 export type Tema = 'oscuro' | 'claro';
@@ -41,8 +41,8 @@ export function useTema(): Tema {
 /** Colores para dibujar en canvas (no puede leer variables CSS). */
 export function coloresCanvas(t: Tema) {
   return t === 'oscuro'
-    ? { texto: '#ece8dd', linea: 'rgba(236,232,221,0.10)', enlace: 'rgba(236,232,221,0.16)', fondo: 'rgba(8,9,14,0.82)' }
-    : { texto: '#1c1b18', linea: 'rgba(27,26,23,0.12)', enlace: 'rgba(27,26,23,0.2)', fondo: 'rgba(251,249,243,0.9)' };
+    ? { texto: '#eef4ff', linea: 'rgba(170,196,255,0.10)', enlace: 'rgba(170,196,255,0.18)', fondo: 'rgba(3,6,37,0.84)' }
+    : { texto: '#000051', linea: 'rgba(0,0,81,0.10)', enlace: 'rgba(0,0,81,0.2)', fondo: 'rgba(255,255,255,0.92)' };
 }
 
 /** Mezcla dos colores hex (#rrggbb). `peso` es la proporción del primero. */
@@ -55,4 +55,4 @@ export function mezclar(a: string, b: string, peso: number): string {
 }
 
 /** En tema claro los tonos pastel se oscurecen para que se lean sobre papel. */
-export const tono = (color: string, t: Tema) => (t === 'oscuro' || !/^#[0-9a-f]{6}$/i.test(color) ? color : mezclar(color, '#1c1b18', 0.62));
+export const tono = (color: string, t: Tema) => (t === 'oscuro' || !/^#[0-9a-f]{6}$/i.test(color) ? color : mezclar(color, '#000051', 0.62));

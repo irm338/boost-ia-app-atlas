@@ -48,8 +48,18 @@
 }
 
 .marca-texto .display {
-  font-size: 26px;
-  font-style: italic;
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.logo-campuslands {
+  display: inline-flex;
+  color: var(--tinta);
+}
+
+.logo-campuslands svg {
+  width: auto;
+  height: 100%;
 }
 
 .navegacion {
@@ -1762,12 +1772,12 @@
 }
 
 .cielo-bajada strong {
-  color: #8d92ff;
+  color: var(--cl-lila);
   font-weight: 650;
 }
 
 :root[data-tema='claro'] .cielo-bajada strong {
-  color: #1d24f7;
+  color: var(--cl-azul);
 }
 
 .cifras {

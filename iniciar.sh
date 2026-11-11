@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Abre el Atlas de memoria (macOS y Linux). Es lo que ejecuta el acceso de doble
+# Abre el Boost IA Atlas (macOS y Linux). Es lo que ejecuta el acceso de doble
 # clic: si falta algo lo instala, busca cambios en vaults, skills y agentes, abre
 # el navegador y deja el servidor en segundo plano (se apaga solo al dejar de usarlo).
 #

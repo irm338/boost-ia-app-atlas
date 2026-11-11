@@ -1,4 +1,4 @@
-﻿# Instala el Atlas de memoria en Windows.
+﻿# Instala el Boost IA Atlas en Windows.
 #
 # Deja Node.js listo si falta (con winget), instala las dependencias y ejecuta el
 # instalador del atlas: detecta vaults, skills y agentes, verifica y genera los

@@ -1,11 +1,11 @@
 {
-  "name": "atlas-memoria",
+  "name": "boost-ia-app-atlas-software",
   "private": true,
   "version": "2.3.0",
   "description": "Atlas interactivo de tu memoria: vaults de Obsidian con un vault central, skills y agentes de Claude Code, Codex y Antigravity. Lo instala una IA en cualquier equipo.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/anndreloopez012/atlas-memoria.git"
+    "url": "https://github.com/anndreloopez012/boost-ia-app-atlas-software.git"
   },
   "type": "module",
   "scripts": {
@@ -28,9 +28,8 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
     "@fontsource-variable/jetbrains-mono": "^5.3.0",
-    "@fontsource/instrument-serif": "^5.3.0",
+    "@fontsource/poppins": "^5.3.0",
     "d3-hierarchy": "^3.1.2",
     "dompurify": "^3.4.16",
     "force-graph": "^1.52.0",
