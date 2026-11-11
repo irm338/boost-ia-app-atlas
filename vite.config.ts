@@ -134,7 +134,7 @@ function fuentesDeIAs(): { skills: string[]; agentes: string[] } {
   }
 }
 
-/** Corre el instalador en modo «solo detectar» con opciones extra (agregar o crear un vault). */
+/** Corre el instalador en modo «solo detectar» con opciones extra (p. ej. agregar un vault). */
 function configurar(extra: string[]): Promise<{ ok: boolean; resumen?: Record<string, unknown>; error?: string }> {
   return new Promise((resolve) => {
     execFile(process.execPath, [INSTALADOR, '--solo-detectar', '--json', ...extra], { cwd: RAIZ, env: process.env, maxBuffer: 10_000_000 }, (error, stdout, stderr) => {
@@ -379,10 +379,16 @@ function atlas(): Plugin {
         const linea = (b: Buffer) => trabajo.log.push(...b.toString().split('\n').map((l) => l.trimEnd()).filter(Boolean));
         hijo.stdout.on('data', linea);
         hijo.stderr.on('data', linea);
-        hijo.on('close', (codigo) => {
+        hijo.on('close', async (codigo) => {
+          // El kit pudo crear carpetas que el atlas no leía (p. ej. ~/.claude/skills en un equipo
+          // nuevo): se vuelven a detectar las ubicaciones antes de regenerar los datos.
+          trabajo.log.push('Buscando tus skills y agentes nuevos…');
+          await configurar([]);
+          if (generando) await generando;
+          await regenerar();
+          avisarDatos?.();
           trabajo.corriendo = false;
           trabajo.ok = codigo === 0;
-          void regenerar();
         });
         responder(res, 202, { ok: true, id: trabajo.id });
       } catch (error) {
@@ -422,7 +428,8 @@ function atlas(): Plugin {
       if (process.env.ATLAS_VIGILAR !== '0') vigilar(server.config.logger, server.httpServer);
       // Cada vez que se abre la app se buscan cambios (notas, skills, agentes) sin
       // hacer esperar: la página abre con los datos anteriores y se actualiza sola.
-      if (process.env.ATLAS_BUSCAR_AL_ABRIR !== '0') void regenerar();
+      // Al abrir: suma ubicaciones nuevas (carpetas de skills o agentes que aparecieron) y regenera.
+      if (process.env.ATLAS_BUSCAR_AL_ABRIR !== '0') void configurar([]).then(() => regenerar());
       // Y si hay una versión nueva del atlas (dos veces al día como mucho).
       revisarVersion();
       setInterval(revisarVersion, 6 * 60 * 60 * 1000).unref();
