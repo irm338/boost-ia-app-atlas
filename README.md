@@ -1,14 +1,93 @@
-# Atlas de memoria
+<p align="center">
+  <img src="public/favicon.svg" width="72" alt="" />
+</p>
 
-Una página interactiva para **ver y recorrer toda tu memoria en un solo lugar**: tus vaults de Obsidian (con un vault central del que nacen los demás), las **skills** de Claude Code, Codex y Antigravity, y los **agentes** que trabajan por ti. Sirve para recordar qué hace cada pieza, leer cualquier nota y moverte entre vaults de forma gráfica.
+<h1 align="center">Boost IA Atlas</h1>
 
-Se instala en cualquier computadora (macOS, Windows o Linux) y **se acopla a lo que tenga cada persona**: encuentra sola sus vaults, sus skills y sus agentes. Corre en tu equipo, no sube nada a internet y se mantiene sincronizado: si cambias una nota en Obsidian, el atlas se actualiza en segundos.
+<p align="center"><strong>Así trabajamos con IA en Campuslands. Ahora es tuyo.</strong><br/>
+El regalo de Campuslands para la generación que egresa: los agentes y skills con los que trabajamos todos los días en frontend, backend, seguridad, video e imagen, conectados con tu memoria en Obsidian.</p>
 
 ---
 
+## Qué trae
+
+- **27 agentes**: especialistas a los que tu IA les delega trabajo completo (un líder del ciclo de ingeniería, un revisor de código, auditores de seguridad, un director de video…).
+- **113 skills**: manuales que tu IA lee sola cuando tu pedido encaja (TDD, diseño de APIs, React, Supabase, Playwright, HyperFrames…).
+- **28 kits de la comunidad** con crédito a sus autores: se descargan de su repositorio original, nunca se copian aquí.
+- **Una app** que te muestra todo, lo instala con un clic en **Claude Code, Codex y Antigravity**, y dibuja tus vaults de Obsidian, tus skills y tus agentes.
+
+| Área | Lema | Agentes | Skills |
+|---|---|---|---|
+| **Método** | Pensar antes de teclear | 2 | 16 |
+| **Frontend** | Interfaces que se sienten bien | 2 | 17 |
+| **Backend** | APIs, datos y servicios sólidos | 5 | 23 |
+| **Calidad** | Si no se probó, no está listo | 5 | 21 |
+| **Seguridad** | Piensa como atacante | 5 | 4 |
+| **Despliegue** | Publicar sin miedo | 2 | 12 |
+| **Video e imagen** | Producción audiovisual con IA | 4 | 18 |
+| **Memoria y documentación** | Lo que aprendes se queda | 2 | 2 |
+
+La lista completa, pieza por pieza, con qué hace cada una y cómo pedírsela a tu IA: **[docs/KIT.md](docs/KIT.md)**.
+
+## Instalar con tu IA (lo recomendado)
+
+Abre **Claude Code**, **Codex** o **Antigravity** y escribe:
+
+```text
+Instala este repositorio: https://github.com/anndreloopez012/boost-ia-app-atlas-software
+```
+
+Tu IA se encarga de todo:
+
+1. Clona el repositorio e instala lo que falte (Node.js y dependencias).
+2. Encuentra los vaults de Obsidian que ya tienes, tus skills y tus agentes.
+3. Te pregunta si quieres **todo el kit** o solo algunas áreas, y lo instala en tus IA.
+4. Conecta tu memoria: les dice a tus IA dónde están tus vaults para que los lean (no crea nada dentro de ellos).
+5. Crea el acceso de doble clic **«Boost IA Atlas»** y te lo deja abierto en <http://localhost:5190>.
+
+¿Prefieres la terminal? (macOS / Linux; en Windows `instalar.ps1` e `iniciar.ps1`)
+
+```bash
+bash instalar.sh
+```
+
+```bash
+npm run kit -- --todo
+```
+
+```bash
+bash iniciar.sh
+```
+
+| Si eres… | Lee |
+|---|---|
+| La IA que va a instalar | [AGENTS.md](AGENTS.md) (Codex y Antigravity lo leen solos; [CLAUDE.md](CLAUDE.md) y [GEMINI.md](GEMINI.md) lo importan). Skill: `/instalar-atlas`. |
+| Una persona que quiere hacerlo a mano o entender los pasos | [INSTALAR.md](INSTALAR.md) |
+| Quien quiere saber qué hace cada pieza | [docs/KIT.md](docs/KIT.md) |
+
+## El kit desde la terminal
+
+| Comando | Qué hace |
+|---|---|
+| `npm run kit -- --lista` | Todo el catálogo por área, con lo que ya tienes instalado (●) |
+| `npm run kit -- --todo` | Instala todo el kit |
+| `npm run kit -- --area frontend,seguridad` | Instala áreas completas (`metodo`, `frontend`, `backend`, `calidad`, `seguridad`, `despliegue`, `video`, `memoria`) |
+| `npm run kit -- code-reviewer playwright` | Instala piezas sueltas (un agente trae sus skills) |
+| `npm run kit -- --obsidian` | Conecta tus vaults con tus IA |
+| `npm run kit -- --estado` | Qué hay en cada IA |
+| `npm run kit -- --quitar [piezas]` | Quita lo que puso el kit (todo o lo indicado); lo tuyo nunca se toca |
+
+Después de instalar, **cierra y vuelve a abrir tu IA** para que cargue lo nuevo.
+
+## Tu memoria en Obsidian
+
+Boost IA **lee** los vaults que ya tienes en tu computadora: no crea vaults, carpetas ni plantillas. Si todavía no tienes uno, créalo en [Obsidian](https://obsidian.md) (es gratis) y abre la app: lo encontrará sola.
+
+Al conectar la memoria, el kit agrega un bloque marcado (`<!-- boost-ia:inicio -->` … `<!-- boost-ia:fin -->`) a las instrucciones globales de cada IA (`~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md`, `~/.gemini/GEMINI.md`) con las rutas de tus vaults. Así, antes de trabajar, los agentes buscan lo que ya escribiste del proyecto y te preguntan antes de escribir en tu vault. Tus propias reglas en esos archivos se conservan.
+
 ## Descargar e instalar (sin terminal)
 
-1. Descarga el último **`atlas-memoria-vX.Y.Z.zip`** de [Releases](https://github.com/anndreloopez012/atlas-memoria/releases/latest) y descomprímelo.
+1. Descarga el último **`boost-ia-atlas-vX.Y.Z.zip`** de [Releases](https://github.com/anndreloopez012/boost-ia-app-atlas-software/releases/latest) y descomprímelo.
 2. Haz **doble clic** en el instalador de tu sistema:
 
 | Sistema | Instalador | La primera vez |
@@ -17,53 +96,16 @@ Se instala en cualquier computadora (macOS, Windows o Linux) y **se acopla a lo 
 | Windows | `Instalar en Windows.cmd` | Si aparece «Windows protegió tu PC», elige **Más información › Ejecutar de todas formas**. |
 | Linux | `Instalar en Linux.sh` | Clic derecho › **Ejecutar como programa** (o `bash "Instalar en Linux.sh"`). |
 
-El instalador copia la app a una carpeta fija (puedes borrar la descarga), instala Node.js si falta, encuentra tus vaults, skills y agentes, crea el acceso **«Atlas de memoria»** con su ícono y lo abre en tu navegador.
+El instalador copia la app a una carpeta fija, instala Node.js si falta, encuentra tus vaults, skills y agentes, crea el acceso **«Boost IA Atlas»** y lo abre en tu navegador. Desde la portada instalas el kit con un clic.
 
-**Desde ahí, ábrelo con doble clic** en «Atlas de memoria» (macOS: Aplicaciones y Escritorio · Windows: Escritorio y menú Inicio · Linux: menú de aplicaciones y Escritorio). Cada vez que lo abres **busca cambios** en tus vaults de Obsidian, tus skills y tus agentes (y ubicaciones nuevas), los sigue vigilando mientras lo usas y **se apaga solo** unos minutos después de cerrar la pestaña. No quedan ventanas abiertas.
-
-**Desinstalar:** doble clic en `Desinstalar en Mac.command`, `Desinstalar en Windows.cmd` (también en el menú Inicio como «Desinstalar Atlas de memoria») o `Desinstalar en Linux.sh` (también clic derecho en el ícono › Desinstalar). Muestra qué va a quitar y pide confirmar; se van la app y sus accesos, **nunca tus vaults ni tus notas**. En el centro de mando, «Desinstalar el atlas» explica dónde está. Por terminal: `npm run desinstalar`.
-
-**Actualizaciones:** al abrirse, la app revisa (dos veces al día como mucho) si hay una versión nueva en Releases. Si la hay, aparece «Versión X» en la barra: ábrelo, lee qué trae y toca **Actualizar ahora**; se descarga, se instala sin tocar tu configuración, tus datos ni tus vaults, se reinicia y la página se recarga sola. También: `npm run actualizar`. Con el repositorio privado, solo funciona para quien tenga acceso (GitHub no publica las versiones de un repositorio privado).
-
-## Instalar con IA
-
-Abre **Claude Code**, **Codex** o **Antigravity** y escribe:
-
-```text
-Instala este repositorio: https://github.com/anndreloopez012/atlas-memoria
-```
-
-La IA hace todo:
-
-1. Clona el repositorio.
-2. Instala lo que falte en el equipo (Node.js y dependencias).
-3. Detecta tus vaults, skills, agentes y automatizaciones.
-4. Verifica que funcione, traduce al español lo que haga falta, crea el acceso de doble clic **«Atlas de memoria»** y te lo deja abierto en <http://localhost:5190>.
-
-Solo te pregunta si no encuentra tus vaults o si hay carpetas dudosas.
-
-| Si eres… | Lee |
-|---|---|
-| La IA que va a instalar | [AGENTS.md](AGENTS.md) (Codex y Antigravity lo leen solos; [CLAUDE.md](CLAUDE.md) y [GEMINI.md](GEMINI.md) lo importan). Skill: `/instalar-atlas`. |
-| Una persona que quiere hacerlo a mano o entender los pasos | [INSTALAR.md](INSTALAR.md) |
-
-A mano, en dos comandos (macOS / Linux; en Windows `instalar.ps1` e `iniciar.ps1`):
-
-```bash
-bash instalar.sh
-```
-
-```bash
-bash iniciar.sh
-```
-
-> El repositorio es privado: para compartirlo, agrega a la persona como colaboradora en GitHub. Su IA clonará con su propia sesión.
+**Desinstalar:** doble clic en `Desinstalar en Mac.command`, `Desinstalar en Windows.cmd` o `Desinstalar en Linux.sh`. Muestra qué va a quitar y pide confirmar: la app, sus accesos y el kit de tus IA (con `--conservar-kit` lo dejas). **Nunca toca tus vaults ni tus notas.**
 
 ---
 
 ## Índice
 
 - [Qué puedes hacer](#qué-puedes-hacer)
+- [Créditos y licencias](#créditos-y-licencias)
 - [Cómo se acopla a cada equipo](#cómo-se-acopla-a-cada-equipo)
 - [Comandos](#comandos)
 - [Cómo se mantiene sincronizado](#cómo-se-mantiene-sincronizado)
@@ -79,7 +121,11 @@ bash iniciar.sh
 
 ## Qué puedes hacer
 
-### Universo (`#/`)
+### Kit (`#/`)
+
+La portada. Tres tarjetas dicen qué IA tienes, si tu memoria está conectada y cuántas piezas del kit instalaste. Debajo: **Cómo trabajo** (cuatro recorridos paso a paso: una pantalla nueva, una API con datos, antes de publicar y un video con IA), el **catálogo** filtrable por área y tipo con la ficha de cada pieza (qué hace, «Pídelo así», skills que usa, de dónde viene y en qué IA está), y los créditos a la comunidad. Instalar, actualizar y quitar se hace desde ahí, con el avance en vivo.
+
+### Universo (`#/universo`)
 El mapa completo como **una sola mente**: cada vault es un **cerebro de neuronas** que crece con sus notas (más notas, cerebro más grande y más neuronas). **Tu vault central es el núcleo**, rodeado de una interfaz holográfica al estilo JARVIS (anillos que giran, marcas de escala, barrido de radar y lecturas con las cifras del atlas), y los demás vaults **nacen de él** unidos por haces nerviosos por los que viajan impulsos. El centro se elige solo: un vault llamado CORE, Inicio o Home; si no hay, el que más enlaces tiene con los otros. También se puede fijar.
 
 - Cada cerebro tiene su silueta y sus surcos, sinapsis entre neuronas vecinas, dendritas, chispas que se encienden al azar e impulsos que recorren las conexiones. Las **neuronas grandes son las carpetas principales** (lóbulos): pasa el cursor para ver cuál es y haz clic para entrar directo a esa carpeta.
@@ -251,7 +297,7 @@ Las notas de los vaults son tus propios archivos: el atlas las muestra como est�
 ## Estructura del proyecto
 
 ```
-atlas-memoria/
+boost-ia-app-atlas-software/
 ├── AGENTS.md · CLAUDE.md · GEMINI.md   # instrucciones para Codex, Antigravity, Claude Code y Gemini CLI
 ├── .agents/skills/instalar-atlas/      # skill de instalación (Antigravity, Codex)
 ├── .claude/skills/instalar-atlas/      # copia idéntica (Claude Code)
@@ -341,7 +387,10 @@ Comandos paso a paso en [docs/FLUJO-GIT.md](docs/FLUJO-GIT.md).
 | Síntoma | Causa y arreglo |
 |---|---|
 | «Todavía no hay mapa» | No se generaron los datos: `bash instalar.sh` (o `npm run instalar`). |
-| «Todavía no hay vaults» | No se encontró ningún vault. En la portada: «Crear mi primer vault» (notas guía en Documentos/Mi memoria) o «Ya tengo un vault». Por terminal: `npm run instalar -- --vault-inicial` o `--vault "<ruta>"`. |
+| «Todavía no hay vaults» | No se encontró ningún vault. Crea o abre uno en Obsidian y vuelve a abrir la app; si está en una carpeta poco común, escribe su ruta en Vaults o usa `npm run instalar -- --vault "<ruta>"`. Boost IA no crea vaults. |
+| La IA no usa una skill o agente nuevo | Ciérrala y vuelve a abrirla: las IA cargan el kit al arrancar. Revisa con `npm run kit -- --estado`. |
+| «conflicto» al instalar el kit | Ya tenías una skill o agente con ese nombre. El kit no lo toca; si quieres la versión del kit, borra la tuya y vuelve a instalar. |
+| El kit no descarga | Necesita git e internet. Sin conexión usa las copias que ya había descargado. |
 | Falta un vault, una carpeta de skills o de agentes | `npm run detectar`; si sigue faltando, agrégalo con `--vault`, `--skills` o `--agentes`. |
 | Una nota nueva no aparece | Con `npm start` no hay vigilancia en vivo: usa el botón de actualizar. Con `iniciar` o `npm run dev`, espera unos 10 segundos. |
 | Aparece texto en inglés | Es nuevo y aún no tiene traducción: `npm run traducir` (o los lotes, desde una IA). |
@@ -350,3 +399,9 @@ Comandos paso a paso en [docs/FLUJO-GIT.md](docs/FLUJO-GIT.md).
 | `node: command not found` | Abre una terminal nueva o usa `bash iniciar.sh`, que carga Node aunque se haya instalado con fnm o nvm. |
 
 Más casos en [INSTALAR.md](INSTALAR.md#problemas-frecuentes).
+
+## Créditos y licencias
+
+- El código de la app y los agentes y skills propios del kit: © Campuslands Guatemala, licencia MIT (ver [LICENSE](LICENSE)).
+- Las skills de la comunidad conservan la licencia y la autoría de su repositorio original; el kit solo las descarga desde ahí. Lista completa en [docs/KIT.md](docs/KIT.md#gracias-a-la-comunidad).
+- Orbit y el logo de Campuslands son marcas de Campuslands.
