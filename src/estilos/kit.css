@@ -1276,3 +1276,22 @@
     grid-row: span 2;
   }
 }
+
+/* Barra con seis secciones: el buscador nunca se parte en dos líneas y, en anchos medianos,
+   la marca y el buscador se compactan para que quepan todas las secciones. */
+.buscar-boton,
+.estado-datos .mono {
+  white-space: nowrap;
+}
+
+@media (max-width: 1100px) {
+  .marca-texto .rotulo,
+  .buscar-boton span,
+  .buscar-boton kbd,
+  .estado-datos .mono {
+    display: none;
+  }
+  .barra {
+    gap: 14px;
+  }
+}
