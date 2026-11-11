@@ -3,6 +3,7 @@
 import { useSyncExternalStore } from 'react';
 
 export type Ruta =
+  | { vista: 'kit' }
   | { vista: 'universo' }
   | { vista: 'hoy'; seccion: SeccionHoy }
   | { vista: 'vault'; slug: string; nota: string | null; carpeta: string | null }
@@ -48,8 +49,11 @@ function leer(): Ruta {
       return { vista: 'hoy', seccion: partes[1] === 'tareas' || partes[1] === 'proyectos' ? partes[1] : null };
     case 'sistema':
       return { vista: 'sistema', pestana: partes[1] === 'agentes' || partes[1] === 'salud' ? partes[1] : 'como' };
-    default:
+    case 'universo':
       return { vista: 'universo' };
+    default:
+      // La portada es el kit Boost IA.
+      return { vista: 'kit' };
   }
 }
 

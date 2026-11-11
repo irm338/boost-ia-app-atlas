@@ -16,7 +16,8 @@ const normalizar = (t: string) =>
     .trim();
 
 const SECCIONES: [RegExp, string, string][] = [
-  [/^(el )?universo|inicio|mapa$/, '#/', 'Universo'],
+  [/^(el )?(kit|inicio)$/, '#/', 'Kit'],
+  [/^(el )?universo|mapa$/, '#/universo', 'Universo'],
   [/^hoy$/, '#/hoy', 'Hoy'],
   [/^(las )?tareas|pendientes$/, '#/hoy/tareas', 'Tareas'],
   [/^(los )?proyectos$/, '#/hoy/proyectos', 'Proyectos'],

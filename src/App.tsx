@@ -11,6 +11,7 @@ import Universo from './pantallas/Universo';
 
 // Las demás pantallas se cargan al abrirlas: la portada aparece antes.
 const Hoy = lazy(() => import('./pantallas/Hoy'));
+const Kit = lazy(() => import('./pantallas/Kit'));
 const Vault = lazy(() => import('./pantallas/Vault'));
 const Skills = lazy(() => import('./pantallas/Skills'));
 const Agentes = lazy(() => import('./pantallas/Agentes'));
@@ -56,7 +57,7 @@ export default function App() {
   }, [pagina]);
 
   useEffect(() => {
-    const titulos: Record<string, string> = { universo: 'Universo', hoy: 'Hoy', vault: 'Vaults', skills: 'Skills', agentes: 'Agentes', sistema: 'Sistema' };
+    const titulos: Record<string, string> = { kit: 'Tu kit', universo: 'Universo', hoy: 'Hoy', vault: 'Vaults', skills: 'Skills', agentes: 'Agentes', sistema: 'Sistema' };
     document.title = `${titulos[ruta.vista]} · Boost IA Atlas`;
   }, [ruta.vista]);
 
@@ -86,6 +87,7 @@ export default function App() {
             </div>
           }
         >
+        {atlas && ruta.vista === 'kit' && <Kit atlas={atlas} />}
         {atlas && ruta.vista === 'hoy' && <Hoy atlas={atlas} seccion={ruta.seccion} />}
         {atlas && ruta.vista === 'vault' && atlas.vaults.length > 0 && <Vault key={ruta.slug || 'centro'} atlas={atlas} slug={ruta.slug} notaId={ruta.nota} carpeta={ruta.carpeta} />}
         {atlas && ruta.vista === 'vault' && atlas.vaults.length === 0 && (

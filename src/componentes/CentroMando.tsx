@@ -285,7 +285,8 @@ export default function CentroMando({ atlas, vista, inicial, cerrar }: { atlas: 
       },
     });
     return [
-      ir('Universo', 'el mapa de todo', '#/'),
+      ir('Kit', 'tu kit Boost IA: instalar agentes y skills', '#/'),
+      ir('Universo', 'el mapa de todo', '#/universo'),
       ir('Hoy', 'lo nuevo desde tu última visita', '#/hoy'),
       ...(central ? [ir('Vaults', `empezar por ${central.nombre}`, rutaVault(central.slug))] : []),
       ir('Skills', `${atlas.totales.skills} skills de tus IAs`, '#/skills'),
