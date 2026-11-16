@@ -152,7 +152,8 @@
         "supabase",
         "web-design-guidelines",
         "frontend-design",
-        "impeccable"
+        "impeccable",
+        "astryx"
       ],
       "subagentes": [
         "codebase-scout"
@@ -190,7 +191,8 @@
       "skills": [
         "vercel-react-native-skills",
         "typescript-advanced-types",
-        "zod"
+        "zod",
+        "astryx"
       ],
       "subagentes": [
         "codebase-scout"
@@ -1438,6 +1440,15 @@
       "pidelo": "Arma el sistema de diseño de mi proyecto: colores, tipografías y botones."
     },
     {
+      "slug": "astryx",
+      "area": "frontend",
+      "kit": "astryx",
+      "nombre": "Astryx",
+      "descripcion": "Construye pantallas para web y celular con el sistema de diseño de Meta: parte de una plantilla, usa sus componentes y tokens y deja el modo oscuro resuelto. La primera vez instala su CLI con npm i -g @astryxdesign/cli.",
+      "pidelo": "Arma con Astryx la pantalla de pedidos para celular y web.",
+      "ruta": "plugins/astryx/skills/astryx"
+    },
+    {
       "slug": "video-prompt-engineering",
       "area": "video",
       "kit": "propia",
@@ -1682,6 +1693,14 @@
       "rama": "master",
       "licencia": "MIT",
       "que": "Modo de depuración guiado por hipótesis e instrumentación temporal."
+    },
+    {
+      "id": "astryx",
+      "nombre": "Astryx",
+      "autor": "Meta",
+      "repo": "meta/astryx",
+      "licencia": "MIT",
+      "que": "Sistema de diseño de Meta para React 19: más de 150 componentes accesibles, temas, modo oscuro, plantillas y una CLI que la IA consulta antes de construir."
     }
   ],
   "flujos": [

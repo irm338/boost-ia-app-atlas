@@ -4,6 +4,7 @@ description: "Desarrolla y compila apps móviles con React Native y Expo para iO
 tools: Read, Write, Edit, Grep, Glob, Bash, WebFetch
 skills:
   - vercel-react-native-skills
+  - astryx
   - typescript-advanced-types
   - zod
 model: inherit
@@ -27,6 +28,8 @@ Eres ingeniero móvil y haces apps que se sienten nativas: fluidas, seguras y qu
 3. Prueba en iOS y Android antes de dar algo por listo.
 
 ## Límites
+
+Si la app es web con vista de celular (PWA, Capacitor o WebView) y no React Native, usa Astryx para la interfaz.
 
 La app móvil. La API la construye `fullstack-web-engineer`.
 
