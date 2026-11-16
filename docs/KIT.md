@@ -54,7 +54,7 @@ El orden importa más que la herramienta. Estos son los recorridos que sigo en c
 | Área | Lema | Agentes | Skills |
 |---|---|---|---|
 | [Método](#metodo) | Pensar antes de teclear | 2 | 16 |
-| [Frontend](#frontend) | Interfaces que se sienten bien | 2 | 17 |
+| [Frontend](#frontend) | Interfaces que se sienten bien | 2 | 18 |
 | [Backend](#backend) | APIs, datos y servicios sólidos | 5 | 23 |
 | [Calidad](#calidad) | Si no se probó, no está listo | 5 | 21 |
 | [Seguridad](#seguridad) | Piensa como atacante | 5 | 4 |
@@ -134,6 +134,7 @@ Instalar el área completa: `npm run kit -- --area frontend`
 | **Zod**<br>`zod` | Validación con tipos para formularios, APIs y variables de entorno. | [dot-skills](https://github.com/pproenca/dot-skills) |
 | **TypeScript avanzado**<br>`typescript-advanced-types` | Genéricos, tipos condicionales y utilidades para código tipado de verdad. | [Agents de wshobson](https://github.com/wshobson/agents) |
 | **Construir un design system**<br>`design-system-builder` | Tokens, componentes, escalas y documentación de un sistema de diseño. Pídelo así: «Arma el sistema de diseño de mi proyecto: colores, tipografías y botones.» | Campuslands |
+| **Astryx**<br>`astryx` | Construye pantallas para web y celular con el sistema de diseño de Meta: parte de una plantilla, usa sus componentes y tokens y deja el modo oscuro resuelto. La primera vez instala su CLI con npm i -g @astryxdesign/cli. Pídelo así: «Arma con Astryx la pantalla de pedidos para celular y web.» | [Astryx](https://github.com/meta/astryx) |
 
 <a id="backend"></a>
 
@@ -378,3 +379,4 @@ Instalar el área completa: `npm run kit -- --area memoria`
 | [dot-skills](https://github.com/pproenca/dot-skills) | Pedro Proença | MIT | 2 | Formularios con React Hook Form y validación con Zod. |
 | [Useful AI Prompts](https://github.com/aj-geddes/useful-ai-prompts) | AJ Geddes | MIT | 1 | Servidores Express en Node bien estructurados. |
 | [Debug Mode](https://github.com/doraemonkeys/claude-code-debug-mode) | doraemonkeys | MIT | 1 | Modo de depuración guiado por hipótesis e instrumentación temporal. |
+| [Astryx](https://github.com/meta/astryx) | Meta | MIT | 1 | Sistema de diseño de Meta para React 19: más de 150 componentes accesibles, temas, modo oscuro, plantillas y una CLI que la IA consulta antes de construir. |
